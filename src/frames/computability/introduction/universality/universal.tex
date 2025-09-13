@@ -1,0 +1,42 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Machine de Turing universelle}
+  \small
+  
+  \begin{block}{Remarque}
+    \begin{itemize}
+    \item Il existe un algorithme qui simule toutes les MTD.
+    \item Tout algorithme peut être transformé en une MTD.
+    \item Il existe une MTD qui simule toutes les MTD.
+    \end{itemize}
+  \end{block}
+
+  \pause
+
+  \begin{block}{Théorème -- Machine de Turing universelle}
+    Soit $\Sigma$ un alphabet.
+    Il existe une MTD $M_{univ}$ qui prend en entrée :
+    \begin{itemize}
+    \item un encodage $\mathit{encode}(M)$ d'une MTD $M$,
+    \item un mot $u \in \Sigma^\star$,
+    \end{itemize}
+    et telle que :
+    \begin{itemize}
+    \item \structure{$M_{univ}$ termine sur $\langle \mathit{encode}(M), u \rangle$} si, et seulement si, \structure{$M$ termine sur $u$};
+    \item \structure{$M_{univ}$ accepte $\langle \mathit{encode}(M), u \rangle$} si, et seulement si, \structure{$M$ accepte $u$}. 
+    \end{itemize}
+
+    \structure{Conséquence : } \alert{$L_{univ} \eqdef \{\langle \mathit{encode}(M), u \rangle | M \text{ décide } u \}$ est semi-décidable}. 
+  \end{block}
+  
+\end{frame}
+
+
+\endgroup

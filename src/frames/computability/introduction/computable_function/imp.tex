@@ -1,0 +1,41 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Le langage IMP}
+  \small
+  \DontPrintSemicolon
+  On se donne :
+  \begin{itemize}
+  \item Un alphabet $\Sigma$ pour écrire les identifiants de variables
+  \item Un alphabet $\Gamma$ pour encoder les valeurs, contenant $T$ (vrai) et $F$ (faux)
+  \item Un ensemble $\{ f_1, ..., f_n \}$ de fonctions calculables d'arité $\{ a_1, ..., a_n \}$. 
+  \begin{itemize}
+  \item $f_i : (\Sigma^\star)^n \rightarrow \Sigma^\star$
+  \end{itemize}
+  \end{itemize}
+  $$
+  \left\{\begin{array}{rcl}
+  P &\rightarrow& ID \leftarrow \Gamma^+ \\
+  & | & ID \leftarrow f_i(ID_1, ..., ID_{a_i}) \\
+  & | & P; P \\
+  & | & \leSi{ID}{~P~}{P} \\
+  & | & \lTantque{ID}{P} \\
+  \end{array}\right.
+  $$
+ 
+  \begin{block}{Remarque}
+    On peut ajouter : 
+    \begin{itemize}
+    \item d'autres structures de contrôle (boucle pour, etc.)
+    \item les fonctions (nécessité d'ajouter une pile)
+    \end{itemize}
+  \end{block}
+ 
+\end{frame}
+\endgroup

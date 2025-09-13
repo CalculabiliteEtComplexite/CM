@@ -1,0 +1,48 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Les classes P et NP}
+  \small 
+  Soient $\Sigma$ un alphabet et $L \subseteq \Sigma^\star$ un langage. 
+
+  \begin{block}{Importance de \textsc{p}}
+    \textsc{p} est généralement considérée comme \structure{la classe des problèmes \og raisonnables \fg}
+    \begin{itemize}
+    \item Souvent possible de les résoudre en pratique avec les ordinateurs modernes
+    \item Classe très stable pour les variantes du modèle :
+      \begin{itemize}
+      \item actions supplémentaires, $k$ rubans, autre formalismes Turing-complets...
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+
+  \pause
+  
+  \begin{block}{Deux définitions de \textsc{np}}
+    On trouve couramment deux définitions dans la littérature. 
+    \begin{enumerate}
+    \item $L \in \textsc{np}$ si $L$ peut être \alert{reconnu} par une \structure{MTND} en temps polynomial.
+    \item $L \in \textsc{np}$ si \alert{une solution} peut être \alert{vérifiée} par une \structure{MTD} en temps polynomial.
+    \end{enumerate}
+  \end{block}
+
+  \pause
+
+  \begin{exampleblock}{Exemple : résoudre une grille de Sudoku}
+    \begin{itemize}
+    \item Vérifier si une grille donnée vérifie les règles est \og simple \fg pour une MTD
+    \item Une MTND peut générer, puis vérifier, toutes les grilles possibles
+      \begin{itemize}
+      \item Mais une MTD mettrait un temps exponentiel à le faire
+      \end{itemize}
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\endgroup

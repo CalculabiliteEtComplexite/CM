@@ -1,0 +1,55 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Exemple de réduction}
+  \small
+  \begin{block}{Théorème -- Indécidabilité de la décision}
+    Décider si une MTD $M_a$ donnée décide $\mathcal{L}(a^\star)$ est indécidable.
+  \end{block}
+  \begin{block}{Démonstration par réduction au problème de l'arrêt sur $\varepsilon$}
+    \begin{itemize}
+    \item Soient $L_A = \{ M_\varepsilon \mid M_\varepsilon \text{ termine sur } \varepsilon \}$ et $L_B = \{ M_a \mid M_a \text{ décide } \mathcal{L}(a^\star) \}$.
+    \item Pour toute MTD $M_\varepsilon$, on construit $M_a = f(M_\varepsilon)$ comme suit : 
+
+      \begin{tikzpicture}
+        \draw (0,0) node {\begin{minipage}{.6\textwidth}
+              \SetKwFunction{Decider}{decider}
+              \begin{algorithm}[H]
+                \Algo{$M_a(u)$}{
+                  $M_\varepsilon(\varepsilon)$\;
+                  \Return $u \in \mathcal{L}(a^\star)$\;
+                }
+              \end{algorithm}
+        \end{minipage}};
+        \draw (3.5,0.1) node {\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+
+              \draw (9,1) node[cloud, cloud puffs=11 ,cloud puff arc=120, aspect=2, inner ysep=1em, fill=structure!20]{};
+              \draw[structure]  (9,1) node {$M_\varepsilon$ sur $R$}; 
+              
+              \node [state, fill=structure!20, initial, initial text=] (M0) at (8,1)  {}; 
+              \node [state, fill=structure!20]                         (Mf) at (10,1) {}; 
+              \node [state, accepting]                                 (E)  at (12,1) {}; 
+
+              \path [->] (Mf)  edge[loop above, looseness=5] node {\scriptsize$A:\smTMtransR{a}{a}$} (Mf);
+              \path [->] (Mf) edge node {\scriptsize$A:\smTMtransR{\blank}{\blank}$} (E);
+
+              \path [dashed,->, structure]    (M0) edge[bend left=5mm]  (Mf);
+              \path [dashed,->, structure]    (M0) edge[bend right=5mm] (Mf);
+
+              \draw[structure]  (10,0.2) node {$M_a$ sur deux rubans $R$ et $A$}; 
+        \end{tikzpicture}};
+      \end{tikzpicture}
+
+    \item La réduction $f : M_\varepsilon \mapsto M_a$  est calculable.
+    \item $\forall M_\varepsilon, M_\varepsilon \in L_A \Leftrightarrow f(M_\varepsilon) \in L_B$.
+    \item Or $L_A$ est indécidable, donc $L_B$ est indécidable.
+    \end{itemize}
+  \end{block}
+\end{frame}
+\endgroup

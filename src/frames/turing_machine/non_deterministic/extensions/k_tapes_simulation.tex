@@ -1,0 +1,154 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+\begin{frame}{Exemple avec $\Gamma = \{a, b, \blank\}$ et $k = 2$}
+
+  \centering
+  \begin{tikzpicture}
+
+    \draw (5,8.5) node{\scalebox{.85}{\begin{tikzpicture}
+          
+          \fill<1> [example!20] ( 7,0) rectangle +(1,1) ; 
+          \fill<11>[example!20] ( 5,0.5) rectangle +(1,.5) ; 
+          \fill<11>[example!20] ( 7,0) rectangle +(1,.5) ; 
+          
+          \draw ( 0,0) -- +(1,0) -- +(1,1) -- +(0,1) +(.5,.5) node{$\ldots$};
+          \draw ( 1,0) rectangle +(1,1) +(.5,.7) node{$\blank$} +(.5,.3) node{$\blank$};
+          \draw ( 2,0) rectangle +(1,1) +(.5,.7) node{\only<-6>{$\blank$}\only<7->{\alert<7>{$a$}}} +(.5,.3) node{\only<-8>{$\blank$}\only<9->{\alert<9>{$\blank$}}};
+          \draw ( 3,0) rectangle +(1,1) +(.5,.7) node{\alert<6>{$a$}} +(.5,.3) node{\only<-8>{$b$}\only<9->{\alert<9>{$\blank$}}};
+          \draw ( 4,0) rectangle +(1,1) +(.5,.7) node{\alert<6>{$a$}} +(.5,.3) node{\only<-8>{$a$}\only<9->{\alert<9>{$b$}}};
+          \draw ( 5,0) rectangle +(1,1) +(.5,.7) node{\only<-5>{$a$}\only<6->{\alert<6>{$b$}}} +(.5,.3) node{\only<-8>{$a$}\only<9->{\alert<9>{$a$}}};
+          \draw ( 6,0) rectangle +(1,1) +(.5,.5) node{\faMapMarker};
+          \draw ( 7,0) rectangle +(1,1) +(.5,.7) node{\only<-3>{$a$}\only<4->{\alert<4>{$b$}}} +(.5,.3) node{\only<-8>{$b$}\only<9->{\alert<9>{$a$}}};
+          \draw ( 8,0) rectangle +(1,1) +(.5,.7) node{\alert<4>{$b$}} +(.5,.3) node{\only<-8>{$a$}\only<9->{\alert<9>{$b$}}};
+          \draw ( 9,0) rectangle +(1,1) +(.5,.7) node{\only<-3>{$b$}\only<4->{\alert<4>{$\blank$}}} +(.5,.3) node{\only<-8>{$b$}\only<9->{\alert<9>{$a$}}};
+          \draw (10,0) rectangle +(1,1) +(.5,.7) node{$\blank$} +(.5,.3) node{\only<-9>{$\blank$}\only<10->{\alert<10>{$b$}}};
+          \draw (11,0) rectangle +(1,1) +(.5,.7) node{$\blank$} +(.5,.3) node{$\blank$};
+          \draw (12,0) +(1,0) -- +(0,0) -- +(0,1) -- +(1,1) +(.5,.5) node{$\ldots$};
+
+
+          
+          \fill<1> [alert] (7,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<2> [alert!20] (7,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<2> [alert, -latex] (8,-.15) -- (10, -.15);
+          \fill<2> [alert]    (10,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<3> [alert] (9,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<4> [alert!20] (9,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<4> [alert, -latex] (9,-.15) -- (7, -.15);
+          \fill<4> [alert]    (6,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<5> [alert!20] (6,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<5> [alert, -latex] (6.2,-.15) -- (5.8, -.15);
+          \fill<5> [alert]    (5,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<6> [alert!20] (5,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<6> [alert, -latex] (5,-.15) -- (3, -.15);
+          \fill<6> [alert]    (2,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<7> [alert!20] (3,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<7> [alert, -latex] (4,-.15) -- (6, -.15);
+          \fill<7> [alert]    (6,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<8> [alert!20] (5,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<8> [alert, -latex] (5,-.15) -- (3, -.15);
+          \fill<8> [alert]    (2,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<9> [alert!20]      (3,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<9> [alert, -latex] (4,-.15) -- (10, -.15);
+          \fill<9> [alert]         (10,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<10> [alert!20]      (9,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+          \draw<10> [alert, -latex] (9,-.15) -- (7, -.15);
+          \fill<10> [alert]         (6,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+
+          \fill<11> [alert]         (7,0) +(.25,-.5) -- +(.5,0) -- +(.75,-.5);
+    \end{tikzpicture}}};
+
+    \draw (5,4.5) node{\scalebox{.85}{\begin{tikzpicture}[shorten >=1pt,node distance=2.4cm,on grid,auto]
+
+          \node  (A) at (0, 3) {}; 
+          \node  (B) [right=of A] {}; 
+          \node  (L) at (0, 0)    {}; 
+          \node  (K) [right=of L] {}; 
+          \node  (C) [right=of B] {}; 
+          \node  (D) [above right=of C] {}; 
+          \node  (E) [below right=of C] {}; 
+          \node  (F) [below right=of D] {};
+          \node  (J) [above right=of K] {}; 
+          \node  (I) [below right=of K] {}; 
+          \node  (H) [below right=of J] {}; 
+          \node  (G) [right=of H] {}; 
+
+          \node[state, example]  (a) at (A) {$q$}; 
+          \node[state]  (b) at (B) {$\text{\faForward}_1$}; 
+          \node[state]  (c) at (C) {$\blank_1$}; 
+          \node[state]  (d) at (E) {$a_1$}; 
+          \node[state]  (e) at (D) {$b_1$}; 
+          \node[state]  (f) at (F) {$\text{\faFastForward}_1$}; 
+          \node[state]  (g) at (G) {$\text{\faBackward}_2$}; 
+          \node[state]  (h) at (H) {$\blank_2$}; 
+          \node[state]  (i) at (I) {$a_2$}; 
+          \node[state]  (j) at (J) {$b_2$}; 
+          \node[state]  (k) at (K) {$\text{\faFastBackward}_2$}; 
+          \node[state, example]  (l) at (L) {$q'$}; 
+
+          \node<1>[draw=example, fill=example!20, state]  (a) at (A) {\example{$q$}}; 
+          \node<2>[fill=alert!20, state]  (b) at (B) {$\text{\faForward}_1$}; 
+          \node<3>[fill=alert!20, state]  (c) at (C) {$\blank_1$}; 
+          \node<4,6>[fill=alert!20, state]  (d) at (E) {$a_1$}; 
+          \node<5>[fill=alert!7, state]  (d) at (E) {$a_1$}; 
+          \node<4,5>[fill=alert!20, state]  (e) at (D) {$b_1$}; 
+          \node<7>[fill=alert!20, state]  (f) at (F) {$\text{\faFastForward}_1$}; 
+          \node<8>[fill=alert!20, state]  (g) at (G) {$\text{\faBackward}_2$}; 
+          \node<9>[fill=alert!20, state]  (h) at (H) {$\blank_2$}; 
+          \node<9>[fill=alert!20, state]  (i) at (I) {$a_2$}; 
+          \node<9>[fill=alert!20, state]  (j) at (J) {$b_2$}; 
+          \node<10>[fill=alert!20, state]  (k) at (K) {$\text{\faFastBackward}_2$}; 
+          \node<11>[draw=example, fill=example!20, state]  (l) at (L) {\example{$q'$}}; 
+          
+          \path [->] (a) edge node[swap] {\footnotesize $\smTMtransL{ab}{ab}$} (b);
+          \path [->] (b) edge[loop above, looseness=5] node {\footnotesize $\begin{array}{c}\smTMtransR{ay}{ay}\\\smTMtransR{by}{by}\end{array}$} (b);
+          \path [->] (b) edge node[swap] {\footnotesize $\smTMtransL{\blank y}{\blank y}$} (c);
+
+          \path [->] (c) edge node[sloped, swap] {\footnotesize $\smTMtransL{ay}{ \blank y}$} (d);
+          \path [->] (c) edge node[sloped] {\footnotesize $\begin{array}{c}\alert<5>{\smTMtransL{\text{\faMapMarker}}{\text{\faMapMarker}}}\\\smTMtransL{by}{ \blank y}\end{array}$} (e);
+          \path [->] (d) edge[loop right, looseness=5] node {\footnotesize $\smTMtransL{ay}{ay}$} (d);
+          \path [->] (e) edge[loop right, looseness=5] node {\footnotesize $\begin{array}{c}\alert<5>{\smTMtransL{\text{\faMapMarker}}{\text{\faMapMarker}}}\\\smTMtransL{by}{by}\end{array}$} (e);
+          \path [->] (e) edge node[sloped] {\footnotesize $\smTMtransL{ay}{by}$} (d);
+          \path [->] (d) edge[bend left=20] node[sloped] {\footnotesize $\begin{array}{c}\alert<5>{\smTMtransL{\text{\faMapMarker}}{\text{\faMapMarker}}}\\\smTMtransL{by}{ay}\end{array}$} (e);
+          \path [->] (e) edge node[sloped, swap] {\footnotesize $\smTMtransR{ \blank y}{by}$} (f);
+          \path [->] (d) edge node[sloped] {\footnotesize $\smTMtransR{ \blank y}{ay}$} (f);
+          
+          \path [->] (f) edge[loop right, looseness=5] node {\footnotesize $\begin{array}{c}\smTMtransR{ay}{ay}\\\smTMtransR{by}{by}\end{array}$} (f);
+          \path [->] (f) edge[bend left] node {\footnotesize $\smTMtransL{\text{\faMapMarker}}{\text{\faMapMarker}}$} (g);
+          \path [->] (g) edge[loop right, looseness=5] node {\footnotesize $\begin{array}{c}\smTMtransL{xa}{xa}\\\smTMtransL{xb}{xb}\end{array}$} (g);
+          \path [->] (g) edge node[swap] {\footnotesize $\smTMtransR{x\blank}{x\blank}$} (h);
+          \path [->] (h) edge node[sloped] {\footnotesize $\smTMtransR{xb}{x\blank}$} (j);
+          \path [->] (h) edge node[swap, sloped] {\footnotesize $\begin{array}{c}\smTMtransR{xa}{x\blank}\\\smTMtransR{\text{\faMapMarker}}{\text{\faMapMarker}}\end{array}$} (i);
+          \path [->] (i) edge[loop left, looseness=5] node {\footnotesize $\smTMtransR{xa}{xa}$} (i);
+          \path [->] (j) edge[loop left, looseness=5] node {\footnotesize $\smTMtransR{xb}{xb}$} (j);
+          \path [->] (j) edge[bend left=20] node[sloped] {\footnotesize $\begin{array}{c}\smTMtransR{\text{\faMapMarker}}{\text{\faMapMarker}}\\\smTMtransR{xa}{xb}\end{array}$} (i);
+          \path [->] (i) edge node[sloped] {\footnotesize $\smTMtransR{xb}{xa}$} (j);
+          \path [->] (j) edge node[swap, sloped] {\footnotesize $\smTMtransL{x\blank}{xb}$} (k);
+          \path [->] (i) edge node[sloped] {\footnotesize $\smTMtransL{x\blank}{xa}$} (k);
+          \path [->] (k) edge[loop below, looseness=5] node {\footnotesize $\begin{array}{c}\smTMtransL{xa}{xa}\\\smTMtransL{xb}{xb}\end{array}$} (k);
+          \path [->] (k) edge node[swap] {\footnotesize $\smTMtransR{\text{\faMapMarker}}{\text{\faMapMarker}}$} (l);
+
+          \path [example, dashed, ->] (a) edge node {$\left\{\begin{array}{l}1 : \smTMtransR{a}{\alert<5>{b}}\\2 : \smTMtransL{b}{a}\end{array}\right.$} (l);
+    \end{tikzpicture}}};
+
+    \draw[structure] (8.5, 2) node{$\forall x, y \in \Gamma$};
+
+    
+  \end{tikzpicture}
+
+\end{frame}
+\endgroup

@@ -1,0 +1,55 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\SetKwFunction{Ecrire}{ecrire}
+\SetKwFunction{Reconnait}{reconnait}
+\SetKwFunction{Generer}{generer}
+
+\begin{frame}{$1 \Rightarrow 2$}
+
+  \onBlock[top=-2mm]{Lemme -- Reconnu $\Rightarrow$ généré}{
+    Soit $L$ un langage reconnaissable par une MTND $M$.\\
+    Alors il existe une MTND $M_G$ qui génère $L$.
+  }
+
+  \onBlock[y=2mm]{Démonstration}{
+    On construit un générateur $M_G$ de $L$ :
+    \begin{itemize}
+    \item Générer tous les mots de $\Sigma^\star$ sur deux rubans $r$ et $g$
+    \item \alert{De manière non-déterministe}, tenter de reconnaître chaque mot sur $r$
+    \item Si le mot est reconnu, il est toujours écrit sur $g$
+    \end{itemize}
+  }
+
+  \on[left=.5\textwidth, y=-30mm]{
+    \begin{algorithm}[H]
+      \Algo{$\Generer_L$}{
+        \For{$u \in \Sigma^\star$}{
+          \If{$\Reconnait_L(u)$} {
+            $\Ecrire (u)$\;
+          }
+        }
+      }
+    \end{algorithm}
+  }
+
+  \on[right=.5\textwidth, y=-25mm]{
+    \begin{tikzpicture}[turingMachine]
+      \state[initial]              (A)  at (0,0) {$\Sigma^\star$};
+      \state[structure]            (M0) at (1,0) {$M_0$};
+      \state[accepting, structure] (Mf) at (2,0) {$M_f$};
+      \cloudPath[structure] {M0}{Mf}
+      \path (A) edge[loop above] node       {\smGroup{\smTMtransL[r]{\blank}{x}\smTMtransL[g]{\blank}{x}} $\forall x \in \Sigma$} (A);
+      \path (A) edge             node[swap] {\smGroup{\smTMtransR[r]{\blank}{\blank}\smTMtransR[g]{\blank}{\blank}}} (M0);
+    \end{tikzpicture}
+  }
+  
+\end{frame}
+
+\endgroup

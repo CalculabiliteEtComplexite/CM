@@ -1,0 +1,68 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\SetKwFunction{Decide}{decide}
+
+\begin{frame}{Notion de réduction}
+  
+  \begin{tikzpicture}
+    \draw[white] (5,9) -- (5,1);
+    \draw (5,8.9) node{\begin{minipage}{\textwidth}
+        Soient $\Sigma_A$ et $\Sigma_B$ deux alphabets, et $L_A \subseteq \Sigma_A^\star$ et $L_B \subseteq \Sigma_B^\star$ deux langages.
+    \end{minipage}};
+
+    \draw (5,5) node[above]{\begin{minipage}{\textwidth}
+        \begin{block}{Définition -- Réduction de Mappage}
+          \begin{itemize}
+          \item Une \structure{réduction de $L_A$ vers $L_B$} est une fonction
+            $f : \Sigma_A^\star \rightarrow \Sigma_B^\star$ telle que
+            \begin{itemize}
+            \item $f$ est calculable ;
+            \item $\forall u \in \Sigma_A^\star, u\in L_A \Leftrightarrow f(u)\in L_B$.
+            \end{itemize}
+          \item On note $\structure{L_A \leq_m L_B}$, s'il existe une réduction de $L_A$ vers $L_B$. 
+            \begin{itemize}
+            \item Lire \structure{\og $L_A$ se réduit à $L_B$ \fg}.
+            \item Si $L_A \leq_m L_B$, le problème $u \in L_A$ est \og plus facile que \fg $u \in L_B$.
+            \end{itemize}
+          \end{itemize}
+        \end{block}
+    \end{minipage}};
+
+    \draw<3> (5,5) node[below]{\begin{minipage}{\textwidth}
+        \begin{block}{Théorème -- Preuve d'indécidabilité par réduction}
+          Si $L_A \leq_m L_B$ et $L_A$ est indécidable, alors $L_B$ est indécidable.
+
+          \vspace{2mm}
+          \structure{Démonstration : }
+          \begin{enumerate}
+          \item Supposons (par l'absurde) que $L_B$ est décidable par $\structure{\Decide_{L_B}}$.
+          \item Alors $\structure{u \rightarrow \Decide_{L_B}(f(u))}$ décide $L_A$. 
+          \item Absurde, car $L_A$ est indécidable. Donc $L_B$ est indécidable. 
+          \end{enumerate}
+        \end{block}
+    \end{minipage}};
+
+    \draw<1-2> (5,5) node[below]{\begin{minipage}{\textwidth}
+        \begin{exampleblock}{Exemple -- Problème de l'arrêt sur chaîne vide}
+          \begin{itemize}
+          \item La fonction $\mathit{initialiseur}$ est une réduction de $L_{\mathit{halt}}$ vers $L_{\mathit{empty\_halt}}$ :
+          \begin{itemize}
+          \item $f$ est calculable ;
+          \item $\langle M, u \rangle \in L_{\mathit{halt}} \Leftrightarrow \mathit{initialiseur}(M, u)\in L_\mathit{empty\_halt}$.
+          \end{itemize}
+          \item Donc $\alert{L_{\mathit{halt}}\leq_m L_{\mathit{empty\_halt}}}$
+          \item<2> On en a déduit l'indécidabilité de $L_{\mathit{empty\_halt}}$ de celle de $L_{\mathit{halt}}$. 
+          \end{itemize}
+        \end{exampleblock}
+    \end{minipage}};
+
+  \end{tikzpicture}
+\end{frame}
+\endgroup

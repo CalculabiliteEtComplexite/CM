@@ -1,0 +1,67 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{L'argument de Strachey}
+  \small
+  \SetKwFunction{F}{f}
+  \SetKwFunction{Termine}{termine}
+
+  \hspace{-3mm}
+  \begin{tikzpicture}
+    \draw[white] (5,10) -- (5,2.5);
+
+    \draw (5,10) node{\begin{minipage}{\textwidth}
+        \begin{itemize}
+        \item Supposons (par l'absurde) qu'il existe une fonction informatique \structure{\Termine}
+          qui décide si un programme passé en argument termine. 
+        \item La fonction \alert{$\F$} ci-dessous termine-t-elle ? 
+        \end{itemize}
+    \end{minipage}};
+
+    
+    \draw (3,8.1) node{\begin{minipage}{.4\textwidth}
+        \begin{algorithm}[H]
+          \Fun{$\F()$}{
+            \uIf{$\Termine(\F)$}{
+              \lWhile{\True}{}
+            }\lElse{\Return}
+          }
+        \end{algorithm}
+    \end{minipage}};
+
+    
+    \draw (8.5,8.8) node{\includegraphics[width=1.8cm]{Stachey}};
+    \draw[structure] (8.5,7.3) node{Christopher Strachey};
+
+
+    \draw<2-> (5,6.3) node{\begin{minipage}{\textwidth}
+        \begin{itemize}
+        \item Si $\F$ termine, $\Termine(\F)$ retourne $\True$ donc $\F$ ne termine pas.
+        \item Si $\F$ ne termine pas, $\Termine(\F)$ retourne $\False$ donc $\F$ termine.
+        \item<3-> Absurde, donc \alert{$\Termine$ n'existe pas}. 
+        \end{itemize}
+    \end{minipage}};
+
+    \draw<4-> (5,4.1) node{\begin{minipage}{\textwidth}
+        \begin{block}{Difficulté à la formalisation}
+          \vspace{-.5mm}
+          Quel est le type de l'argument de $\Termine$ ?
+            \begin{itemize}
+            \item Si c'est le code de $\F$, est-ce que $\F$ est capable de recopier son code ?
+              \begin{itemize}
+              \item\vspace{-.5mm} Oui, mais difficile à démontrer : notion de \alert{quine} 
+              \end{itemize}
+            \item Dans les langages modernes, un pointeur de fonction.
+            \end{itemize}
+        \end{block}
+    \end{minipage}};
+  \end{tikzpicture}
+\end{frame}
+
+\endgroup

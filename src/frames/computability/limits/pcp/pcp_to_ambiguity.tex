@@ -1,0 +1,164 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Démonstration de l'indécidabilité de l'ambiguïté}
+  \small
+  \begin{tikzpicture}
+    \draw[white] (8, 3.6) -- (8, -1.5);
+
+    \draw (8, 2.7) node{\begin{minipage}{\textwidth}
+        Réduction du problème de correspondance de Post.
+        \begin{itemize}
+        \item Soit $\structure{D = \left\{d_1 = \HDomino{\alpha_1}{\beta_1}, ..., d_n = \HDomino{\alpha_n}{\beta_n} \right\}}$ une instance du PCP sur $\structure{\Sigma}$.
+        \item<1,7->  $D$ a une solution ssi la grammaire $\alert{G_D}$ est ambigüe :
+
+          \vspace{5mm}
+          \uncover<7->{
+            $$\begin{array}{rcl}
+              G_D &=& \left\langle \Sigma \cup D, \{S, A, B\}, S, R \right\rangle
+              \vspace{1mm}\\
+              R &=& \left\{\begin{array}{rclclcl}
+              S &\rightarrow& A \mid B\\
+              A &\rightarrow& \alpha_1 \, A \, d_1 &\mid &...& \mid& \alpha_n \, A \, d_n \\
+              A &\rightarrow& \alpha_1 \, \phantom{A\,} d_1 &\mid& ... &\mid& \alpha_n \,\phantom{A\,} d_n \\
+              B &\rightarrow& \beta_1 \, B \, d_1 &\mid& ... &\mid& \beta_n \, B \, d_n \\
+              B &\rightarrow& \beta_1 \, \phantom{B\,} d_1 &\mid& ... &\mid& \beta_n \, \phantom{B\,} d_n \\
+              \end{array}\right.
+            \end{array}
+            $$
+          }
+          \vspace{5mm}
+
+        \item<1,7-> Où la réduction $D \mapsto G_D$  est calculable.
+        \item<1,7-> Or le problème de correspondance de Post est indécidable.
+        \item<1,7-> Donc le problème de l'ambiguïté est indécidable. 
+        \end{itemize}
+    \end{minipage}};
+
+    \draw<1> (8, 3) node{$G_D = ???$};
+
+    
+    \draw<2-5> (8, 2) node{\begin{minipage}{\textwidth}
+        \begin{exampleblock}{Exemple pour $D = {\color{black}\left\{\HDomino[.7]{a}{baa}, \HDomino[.7]{ab}{aa}, \HDomino[.7]{bba}{bb} \right\}}$}
+
+          \begin{enumerate}
+          \item $D$ a pour solution $\footnotesize\HDomino{bba}{bb}\, \HDomino{ab}{aa}\, \HDomino{bba}{bb}\, \HDomino{a}{baa}$.
+            \begin{itemize}
+            \item<3-> On veut générer $bba ab bba a$ de deux manières différentes
+              \begin{itemize}
+              \item \structure{$S \vdash A\vdash^\star bba \cdot ab \cdot bba \cdot a$} et \example{$S \vdash B\vdash^\star bb \cdot aa \cdot bb \cdot baa$}
+              \end{itemize}
+            \end{itemize}
+          \item<4-> $A$ et $B$ ne doivent pas engendrer $\varepsilon$
+          \item<5-> $A$ et $B$ ne doivent pas être ambigües 
+          \end{enumerate}
+
+          \vspace{-4mm}
+          $$G_D : \left\{\begin{array}{rcrcrcrcr}
+          S &\rightarrow& \multicolumn{5}{l}{\uncover<3->{A \mid B}}\\
+          \uncover<3->{A} &\uncover<3->{\rightarrow}&
+          \uncover<3->{
+            \structure{a}   \,A\, \uncover<5->{\footnotesize \HDomino{a}{baa}}  &\mid&
+            \structure{ab}  \,A\, \uncover<5->{\footnotesize \HDomino{ab}{aa}}  &\mid&
+            \structure{bba} \,A\, \uncover<5->{\footnotesize \HDomino{bba}{bb}} &\uncover<3>{\mid}&
+            \uncover<3>{\varepsilon}
+          }
+          \\
+          \uncover<4->{A} &\uncover<4->{\rightarrow}&
+          \uncover<4->{
+            \structure{a} \phantom{\,A\,} \uncover<5->{\footnotesize \HDomino{a}{baa}} &\mid&
+            \structure{ab} \phantom{\,A\,} \uncover<5->{\footnotesize \HDomino{ab}{aa}} &\mid&
+            \structure{bba} \phantom{\,A\,} \uncover<5->{\footnotesize \HDomino{bba}{bb}}
+          }
+          \\
+          \uncover<3->{B} &\uncover<3->{\rightarrow}&
+          \uncover<3->{
+            \example{baa} \,B\, \uncover<5->{\footnotesize \HDomino{a}{baa}} &\mid&
+            \example{aa} \,B\, \uncover<5->{\footnotesize \HDomino{ab}{aa}} &\mid&
+            \example{bb} \,B\, \uncover<5->{\footnotesize \HDomino{bba}{bb}}&\uncover<3>{\mid}&
+            \uncover<3>{\varepsilon}
+          }
+          \\
+          \uncover<4->{B} &\uncover<4->{\rightarrow}&
+          \uncover<4->{
+            \example{baa} \phantom{\,B\,} \uncover<5->{\footnotesize \HDomino{a}{baa}} &\mid&
+            \example{aa} \phantom{\,B\,} \uncover<5->{\footnotesize \HDomino{ab}{aa}} &\mid&
+            \example{bb} \phantom{\,B\,} \uncover<5->{\footnotesize \HDomino{bba}{bb}}
+          }
+          \\
+          \end{array}\right.$$
+        \end{exampleblock}
+    \end{minipage}};
+
+
+    \draw<6> (8, 2.467) node{\begin{minipage}{\textwidth}
+        \begin{exampleblock}{Exemple pour $D = {\color{black}\left\{\HDomino[.7]{a}{baa}, \HDomino[.7]{ab}{aa}, \HDomino[.7]{bba}{bb}\right\}}$}
+
+          \vspace{-4mm}
+
+          $$G_D : \left\{\begin{array}{rcrcrcrcr}
+          S &\rightarrow& \multicolumn{5}{l}{\uncover<3->{A \mid B}}\\
+          \uncover<3->{A} &\uncover<3->{\rightarrow}&
+          \uncover<3->{
+            \structure{a} \,A\, \uncover<5->{\footnotesize\HDomino{a}{baa}} &\mid&
+            \structure{ab} \,A\, \uncover<5->{\footnotesize\HDomino{ab}{aa}} &\mid&
+            \structure{bba} \,A\, \uncover<5->{\footnotesize\HDomino{bba}{bb}} &\uncover<3>{\mid}&
+            \uncover<3>{\varepsilon}
+          }
+          \\
+          \uncover<4->{A} &\uncover<4->{\rightarrow}&
+          \uncover<4->{
+            \structure{a} \phantom{\,A\,} \uncover<5->{\footnotesize\HDomino{a}{baa}} &\mid&
+            \structure{ab} \phantom{\,A\,} \uncover<5->{\footnotesize\HDomino{ab}{aa}} &\mid&
+            \structure{bba} \phantom{\,A\,} \uncover<5->{\footnotesize\HDomino{bba}{bb}}
+          }
+          \\
+          \uncover<3->{B} &\uncover<3->{\rightarrow}&
+          \uncover<3->{
+            \example{baa} \,B\, \uncover<5->{\footnotesize\HDomino{a}{baa}} &\mid&
+            \example{aa} \,B\, \uncover<5->{\footnotesize\HDomino{ab}{aa}} &\mid&
+            \example{bb} \,B\, \uncover<5->{\footnotesize\HDomino{bba}{bb}}&\uncover<3>{\mid}&
+            \uncover<3>{\varepsilon}
+          }
+          \\
+          \uncover<4->{B} &\uncover<4->{\rightarrow}&
+          \uncover<4->{
+            \example{baa} \phantom{\,B\,} \uncover<5->{\footnotesize\HDomino{a}{baa}} &\mid&
+            \example{aa} \phantom{\,B\,} \uncover<5->{\footnotesize\HDomino{ab}{aa}} &\mid&
+            \example{bb} \phantom{\,B\,} \uncover<5->{\footnotesize\HDomino{bba}{bb}}
+          }
+          \\
+          \end{array}\right.$$
+
+          \begin{itemize}
+          \item<6-> $G_D$ a deux dérivations pour : 
+            $bbaabbbaa\, \scriptsize
+            \HDomino{a}{baa}\, 
+            \HDomino{bba}{bb}\,
+            \HDomino{ab}{aa}\,
+            \HDomino{bba}{bb}
+            $.
+            \begin{itemize}
+            \item $S \vdash A \vdash^\star \structure{bba}\cdot \structure{ab} \cdot \structure{bba} \cdot \structure{a} \cdot \scriptsize
+              \HDomino{a}{baa}\cdot
+              \HDomino{bba}{bb}\cdot
+              \HDomino{ab}{aa}\cdot
+              \HDomino{bba}{bb}$
+            \item $S \vdash B \vdash^\star \example{bb}\cdot \example{aa} \cdot \example{bb} \cdot \example{baa} \cdot\hspace{-.2mm} \scriptsize
+              \HDomino{a}{baa}\cdot
+              \HDomino{bba}{bb}\cdot
+              \HDomino{ab}{aa}\cdot
+              \HDomino{bba}{bb}$
+            \end{itemize}
+          \end{itemize}
+        \end{exampleblock}
+    \end{minipage}};
+  \end{tikzpicture}
+\end{frame}
+\endgroup

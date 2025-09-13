@@ -1,0 +1,68 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Exemples : génération de $\{a^n b^n \mid n\in \mathbb{N}\}$}
+
+  \on[top]{%
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \node[left]{$r :$};
+      \cell{$\blank$}
+      \cell{$\blank$} 
+      \cell{$\blank$}                         \smheadb<5> 
+      \cell{\oneof[$\blank$]{\on<5-6>{$a$}}}  \smheadb<4,6>     \smheadfromb<9>{2}
+      \cell{\oneof[$\blank$]{\on<4-10>{$a$}}} \smheadb<3,10,13>
+      \cell{\oneof[$\blank$]{\on<3-12>{$b$}}} \smheadb<2,12,14> 
+      \cell{\oneof[$\blank$]{\on<2-8>{$b$}}}  \smhead <1,8,15>  \smheadfromb<11>{-1}
+      \cell{$\blank$}                                           \smheadfromb<7>{-3}
+      \cell{$\blank$}
+      \cell{$\blank$}
+    \end{tikzpicture}
+  }
+
+  \on[y=13mm]{%
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \node[left]{$g :$};
+      \cell{$\blank$}
+      \cell{$\blank$} 
+      \cell{$\blank$}                       \smheadb<5> 
+      \cell{\oneof[$\blank$]{\on<5->{$a$}}} \smheadb<4,6-> 
+      \cell{\oneof[$\blank$]{\on<4->{$a$}}} \smheadb<3> 
+      \cell{\oneof[$\blank$]{\on<3->{$b$}}} \smheadb<2> 
+      \cell{\oneof[$\blank$]{\on<2->{$b$}}} \smhead <1> 
+      \cell{$\blank$}
+      \cell{$\blank$}
+      \cell{$\blank$}
+    \end{tikzpicture}
+  }
+
+  \on[bottom]{%
+    \begin{tikzpicture}[turingMachine, x=15mm, y=15mm]
+      \state[         , alert ob=<{-5}>,      initial above] (S) at (0,2) {$\Sigma^\star$}; 
+      \state[structure, alert ob=<{6,10,14}>,              ] (0) at (2,2) {$\textbf{A}$}; 
+      \state[structure, alert ob=<{7,11}>,                 ] (1) at (1,1) {\faForward}; 
+      \state[structure, alert ob=<{8,12}>,                 ] (2) at (2,0) {$\textbf{B}$}; 
+      \state[structure, alert ob=<{9,13}>,                 ] (3) at (3,1) {\faBackward}; 
+      \state[structure, alert ob=<{15}>,      accepting    ] (f) at (4,2) {\faCheck}; 
+
+      \scriptsize
+      \path (S) edge[loop left]  node       {$\begin{array}{r}\smGroup{\smTMtransL[r]{\blank}{a}\smTMtransL[g]{\blank}{a}}\\\smGroup{\smTMtransL[r]{\blank}{b}\smTMtransL[g]{\blank}{b}}\end{array}$} (S);
+      \path (1) edge[loop left]  node       {\smAlign{\smTMtransR[r]{a}{a}\smTMtransR[r]{b}{b}}} (1);
+      \path (3) edge[loop right] node       {\smAlign{\smTMtransL[r]{a}{a}\smTMtransL[r]{b}{b}}} (3);
+      \path (S) edge             node       {\smGroup{\smTMtransR[r]{\blank}{\blank}\smTMtransR[g]{\blank}{\blank}}} (0);
+      \path (0) edge             node       {\smTMtransR[r]{\blank}{\blank}} (f);
+      \path (0) edge             node[swap] {\smTMtransR[r]{a} {\blank}} (1);
+      \path (1) edge             node[swap] {\smTMtransL[r]{\blank}{\blank}} (2);
+      \path (2) edge             node[swap] {\smTMtransL[r]{b} {\blank}} (3);
+      \path (3) edge             node[swap] {\smTMtransR[r]{\blank}{\blank}} (0);
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\endgroup

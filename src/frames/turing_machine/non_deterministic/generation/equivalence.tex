@@ -1,0 +1,29 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+\begin{frame}{Reconnu versus généré versus engendré}
+  
+  Soient $\Sigma$ un alphabet, et $L \subseteq \Sigma^\star$ un langage sur $\Sigma$.
+  
+  \begin{block}{Théorème -- Langages de type 0}
+    Les trois notions suivantes sont équivalentes:
+    \begin{enumerate}
+    \item $L$ est reconnu par une machine de Turing $M$
+    \item $L$ est généré par une machine de Turing $M_G$
+    \item $L$ est engendré par une grammaire non-contrainte $G$
+    \end{enumerate}
+  \end{block}
+  \begin{block}{Étapes de la démonstration}
+    \begin{enumerate}
+    \item $1 \Rightarrow 2$
+    \item $2 \Rightarrow 3$
+    \item $3 \Rightarrow 1$
+    \end{enumerate}
+  \end{block}
+\end{frame}
+\endgroup

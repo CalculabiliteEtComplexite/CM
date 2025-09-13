@@ -1,0 +1,90 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Exemple : le langage $\{a^n b^n c^n \mid n>0\}$}
+
+  \on[top]{
+    \example{
+      $aabbcc\uncover<9->{\leftarrow aabBcc}\uncover<11->{\leftarrow aabcBc}\uncover<13->{\leftarrow aSBc}\uncover<15->{\leftarrow S}$
+    }
+  }
+
+  \ob<4> [y=15mm]{\alert{Bloqué !}}
+  \ob<16>[y=15mm]{\alert{Mot reconnu !}}
+
+  \on[top=5mm]{   
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \cell{$\blank$}                                                               
+      \cell{\oneof[$a$]{\on<15->{$S$}}}                                       \smhead<1,14>  
+      \cell{\oneof[$a$]{\on<3-4>{$b$}\on<13-14>{$S$}\on<15->{$\blank$}}}          \smheadb<3-4,12,15,16>  \smheadfromb<2>{-1}\smheadfromb<15>{-1}\smheadfromb<16>{-2}
+      \cell{\oneof[$b$]{\on<4,7>{$c$}\on<13-14>{$B$}\on<15->{$\blank$}}}          \smheadb<6-7,13>        \smheadfromb<5>{-2}\smheadfromb<13>{-1}
+      \cell{\oneof[$b$]{\on<3-4,6-8,11-14>{$c$}\on<9,10>{$B$}\on<15->{$\blank$}}} \smheadb<8,10>   
+      \cell{\oneof[$c$]{\on<4,7,13->{$\blank$}\on<11-12>{$B$}}}                   \smheadb<9>             \smheadfromb<11>{-1}
+      \cell{\oneof[$c$]{\on<3-4,6-8,13->{$\blank$}}}                              
+      \cell{$\blank$}                                                             
+    \end{tikzpicture}
+  }
+
+  \on[bottom]{
+    \begin{tikzpicture}[turingMachine,x=15mm, y=9mm]
+      \path[anchor=mid,example] (-1cm,3) node [left=1mm]{$S $} node (G1) {$\rightarrow$} node[right=1mm]{$abc$} ;
+      \path[anchor=mid,example] (-1cm,2) node [left=1mm]{$S $} node (G2) {$\rightarrow$} node[right=1mm]{$aSBc$};
+      \path[anchor=mid,example] (-1cm,1) node [left=1mm]{$cB$} node (G3) {$\rightarrow$} node[right=1mm]{$Bc$}  ;
+      \path[anchor=mid,example] (-1cm,0) node [left=1mm]{$bB$} node (G4) {$\rightarrow$} node[right=1mm]{$bb$}  ;
+      \draw[example, decorate, decoration={brace, amplitude=10pt, raise=3mm}] (G4.south west) -- (G1.north west);
+
+      \node                                             (q1) at (5,4) {}; 
+      \state[alert ob=<{1,2,5,9,10,12,14,16}>, initial] (q0) at (0,4) {$q_0$};
+      \state[alert ob=<{3,13}>                        ] (1b) at (1,3) {};
+      \state[alert ob=<{4,13}>                        ] (1c) at (2,3) {};
+      \state[alert ob=<13>                            ] (1d) at (3,3) {};
+      \state[alert ob=<15>                            ] (2b) at (1,2) {};
+      \state[alert ob=<15>                            ] (2c) at (2,2) {};
+      \state[alert ob=<15>                            ] (2d) at (3,2) {};
+      \state[alert ob=<15>                            ] (2e) at (4,2) {};
+      \state[alert ob=<11>                            ] (3b) at (1,1) {};
+      \state[alert ob=<11>                            ] (3c) at (2,1) {};
+      \state[alert ob=<11>                            ] (3d) at (3,1) {};
+      \state[alert ob=<6>                             ] (4b) at (1,0) {};
+      \state[alert ob=<7>                             ] (4c) at (2,0) {};
+      \state[alert ob=<8>                             ] (4d) at (3,0) {};
+      \state[alert ob=<16>                            ] (5b) at (1,5) {};
+      \state[alert ob=<16>                            ] (5c) at (2,5) {};
+      \state[alert ob=<16>,                  accepting] (5d) at (3,5) {};
+
+      \path (q0) edge[loop, out=120, in=150] node[above left] {\smGroup{\smTMtransL{x}{x}\smTMtransR{x}{x}}} (q0);
+      \path (1b) edge                        node             {\smTMtransM{b}}                               (1c);
+      \path (1c) edge                        node             {\smTMtransM{c}}                               (1d);
+      \path (2b) edge                        node             {\smTMtransM{S}}                               (2c);
+      \path (2c) edge                        node             {\smTMtransM{B}}                               (2d);
+      \path (2d) edge                        node             {\smTMtransM{c}}                               (2e);
+      \path (3b) edge                        node             {\smTMtransM{c}}                               (3c);
+      \path (3c) edge                        node             {\smTMtransP{x}{c}}                            (3d);
+      \path (4b) edge                        node             {\smTMtransM{b}}                               (4c);
+      \path (4c) edge                        node             {\smTMtransP{x}{b}}                            (4d);
+      \path (5b) edge                        node             {\smTMtransR{S}{S}}                            (5c);
+      \path (5c) edge                        node             {\smTMtransL{\blank}{\blank}}                          (5d);
+
+      \draw [-latex, rounded corners] (q0) -- (0,3) -- node {\smTMtransM{a}}        (1b);
+      \draw [-latex, rounded corners] (q0) -- (0,2) -- node {\smTMtransM{a}}        (2b);
+      \draw [-latex, rounded corners] (q0) -- (0,1) -- node {\smTMtransM{B}}        (3b);
+      \draw [-latex, rounded corners] (q0) -- (0,0) -- node {\smTMtransM{b}}        (4b);
+      \draw [-latex, rounded corners] (q0) -- (0,5) -- node {\smTMtransR{\blank}{\blank}}   (5b);
+      \draw [        rounded corners] (1d) --          node {\smTMtransP{x}{S}}     (5,3) -- (5,3.2);
+      \draw [        rounded corners] (2e) --          node {\smTMtransP{x}{S}}     (5,2) -- (5,2.2);
+      \draw [        rounded corners] (3d) --          node {\smTMtransP{x}{B}}     (5,1) -- (5,1.2);
+      \draw [-latex, rounded corners] (4d) --          node {\smTMtransP{x}{B}}     (5,0) -- (5,4) -- (q0.east);
+
+      \node[structure, anchor=west] at (3.5,5) {$\forall x \in \{S, B, a, b, c, \blank\}$}; 
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\endgroup

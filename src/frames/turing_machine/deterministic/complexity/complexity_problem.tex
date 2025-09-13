@@ -1,0 +1,28 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Complexité d'un problème}
+  \small
+  \begin{block}{Classes de complexité temporelle}
+  Soient $\Sigma$ un alphabet et $f : \mathbb{N} \rightarrow \mathbb{N}$ une fonction. \\
+    On définit les trois \structure{classes de complexité} : 
+    \begin{description}
+    \item[$\textsc{time}(f)$ :] les problèmes décidables en temps $\mathcal{O}(f)$ \structure{par une MTD} :
+      $$\alert{\textsc{time}_\Sigma(f) = \{L \in \Sigma^\star \mid \exists M, L = \mathcal{L}(M) \land  T_M = \mathcal{O}(f) \}}$$
+    \item[$\textsc{ntime}(f)$ :] les problèmes reconnus en temps $\mathcal{O}(f)$  \structure{par une MTND} :
+      $$\alert{\textsc{ntime}_\Sigma(f) = \{L \in \Sigma^\star \mid \exists M, L = \mathcal{L}(M) \land  NT_M = \mathcal{O}(f) \}}$$
+    \item[$\textsc{co-ntime}(f)$ :] les problèmes dont le complémentaire est dans $\textsc{ntime}(f)$ :
+      $$\alert{\textsc{co-time}_\Sigma(f) = \{L \in \Sigma^\star \mid \exists M, \overline{L} = \mathcal{L}(M) \land T_M = \mathcal{O}(f) \}}$$
+    \end{description}
+  \end{block}
+  \begin{block}{Classes de complexité spatiale}
+    Définitions similaires pour la \structure{complexité spatiale} : \alert{$\textsc{dspace}(f)$}, \alert{$\textsc{nspace}(f)$}
+  \end{block}
+\end{frame}
+\endgroup

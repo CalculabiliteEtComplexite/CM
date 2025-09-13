@@ -1,0 +1,50 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Problème de Correspondance de Post Initialisé}
+
+  \on[text,top]{
+    Soit $\Sigma$ un alphabet contenant au moins deux symboles. 
+    
+    \begin{block}{Le problème PCPI}
+      \begin{description}
+      \item[Entrées :]
+        \begin{itemize}
+        \item Un ensemble fini de \structure{sortes de dominos} $D \in \mathscr{P}(\Sigma^+ \times \Sigma^+)$.
+        \item Un \structure{domino initial} $\VDomino{\gamma}{\delta} \in D$
+        \end{itemize}
+      \item[Solution :] Un mot non-vide
+        $\VDomino{\alpha_1}{\beta_1} \cdots \VDomino{\alpha_k}{\beta_k} \in D^+$ de dominos tel que :
+        \begin{itemize}
+        \item $\alpha_{1} \cdots \alpha_{k} = \beta_{1} \cdots \beta_{k}$ et $\VDomino{\alpha_1}{\beta_1} = \VDomino{\gamma}{\delta}$
+        \end{itemize}
+      \item[Sortie :] \alert{\og oui \fg} s'il existe une solution, \alert{\og non \fg} sinon.
+      \end{description}
+    \end{block}
+  }
+  
+  \onExampleBlock<2-|handout> [bottom=2mm] {Exemple} {
+    \begin{itemize}
+    \item $D=\left\{
+      \VDomino{a}{ab}, 
+      \VDomino{baba}{a}, 
+      \VDomino{bb}{ba}
+      \right\}, d_0 = \VDomino{a}{ab}$\\
+      \uncover<3-|handout> {a pour solution
+        \VDomino{a}{ab}\, 
+        \VDomino{bb}{ba}\,
+        \VDomino{a}{ab}\,
+        \VDomino{a}{ab}\,
+        \VDomino{baba}{a}.}
+    \end{itemize}
+  }
+
+  
+\end{frame}
+\endgroup

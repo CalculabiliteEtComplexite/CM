@@ -1,0 +1,124 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Exemple : $aab \in \mathcal{L}(ab|aab)$ ?}
+
+  \begin{tikzpicture}
+
+    \draw (5,10) node[below]{\begin{minipage}{\textwidth}
+        \begin{block}{Machine non-déterministe $M$ :}
+          \scalebox{.8}{\begin{tikzpicture}[shorten >=1pt, node distance=1.5cm, on grid, auto]
+              \node (nq0)                   {};
+              \node (nq1) [above right of=nq0] {};
+              \node (nq2) [right of=nq1]    {};
+              \node (nq3) [below right of=nq0] {};
+              \node (nq4) [right of=nq3]    {};
+              \node (nq5) [right of=nq4]    {};
+
+              \node[state, initial, initial text=] (q0) at (nq0) {$q_0$};
+              \node[state]                         (q1) at (nq1) {$q_1$};
+              \node[state, accepting]              (q2) at (nq2) {$q_2$};
+              \node[state]                         (q3) at (nq3) {$q_3$};
+              \node[state]                         (q4) at (nq4) {$q_4$};
+              \node[state, accepting]              (q5) at (nq5) {$q_5$};
+
+              \node<2-7>[fill=alert!20, state, initial, initial text=] (q0) at (nq0) {$q_0$};
+              \node<10>[fill=alert!20, state]                          (q1) at (nq1) {$q_1$};
+              \node<8-9>[fill=alert!20, state]                       (q3) at (nq3) {$q_3$};
+              \node<11>[fill=alert!20, state]                          (q4) at (nq4) {$q_4$};
+              \node<11>[fill=structure!20, state, accepting]                (q5) at (nq5) {$q_5$};
+
+
+              \path<-3,5-> [->] (q0)       edge[bend left] node {$\smTMtransR{a}{a}$} (q1);
+              \path<-4,6-> [->] (q1)       edge[bend left] node {$\smTMtransR{b}{b}$} (q2);
+              %              \path<-5,7-> [->] (q2)       edge[bend left] node {$\smTMtransR{a}{a}$} (q1);
+              \path<-2,4-> [->] (q0)       edge[bend right] node[swap] {$\smTMtransR{a}{a}$} (q3);
+              \path<-5,7-8,10-> [->] (q3) edge[bend left] node {$\smTMtransR{a}{a}$} (q4);
+              \path<-6,8-10> [->]       (q4)       edge[bend left] node {$\smTMtransR{b}{b}$} (q5);
+              %              \path<-8,10-> [->]      (q5)      edge[bend left] node {$\smTMtransR{a}{a}$} (q3);
+
+
+              \path<4> [alert, ->] (q0)   edge[bend left] node {$\smTMtransR{a}{a}$} (q1);
+              \path<5> [alert, ->] (q1)   edge[bend left] node {$\smTMtransR{b}{b}$} (q2);
+              %              \path<6> [alert, ->] (q2)   edge[bend left] node {$\smTMtransR{a}{a}$} (q1);
+              \path<3> [alert, ->] (q0)   edge[bend right] node[swap] {$\smTMtransR{a}{a}$} (q3);
+              \path<6,9> [alert, ->] (q3)   edge[bend left] node {$\smTMtransR{a}{a}$} (q4);
+              \path<7,11> [alert, ->] (q4)   edge[bend left] node {$\smTMtransR{b}{b}$} (q5);
+              %              \path<9> [alert, ->] (q5)   edge[bend left] node {$\smTMtransR{a}{a}$} (q3);
+
+          \end{tikzpicture}}
+        \end{block}
+    \end{minipage}};
+
+
+    \draw (7.5,10) node[below]{\begin{minipage}{.3\textwidth}\begin{block}{Configuration :}\end{block}\end{minipage}};
+    \draw (6,8.5) node[right]{\structure{$f$ : }~
+      \only<-2>{$\varepsilon$}%
+      \only<3-7>{$\mid a\, q_3\, ab$}%
+      \only<4-9>{$\mid a\, q_1\, ab$}%
+      \only<9-10>{$\mid aa\, q_4\, b$}%
+      \only<11>{$\varepsilon$}%
+      %      \only<11>{$\mid aab\, q_5$}%
+    };
+    \draw (6,8) node[right]{\structure{$c$ : }~
+      \only<1>{$aab$}%
+      \only<2-7>{$\alert{q_0\, a}ab$}%
+      \only<8-9>{$a\, \alert{q_3\, a}b$}%
+      \only<10>{$a\, \alert{q_1\, a}b$}%
+      \only<11>{$aa\, \alert{q_4\, b}$}%
+    };
+    \draw<11> (6,7.5) node[right]{\structure{Le mot $aab$ est accepté}};
+
+    \draw (5,4) node{\begin{minipage}{\textwidth}
+        \begin{block}{Machine déterminisée $M_D$ :}
+          \scalebox{.8}{\begin{tikzpicture}[shorten >=1pt, node distance=3cm, on grid, auto]
+              \tikzset{mynode/.style={draw, rounded corners=8, align=center, minimum height=0.6cm, minimum width=1cm}}
+
+              \node (nt0)                       {};
+              \node (ninit)   [left of=nt0]     {};
+              \node (nt1)     [right of=nt0]    {};
+              \node (nt2)     [right of=nt1]    {};
+              \node (nt3)     [right of=nt2]    {};
+              \node (nreinit) at (0,-1.5)       {};
+              \node (nt6)     [right of=nreinit]{};
+              \node (nt5)     [right of=nt6]    {};
+              \node (nt4)     [right of=nt5]    {};
+
+              \node[fill=example!20, mynode]         (init)   at (ninit)    {\footnotesize init};
+              \node[fill=structure!20, mynode]            (t0)     at (nt0)      {\footnotesize $q_0 \xrightarrow{\smTMtransR{a}{a}} q_3$};
+              \node[fill=structure!20, mynode]            (t1)     at (nt1)      {\footnotesize $q_0 \xrightarrow{\smTMtransR{a}{a}} q_1$};
+              \node[fill=structure!20, mynode, accepting] (t2)     at (nt2)      {\footnotesize $q_1 \xrightarrow{\smTMtransR{b}{b}} q_2$};
+              \node[fill=structure!20, mynode]            (t4)     at (nt5)      {\footnotesize $q_3 \xrightarrow{\smTMtransR{a}{a}} q_4$};
+              \node[fill=structure!20, mynode, accepting] (t5)     at (nt6)      {\footnotesize $q_4 \xrightarrow{\smTMtransR{b}{b}} q_5$};
+              \node[fill=example!20, mynode]         (reinit) at (nreinit)  {\footnotesize reinit};
+
+              \node<2>[fill=alert!20, mynode]         (init)   at (ninit)       {\footnotesize init};
+              \node<3>[fill=alert!20, mynode]            (t0)     at (nt0)      {\footnotesize $q_0 \xrightarrow{\smTMtransR{a}{a}} q_3$};
+              \node<4>[fill=alert!20, mynode]            (t1)     at (nt1)      {\footnotesize $q_0 \xrightarrow{\smTMtransR{a}{a}} q_1$};
+              \node<5>[fill=alert!20, mynode, accepting] (t2)     at (nt2)      {\footnotesize $q_1 \xrightarrow{\smTMtransR{b}{b}} q_2$};
+              \node<6,9>[fill=alert!20, mynode]            (t4)     at (nt5)   {\footnotesize $q_3 \xrightarrow{\smTMtransR{a}{a}} q_4$};
+              \node<7,11>[fill=alert!20, mynode, accepting] (t5)     at (nt6)      {\footnotesize $q_4 \xrightarrow{\smTMtransR{b}{b}} q_5$};
+              \node<8,10>[fill=alert!20, mynode]         (reinit) at (nreinit) {\footnotesize reinit};
+
+              \path [->] (init)   edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (t0);
+              \path [->] (t0)     edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (t1);
+              \path [->] (t1)     edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (t2);
+              \path [->] (t2)     edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (t4);
+              \path [->] (t4)     edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (t5);
+              \path [->] (t5)     edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (reinit);
+              \path [->] (reinit) edge node[swap] {\scriptsize$c:\smTMtransR{q}{q}$} (t0);
+          \end{tikzpicture}}
+        \end{block}
+    \end{minipage}};
+
+  \end{tikzpicture}
+
+\end{frame}
+
+\endgroup

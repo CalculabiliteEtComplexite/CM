@@ -1,0 +1,53 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Générateur d'un langage}
+  
+  \onBlock[top=-2mm]{Langage généré par $M$}{
+    Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une machine de Turing. 
+ 
+    Le langage \structure{généré} par $M$ est l'ensemble $\alert{\mathcal{L}_G(M)}$ des mots écrits sur le ruban quand $M$ atteint un état accepteur à partir de $C_{\mathit{init}}(\varepsilon)$ :
+    $$
+    \alert{\mathcal{L}_G(M) \eqdef \left\{ \mathit{mot}(r) \in \Sigma^\star \middle| \exists q_f\in F, C_{\mathit{init}}(\varepsilon) \leadsto_M^\star \langle r, q_f \rangle \right\}}.
+    $$
+ 
+    \begin{itemize}
+    \item $\langle r, q_f \rangle$ n'est pas forcément une configuration d'arrêt
+    \item $M$ est appelée un \structure{générateur} du langage $\mathcal{L}_G(M)$
+    \end{itemize}
+  }
+  
+  \onExampleBlock[y=-15mm]{Exemple : générateur du langage $\mathcal{L}(ba^\star b)$}{}
+ 
+  \on[y=-30mm, x=-30mm]{
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \cell{$\blank$}
+      \cell{\alt<-1>{$\blank$}{$b$}} \smheadb<1>  
+      \cell{\alt<-2>{$\blank$}{$a$}} \smheadb<2> 
+      \cell{\alt<-2>{$\blank$}{$a$}} 
+      \cell{\alt<-3>{$\blank$}{$b$}} \smheadfromb<3>{-2}
+      \cell{$\blank$}                \smheadb<4> 
+    \end{tikzpicture}
+  }
+  
+  \on[y=-30mm, x=30mm]{
+    \begin{tikzpicture}[turingMachine]
+      \state[alert on=<{1}>,   initial] (0) at (0,0) {$0$}; 
+      \state[alert ob=<{2,3}>         ] (1) at (1,0) {$1$}; 
+      \state[alert ob=<{4}>, accepting] (2) at (2,0) {$2$}; 
+      
+      \path (0) edge             node {\smTMtransR{\blank}{b}} (1);
+      \path (1) edge[loop below] node {\smTMtransR{\blank}{a}} (1);
+      \path (1) edge             node {\smTMtransR{\blank}{b}} (2);
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\endgroup

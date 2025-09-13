@@ -1,0 +1,41 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+
+
+\begin{frame}{Non-dénombrabilité de l'ensemble des langages}
+  \small
+  Soient $\Sigma$ un alphabet et $f$ une bijection de $\Sigma$ dans $\{0, ..., |\Sigma|-1\}$.
+  \begin{block}{Non-dénombrabilité de l'ensemble des langages}
+    L'ensemble $\mathscr{P}(\Sigma^\star)$ des langages sur $\Sigma$ est indénombrable.
+  \end{block}
+
+  \begin{block}{Démonstration}
+    On encode les réels entre $0$ et $1$ par les préfixes de leur écriture en base $|\Sigma|$.
+    \begin{itemize}
+    \item La fonction suivante est injective :
+      \vspace{-2mm}
+      $$
+      h = \left\{\begin{array}{rcl}
+      [0; 1[ &\rightarrow& \mathscr{P}(\Sigma^\star)\\
+      x &\mapsto& \left\{ u_{n-1}...u_{0} \in \Sigma^\star \,\middle|\, \left\lfloor |\Sigma|^{n} \times x \right\rfloor = \sum_{i=0}^{n-1} f(u_i) \times |\Sigma|^{i}  \right\} \\ 
+      \end{array}\right.
+      $$
+    \item Exemples avec $\Sigma = \{0, ..., 9\}$ et $f : x \mapsto x$. On a :
+    \begin{itemize}
+    \item \example{$h(\pi-3) = \{\varepsilon, 1, 14, 141, 1415, ...\}$}
+    \item \example{$h\left(\frac{1}{3}\right) = \mathcal{L}(3^\star)$}
+    \item Si $x$ est rationnel, alors $h(x)$ est rationnel
+    \end{itemize}
+    \item Remarque : on dit que \structure{$x$ est calculable} si \alert{$h(x)$ est décidable}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\endgroup

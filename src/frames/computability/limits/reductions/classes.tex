@@ -1,0 +1,41 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Classes de calculabilité}
+  \small 
+  Soient $\Sigma$ un alphabet, et $L_A$ et $L_B$ deux langages de $\Sigma^\star$. 
+  \begin{block}{Propriété : $\leq_M$ est un préordre sur $\mathscr{P}(\Sigma^\star)$}
+      \begin{itemize}
+      \item $\leq_M$ est réflexive
+      \item $\leq_M$ est transitive
+      \item $\leq_M$ n'est ni symétrique ni antisymétrique. 
+      \end{itemize}
+      $L_A$ et $L_B$ sont \structure{équivalents par mappage}, noté \alert{$L_A \equiv_m L_B$}, si $L_A \leq_m L_B$ et $L_B \leq_m L_A$.
+  \end{block}
+  
+  \begin{exampleblock}{Notion de préordre}
+    \begin{itemize}
+    \item Un \example{préordre} est une relation $\sqsubseteq$ réflexive et transitive. 
+      \begin{itemize}
+      \item On définit $\equiv$ par $x \equiv y$ si $x \sqsubseteq y$ et $y \sqsubseteq x$
+      \begin{itemize}
+      \item $\equiv$ est une relation d'équivalence
+      \item $\sqsubseteq$ est une relation d'ordre sur les classes d'équivalence de $\equiv$
+      \end{itemize}
+      \end{itemize}
+    \item Par exemple, sur $\{a, b\}^\star$, $u \sqsubseteq v$ si toutes les lettres de $u$ sont dans $v$. 
+      \begin{itemize}
+      \item $u \equiv v$ si $u$ et $v$ utilisent les mêmes lettres. 
+      \item Quatre classes d'équivalence : \example{$\{\varepsilon\}$}, \example{$\mathcal{L}(a^\star)$}, \example{$\mathcal{L}(b^\star)$} et \example{$\mathcal{L}(\Sigma^\star (ab|ba) \Sigma^\star)$}
+      \end{itemize}
+    \end{itemize}
+
+  \end{exampleblock}
+\end{frame}
+\endgroup

@@ -1,0 +1,136 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}[fragile]{Compilation du langage IMP}
+  \begingroup
+  \renewcommand{\emph}[1]{\structure{#1}} 
+  \vspace{-1mm}
+  
+  ~\hspace{-5mm}
+  \begin{tikzpicture}
+    
+%    \draw[white] (0,-.5) rectangle (11.3,7.5);
+    \draw (9,5) node{\begin{minipage}{15cm}\scalebox{.7}{\begin{algorithm}[H]
+            \DontPrintSemicolon
+            \SetKwProg{Fn}{Fonction}{}{fin}
+            \SetKw{Let}{soit}
+            \SetKw{Lets}{soient}
+            \SetKw{Retourner}{retourner}
+            \SetKwFunction{Compile}{compile}
+            \SetKwData{Input}{algo}
+            \Fn{\Compile(\Input) : MTD}{
+              \lSi{$\Input = v \leftarrow f_i ( v_1, ..., v_{a_i})$}{\uncover<2->{\Retourner $M_i[v, v_1, ..., v_{a_i}];$%
+              }}\uSinonSi{$\Input = v \leftarrow u_1\cdots u_n $}{\uncover<3->{
+                  \Retourner\\
+                  ~\\
+                  ~\\
+              }}\uSinonSi{$\Input = P; Q$}{\uncover<4->{
+                  $\structure{M_P \leftarrow \Compile(P)}$; $\example{M_Q \leftarrow \Compile(Q)}$;\\ 
+                  \Retourner\\
+                  ~\\
+                  ~\\
+                  ~\\
+                  ~\\
+                  ~\\
+                  ~\\
+              }}\uSinonSi{$\Input = \textbf{si}~v~\textbf{alors}~P~\textbf{sinon}~Q~$}{\uncover<5->{
+                  $\structure{M_P \leftarrow \Compile(P)}$; $\example{M_Q \leftarrow \Compile(Q)}$;\\ 
+                  \Retourner\\
+                  ~\\
+                  ~\\
+                  ~\\
+              }}\SinonSi{$\Input = \textbf{tant que}~v~\textbf{faire}~P$}{\uncover<6->{
+                  $\structure{M_P \leftarrow \Compile(P)}$;\\ 
+                  \Retourner\\
+                  ~\\
+                  ~\\
+                  ~\\
+              }}
+            }
+    \end{algorithm}}\end{minipage}};
+ 
+ 
+ 
+    \draw<3-> (2.7,7.7) node[right]{\scalebox{.6}{\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+      \node [state,initial above, initial text=, alert, fill=alert!20] (b1)   {$q_0$}; 
+      \node [state, alert, fill=alert!20] (b2) [right=of b1]  {}; 
+      \node [state, alert, fill=alert!20] (b3) [right=of b2]  {}; 
+      \node [state, alert, fill=alert!20] (b4) [right=of b3]  {}; 
+      \node [state,accepting, alert, fill=alert!20] (b5) [right=of b4]  {$q_f$}; 
+      \path [alert,->] (b1) edge[loop left, looseness=5] node{\scriptsize$v:\smTMtransR{\star}{\blank}$} (b1);
+      \path [alert,->]                          (b1) edge node{\scriptsize$v:\smTMtransL{\blank}{u_n}$} (b2);
+      \path [alert,->, dashed]                  (b2) edge node{\scriptsize$v:\smTMtransL{\blank}{...}$} (b3);
+      \path [alert,->]                          (b3) edge node{\scriptsize$v:\smTMtransL{\blank}{u_2}$} (b4);
+      \path [alert,->]                          (b4) edge node{\scriptsize$v:\smTMtransL{\blank}{u_1}$} (b5);
+    \end{tikzpicture}}};
+ 
+ 
+    \draw<4-> (3.2,5.65) node[right]{\scalebox{.6}{\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+      \node [state,initial, initial text=, alert, fill=alert!20] (c1)   {$q_0$};
+ 
+      \node [state, structure, fill=structure!20] (c2) at (1.5,.8)  {$P_0$};
+      \node (c3) [structure, right=of c2, cloud, cloud puffs=11 ,cloud puff arc=120, aspect=2, inner ysep=1em, fill=structure!20] {\footnotesize$M_P$};
+      \node [state, structure, fill=structure!20] (c4) [right=of c3]  {$P_f$};
+      
+      \node [state, example, fill=example!20] (c5) at (1.5, -.8)  {$Q_0$};
+      \node (c6) [example, right=of c5, cloud, cloud puffs=10,cloud puff arc=100, aspect=2, inner ysep=1em, fill=example!20] {\footnotesize $M_Q$};
+      \node [state, example, fill=example!20] (c7) [right= of c6]  {$Q_f$};
+ 
+      \node [state,accepting, alert, fill=alert!20] (c8) at (7,0)  {$q_f$};
+ 
+      \path [->, alert]    (c1) edge node {\scriptsize $v : \smTMtransR{T}{T}$} (c2);
+      \path [->, alert]    (c1) edge node[swap] {\scriptsize $v : \smTMtransR{F}{F}$} (c5);
+      \path [->, alert]    (c4) edge node {\scriptsize $\varepsilon$} (c8);
+      \path [->, alert]    (c7) edge node[swap] {\scriptsize $\varepsilon$} (c8);
+ 
+      \path [dashed,->, structure]    (c2) edge[bend left=5mm]  (c4);
+      \path [dashed,->, structure]    (c2) edge[bend right=5mm] (c4);
+      \path [dashed,->, example]    (c5) edge[bend left=5mm]  (c7);
+      \path [dashed,->, example]    (c5) edge[bend right=5mm] (c7);
+    \end{tikzpicture}}};
+ 
+    \draw<5-> (3.2,3.5) node[right]{\scalebox{.6}{\begin{tikzpicture}[shorten >=1pt,node distance=1.75cm,on grid,auto]
+      \node [state,initial, initial text=, structure, fill=structure!20] (d2)  {$P_0$};
+      \node (d3) [structure, right=of d2, cloud, cloud puffs=11 ,cloud puff arc=120, aspect=2, inner ysep=1em, fill=structure!20] {\footnotesize$M_P$};
+      \node [state, structure, fill=structure!20] (d4) [right=of d3]  {$P_f$};
+      
+      \node [state, example, fill=example!20] (d5) at (5,0)  {$Q_0$};
+      \node (d6) [example,right=of d5, cloud, cloud puffs=10,cloud puff arc=100, aspect=2, inner ysep=1em, fill=example!20] {\footnotesize$M_Q$};
+      \node [state,accepting, example, fill=example!20] (d7) [right= of d6]  {$Q_f$};
+ 
+      \path [->, alert]  (d4) edge node[above] {$\varepsilon$} (d5);
+ 
+      \path [dashed,->, structure]    (d2) edge[bend left=5mm]  (d4);
+      \path [dashed,->, structure]    (d2) edge[bend right=5mm] (d4);
+      \path [dashed,->, example]    (d5) edge[bend left=5mm]  (d7);
+      \path [dashed,->, example]    (d5) edge[bend right=5mm] (d7);
+    \end{tikzpicture}}};
+    
+    \draw<6-> (3.2,1.8) node[right]{\scalebox{.6}{\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+      \node [state,initial, initial text=, alert, fill=alert!20] (e1)   {$q_0$};
+      \node [state, structure, fill=structure!20] (e2) [right=of e1] {$P_0$};
+      \node (e3) [structure, right=of e2, cloud, cloud puffs=11 ,cloud puff arc=120, aspect=2, inner ysep=1em, fill=structure!20] {\footnotesize $M_P$};
+      \node [state, structure, fill=structure!20] (e4) [right=of e3]  {$P_f$};
+      \node [state,accepting, alert, fill=alert!20] (e5) [right=of e4]  {$q_f$};
+      
+      \path [->, alert]  (e1) edge node {\scriptsize $v : \smTMtransR{T}{T}$} (e2);
+      \path [->, alert]  (e1) edge[bend right=.7cm] node[swap] {\scriptsize $v : \smTMtransR{F}{F}$} (e5);
+      \path [->, alert]  (e4) edge[bend right=1.3cm] node[swap] {\scriptsize $v : \smTMtransR{T}{T}$} (e2);
+      \path [->, alert]  (e4) edge node {\scriptsize $v : \smTMtransR{F}{F}$} (e5);
+ 
+      \path [dashed,->, structure]    (e2) edge[bend left=5mm]  (e4);
+      \path [dashed,->, structure]    (e2) edge[bend right=5mm] (e4);
+ 
+    \end{tikzpicture}}};
+ 
+  \end{tikzpicture}
+  \endgroup
+\end{frame}
+
+\endgroup

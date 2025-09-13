@@ -1,0 +1,31 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Classes de décidabilité}
+  \begin{block}{Rappel}
+    On a deux notions de décidabilité par les machines de Turing :
+    \begin{description}
+    \item[$\textsc{r}$] est la classe des langages \alert{décidables} ;
+    \item[$\textsc{re}$] est la classe des langages \alert{semi-décidables}.
+    \end{description}
+  \end{block}
+  
+  \begin{block}{Théorème -- Inclusion des classes de calculabilité}
+    On a : \alert{$$\textsc{r} \subsetneq \textsc{re} \subsetneq \mathscr{P}(\Sigma^\star).$$}
+  \end{block}
+  
+  \begin{block}{Démonstration}
+    \begin{enumerate}
+    \item<2-> \structure{$\textsc{r} \subseteq \textsc{re} \subseteq \mathscr{P}(\Sigma^\star)$ :} déjà connu.
+    \item<3-> \structure{$\textsc{re} \neq \mathscr{P}(\Sigma^\star)$ :} preuve par dénombrement.
+    \item<4-> \structure{$\textsc{r} \neq \textsc{re}$ :} preuve par exemple (le problème de l'arrêt).
+    \end{enumerate}
+  \end{block}
+\end{frame}
+\endgroup

@@ -1,0 +1,67 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Démonstration de l'indécidabilité de PCPI}
+
+    \vspace{-2mm}
+  \begin{block}{Théorème -- indécidabilité de PCPI}
+    Le Problème de Correspondance de Post Intitialisé est indécidable
+  \end{block}
+    \vspace{-1mm}
+  \begin{block}{Démonstration -- Réduction du problème de l'arrêt}
+    \vspace{1mm}
+
+    Posons $\varphi : \left\{\begin{array}{rcl}
+    \textsc{halt} &\rightarrow& \textsc{pcpi} \vspace{.5mm}\\
+    \left\langle \langle \Sigma, \Gamma, \#, Q, q_0, F, \rightarrow \rangle\footnote[frame]{Sans perte de généralité, on suppose que la machine efface son ruban avant de s'arrêter}, u\right\rangle  &\mapsto& \left\langle D,
+    {\footnotesize\VDomino[1.2cm]{\langle\phantom{, q_0, u \rangle \leadsto\langle}}{\langle, q_0, u \rangle \leadsto\langle}} \right\rangle
+    \end{array}
+    \right.$, avec :
+
+    \vspace{2mm}
+    
+    {\small    
+      $$\begin{array}{@{}r@{\,}l@{}}
+        D=&
+        \left\{
+        \VDomino[1.5]{\langle\phantom{, q_0, u \rangle \leadsto\langle}}{\langle, q_0, u \rangle \leadsto\langle}
+        \right\}
+        \cup
+        \left\{
+        \VDomino[1.5]{w\,\rangle\leadsto\langle x, f, y\rangle}{\phantom{y\,\rangle\leadsto\langle \blank, 4,\,}z\,\rangle},
+        \VDomino[1.5]{w\,\rangle\leadsto\langle\,x}{y\,\rangle\leadsto\langle\,z}
+        \,\middle|\, w, x, y, z \in \{\blank, \varepsilon\} \land f\in F \right\} \vspace{1mm}\\
+        \cup &
+        \left\{
+        \VDomino[.5]{x}{x}
+        \,\middle|\, x\in \Gamma \right\}
+        \cup
+        \left\{
+        \VDomino[1]{\phantom{y},q, x}{y ,r,\phantom{x}}
+        \,\middle|\, q\xrightarrow{\scriptsize\smTMtransR{x}{y}} r \in \rightarrow \right\}
+        \cup
+        \left\{
+        \VDomino[1]{z ,q, \phantom{z}\,x}{\phantom{z},r, z\, y}
+        \,\middle|\, q\xrightarrow{\scriptsize\smTMtransL{x}{y}} r \in \rightarrow \land z\in \Gamma \right\}\\
+      \end{array}$$
+    }
+
+    \vspace{2mm}
+
+    \begin{itemize}
+    \item $M$ termine sur $u$ si, et seulement si, le PCPI $\left\langle D, d_0 \right\rangle$ a une solution
+    \item De plus, $\varphi$ est calculable
+    \item Donc $\textsc{halt} \le_m \textsc{pcpi}$
+    \item Or \textsc{halt} est indécidable, donc \textsc{pcpi} est indécidable
+    \end{itemize}
+  \end{block}
+  
+\end{frame}
+  
+\endgroup

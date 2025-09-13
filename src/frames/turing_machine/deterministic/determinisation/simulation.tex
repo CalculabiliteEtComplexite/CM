@@ -1,0 +1,60 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\SetKwFunction{Deterministe}{semi\_decide}
+\SetKwFunction{Enfile}{enfile}
+\SetKwFunction{Defile}{defile}
+
+\begin{frame}{Simulation d'une MTND par une MTD}
+
+  \on[text]{
+    Soit $M = \langle \Sigma, \Gamma, \blank, Q, q_0, \{q_+\}, \rightarrow \rangle$ reconnaissant un langage $L \subseteq \Sigma^\star$.\\
+    L'algorithme déterministe suivant semi-décide $L$.
+    \begin{algorithm}[H]
+      \Fun{$\Deterministe(u \in \Sigma^\star)$ : booléen}{
+        \lVariables{}{
+          \Alert{$c$ : configuration, 
+            $f$ : file de configurations}
+        }
+        \Example{$f \leftarrow \emptyset$;
+          $c \leftarrow C_{\mathit{init}}(u)$}\;
+        \vspace{.5mm}
+        \While{\True} {
+          \For{$t \in \rightarrow$}{
+            \If{\Structure{la transition $t$ s'applique sur $c$}}{
+              \lIf{$q' = q_+$}{\Return \True}
+              \lElse{\Structure{$f.\Enfile(t(c))$}}
+            }
+          }
+          \lIf{$f = \emptyset$}{\Return \False}
+          \lElse{\Example{$c \leftarrow f.\Defile()$}}
+        }
+      }
+    \end{algorithm}
+  }
+
+  \on[bottom]{
+    \begin{tikzpicture}[turingMachine]
+      \state[fill=example!20,   rectangle, minimum width=10mm, initial  ] (init)   at (0,0) {init};
+      \state[fill=structure!20, rectangle, minimum width=10mm           ] (t1)     at (1,0) {$t_1$};
+      \state[fill=structure!20, rectangle, minimum width=10mm, accepting] (t2)     at (2,0) {$t_2$};
+      \state[fill=structure!20, rectangle, minimum width=10mm           ] (tn)     at (3,0) {$t_n$};
+      \state[fill=example!20,   rectangle, minimum width=10mm           ] (reinit) at (4,0) {reinit};
+      
+      \path                 (init)   edge               node {$\smTMtransR[c]{q}{q}$} (t1);
+      \path                 (t1)     edge               node {$\smTMtransR[c]{q}{q}$} (t2);
+      \path[densely dotted] (t2)     edge               node {$\smTMtransR[c]{q}{q}$} (tn);
+      \path                 (tn)     edge               node {$\smTMtransR[c]{q}{q}$} (reinit);
+      \path                 (reinit) edge[bend left=5mm] node[swap] {$\smTMtransR[c]{q}{q}$} (t1);
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\endgroup

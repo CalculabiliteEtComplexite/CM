@@ -1,0 +1,43 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Caractérisation des langages décidables}
+  
+  Les langages décidables sont les langages semi-décidables dont le complémentaire est également semi-décidable. 
+  
+  \vspace{-1mm}
+  \begin{block}{Théorème : Clôture par complémentaire}
+  \vspace{-1mm}
+    Soient $\Sigma$ un alphabet, $L \subseteq \Sigma^\star$ un langage et $\overline{L} = \Sigma^\star \setminus L$.\\
+    Les trois conditions suivantes sont équivalentes :
+    \begin{enumerate}
+    \item $L$ est décidable
+    \item $\overline{L}$ est décidable
+    \item $L$ et $\overline{L}$ sont tous les deux semi-décidables
+    \end{enumerate}
+  \end{block}
+  
+  \pause
+  \vspace{-1mm}
+  \begin{block}{Démonstration}
+  \vspace{-1mm}
+    \begin{description}
+    \item<2->[$1 \Rightarrow 2$ :]
+      Soit $M = \langle \Sigma, \Gamma, \blank, Q, q_0, \alert{F}, \rightarrow \rangle$ une MTD qui décide $L$.\\
+      $\overline{M} = \langle \Sigma, \Gamma, \blank, Q, q_0, \alert{Q \setminus F}, \rightarrow \rangle$ est une MTD qui décide $\overline{L}$.\\
+    \item<3->[$2 \Rightarrow 3$ :] Décidable implique semi-décidable par définition.
+      %$\overline{L}$ est semi-décidable par définition. \\
+      %$L = \overline{\overline{L}}$ est décidable par ($1 \Rightarrow 2$), donc semi-décidable.
+    \item<4->[$3 \Rightarrow 1$ :] Il faut exécuter les deux machines de Turing en parallèle.\\
+      L'une finit par s'arrêter en donnant la réponse.
+    \end{description}
+  \end{block}
+\end{frame}
+
+\endgroup

@@ -1,0 +1,77 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Modélisation mathématique du ruban}
+  
+  \on[text, y=2.5] {
+    Le \structure{ruban} sur un alphabet $\Gamma$ est un couple \alert{$\langle G, D \rangle \in \textsc{Ruban}_\Gamma \eqdef \Gamma^\star \times \Gamma^\star$} :
+    \begin{description}
+    \item[\alert{$G$}] $\in \Gamma^\star$ : le mot à \structure{gauche} de la tête de lecture (exclue)
+    \item[\alert{$D$}] $\in \Gamma^\star$ : le mot à \structure{droite} de la tête de lecture (inclue)
+    \end{description}
+    \structure{Remarque :} l'infinité de $\blank $ est implicite : $G \simeq \blank G$ et $D \simeq D\blank $
+  }
+ 
+  \obExampleBlock<1>[y=-1.5] {Exemple : représentation graphique de $\langle ab, cd \rangle$} {
+      \vspace{2mm}
+      \begin{center}
+        \begin{tikzpicture}[tape]
+          \cell{$\blank $}
+          \cell{$\blank $}
+          \cell[structure]{$a$}
+          \cell[structure]{$b$}
+          \cell[example]{$c$}  \smhead
+          \cell[example]{$d$}
+          \cell{$\blank $}
+          \cell{$\blank $}
+        \end{tikzpicture}
+      \end{center}
+  }
+  
+  \onBlock<2>[y=-1.5] {Opérations sur le ruban} {
+      \vspace{-5mm}
+      $$
+      \begin{array}{ll}
+        \mathit{gauche} \eqdef \left\{\begin{array}{ccc}
+        \textsc{Ruban}_\Gamma &\rightarrow& \textsc{Ruban}_\Gamma\\
+        \langle Ga, D \rangle &\mapsto& \langle G, aD \rangle\\
+        \langle \varepsilon, D \rangle &\mapsto& \langle \varepsilon, \blank  D \rangle\\
+        \end{array}\right.
+        &
+        \mathit{lire} \eqdef \left\{\begin{array}{ccc}
+        \textsc{Ruban}_\Gamma &\rightarrow& \Gamma\\
+        \langle G, aD \rangle &\mapsto& a\\
+        \langle G, \varepsilon \rangle &\mapsto& \blank \\
+        \end{array}\right.
+        \\~\\
+        \mathit{droite} \eqdef \left\{\begin{array}{ccc}
+        \textsc{Ruban}_\Gamma &\rightarrow& \textsc{Ruban}_\Gamma\\
+        \langle G, aD \rangle &\mapsto& \langle Ga, D \rangle\\
+        \langle G, \varepsilon \rangle &\mapsto& \langle G \blank , \varepsilon \rangle\\
+        \end{array}\right.
+        &
+        \mathit{ecrire} \eqdef \left\{\begin{array}{ccc}
+        \textsc{Ruban}_\Gamma \times \Gamma &\rightarrow& \textsc{Ruban}_\Gamma\\
+        \langle G, aD \rangle, b &\mapsto& \langle G, bD \rangle\\
+        \langle G, \varepsilon \rangle, b &\mapsto& \langle G, b \rangle\\
+        \end{array}\right.
+      \end{array}
+      $$
+      
+      $$
+      \mathit{mot} \eqdef \left\{\begin{array}{ccc}
+      \textsc{Ruban}_\Gamma &\rightarrow& \Gamma^\star\\
+      \langle G, D \rangle &\mapsto& \mathit{trim}_{\blank }(G \cdot D)\\
+      \end{array}\right.
+      $$
+  }
+
+\end{frame}
+
+\endgroup

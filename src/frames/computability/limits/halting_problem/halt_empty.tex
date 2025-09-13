@@ -1,0 +1,81 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+  \SetKwFunction{Decide}{decide}
+
+\begin{frame}{Problème de l'arrêt sur chaîne vide}
+  \begin{tikzpicture}
+    
+    \draw[white] (5,8.5) -- (5,1.5);
+
+    \draw (5,8.9) node{\begin{minipage}{\textwidth}
+        \begin{description}
+        \item [Le langage :]
+          Étant donnée une MTD $M$, est-ce que $M$ termine sur $\varepsilon$ ? 
+        \end{description}
+        $$\alert{L_{\mathit{empty\_halt}} \eqdef \{ \mathit{encode}(M) \mid M \text{ termine sur } \varepsilon \}}$$ 
+        \begin{description}
+        \item [Théorème :] \vspace{-4mm}Le langage $L_{\mathit{empty\_halt}}$ est indécidable.
+        \end{description}
+    \end{minipage}};
+    
+    \draw<2-> (5,5) node{\begin{minipage}{\textwidth}
+        \begin{block}{Démonstration}
+          \begin{itemize}
+          \item Supposons (par l'absurde) que le langage $L_{\mathit{empty\_halt}}$ est décidable.
+            \begin{itemize}
+            \item Soit $\alert{\Decide_{\mathit{empty\_halt}}}$ une machine de turing déterministe qui le décide.
+            \end{itemize}
+          \item<3-> On définit la fonction $\alert{\mathit{initialiseur}}$ 
+            \begin{description}
+            \item[Entrée :] Un couple $\langle M, u \rangle \in L_{\mathit{univ}}$.
+            \item[Sortie :] $\mathit{initialiseur}(M, u)$ écrit $u$ sur son ruban puis exécute $M$
+            \item<4>[Remarque :] La fonction \structure{$initialiseur$ est calculable}
+            \item<3>[Remarque :] \vspace{1.8cm}La fonction \structure{$initialiseur$ est calculable}
+            \end{description}
+          \end{itemize}
+        \end{block}
+    \end{minipage}};
+
+    \draw<3> (5,3.5) node{\scalebox{.75}{\begin{tikzpicture}[shorten >=1pt, node distance=2.3cm, on grid, auto]
+          \fill[example!20, rounded corners=10]  (0,-.15) rectangle (10,2.15); 
+          \draw (9,1) node[cloud, cloud puffs=11 ,cloud puff arc=120, aspect=2, inner ysep=1em, fill=structure!20]{\structure{$M$}};
+          \draw[example]  (0,2.15) node[below right] {$\mathit{initialiseur}(M, u)$}; 
+          
+          \node[state, fill=example!20, initial, initial text=] (q0)  at (0.0,1)  {\faPencil$_1$}; 
+          \node[state, fill=example!20] (q1)   at (2,1)                         {\faPencil$_2$}; 
+          \node[state, fill=example!20] (q2)   at (4,1)                         {\faPencil$_n$}; 
+          \node[state, fill=example!20] (q3)   at (6,1)                         {\faBackward}; 
+          \node[state, fill=structure!20] (M0) at (8,1)        {\faPlay}; 
+          \node[state, fill=structure!20, accepting] (Mf) at (10,1)        {\faCheck}; 
+          
+          \path [->]        (q0) edge node{\scriptsize$\smTMtransL{\blank}{u_{|u|}}$} (q1);
+          \path [dashed,->] (q1) edge  (q2);
+          \path [->]        (q2) edge node{\scriptsize$\smTMtransL{\blank}{u_{1}}$} (q3);
+          \path [->]        (q3) edge node{\scriptsize$\smTMtransR{\blank}{\blank}$} (M0);
+          
+          \path [dashed,->, structure]    (M0) edge[bend left=5mm]  (Mf);
+          \path [dashed,->, structure]    (M0) edge[bend right=5mm] (Mf);
+    \end{tikzpicture}}};
+
+    \draw<4> (5,3.15) node{\begin{minipage}{\textwidth}
+        \begin{itemize}
+        \item La fonction $\alert{\Decide_{\mathit{halt}}}$ décide le langage $L_{halt}$ : 
+          \begin{algorithm}[H]
+            \Fun{$\Decide_{\mathit{halt}} \langle M, u \rangle$ : booléen}{
+              \Return $\Decide_{\mathit{empty\_halt}} (\mathit{initialiseur}(M, u))$\;
+            }
+          \end{algorithm}
+        \item Absurde, car $L_{halt}$ est indécidable. Donc $L_{\mathit{empty\_halt}}$ est indécidable.
+        \end{itemize}
+    \end{minipage}};
+
+  \end{tikzpicture}
+\end{frame}
+\endgroup

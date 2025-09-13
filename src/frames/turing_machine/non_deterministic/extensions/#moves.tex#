@@ -1,0 +1,118 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Ajouter des possibilités de déplacement}
+  
+  \on[text,top] {
+    \begin{itemize}
+    \item On peut considérer des actions plus complexes sur le ruban
+    \item Ces actions ne changent pas la classe des langages reconnaissables
+    \end{itemize}
+    \begin{description}
+    \item<1->[$q \xrightarrow{\smTMtransS{a}{b}} q'$ :] lit $a$, écrit $b$, ne déplace pas la tête de lecture\hspace\fill\alert{$ \langle G, a D \rangle  \rightarrow \langle G, b D \rangle $}
+    \item<4->[$q \xrightarrow{\smTMtransP{a}{b}} q'$ :] lit $a$, ajoute $b$ à gauche\hspace\fill\alert{$ \langle G, a D \rangle  \rightarrow \langle G b, a D \rangle $}
+    \item<9->[$q \xrightarrow{\smTMtransM{a}} q'$ :] lit $a$, supprime $a$\hspace\fill\alert{$ \langle G, a D \rangle  \rightarrow \langle G, D \rangle $}
+    \end{description}
+  }
+ 
+  \ob<1-3> {
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \cell{\blank}
+      \cell{$b$}
+      \cell{\alt<1>{$a$}{$b$}} \smhead[ob=<{1,3}>]
+      \cell{$b$}               \smhead[ob=<2>]
+      \cell{\blank}
+      \cell{\blank}
+    \end{tikzpicture}
+  }
+ 
+  \on<1-3>[y=-30mm] {
+    \begin{tikzpicture}[turingMachine]
+      \state[example on=<1>] (A) at (0,0) {$q$};
+      \state[alert ob=<2>  ] (B) at (1,0) {\faStepBackward}; 
+      \state[example on=<3>] (C) at (2,0) {$q'$};
+      
+      \path (A) edge node {\smTMtransR{a}{b}} (B);
+      \path (B) edge node {\smTMtransL{x}{x}} node[swap] {$\forall x \in \Gamma$} (C);
+      
+      \path[example, dashed, -latex] (A) edge[bend right] node[swap] {$\smTMtransS{a}{b}$} (C);
+    \end{tikzpicture}
+  }
+ 
+  \on<4-8> {
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \cell{\blank}
+      \cell{$b$}
+      \cell{\oneof[$a$]{\on<5->{\faMapMarker}\on<8->{$b$}}} \smhead[ob=<4>    ] \smheadfrom[ob=<7>]{1}
+      \cell{\oneof[$b$]{\on<6->{$a$}}}                      \smhead[ob=<{5,8}>]
+      \cell{\oneof[\blank]{\on<7->{$b$}}}                   \smhead[ob=<6>    ]
+      \cell{\blank}
+    \end{tikzpicture}
+  }
+    
+  \on<4-8>[y=-28mm] {\footnotesize
+    \begin{tikzpicture}[turingMachine]
+      \state[example on=<4>] (q) at (0,0) {$q$};
+      \state[alert ob=<5>]   (a) at (1,0) {$a$}; 
+      \state[alert ob=<6>]   (b) at (1,1) {$b$}; 
+      \state[alert ob=<7>]   (c) at (2,0) {\faBackward};
+      \state[example on=<8>] (f) at (3,0) {$q'$};
+      
+      \path (q) edge                        node             {\smTMtransR{a}{\text{\faMapMarker}}} (a);
+      \path (a) edge[bend left]             node[sloped]     {\smTMtransR{b}{a}} (b);
+      \path (b) edge[bend left]             node[sloped]     {\smTMtransR{a}{b}} (a);
+      \path (b) edge                        node[sloped]     {\smTMtransL{\blank}{b}} (c);
+      \path (a) edge                        node[sloped]     {\smTMtransL{\blank}{a}} (c);
+      \path (c) edge                        node             {\smTMtransR{\text{\faMapMarker}}{b}} (f);
+      \path (c) edge[loop above]            node             {\smAlign{\smTMtransL{a}{a}\smTMtransL{b}{b}}} (c);
+      \path (a) edge[loop, out=-30, in=-60] node[yshift=2mm] {\smTMtransR{a}{a}} (a);
+      \path (b) edge[loop left]             node             {\smTMtransR{b}{b}} (b);
+      
+      \path [example, dashed, -latex] (q) edge[bend right=15] node[swap] {\smTMtransP{a}{b}} (f);
+    \end{tikzpicture}
+  }
+ 
+  \on[y=-10mm]<9-> {
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \cell{$b$}   
+      \cell{\oneof[$a$]{\on<10>{\faMapMarker}\on<11->{$b$}}}  \smhead[ob=<{9,11}>]
+      \cell{\oneof[$b$]{\on<11->{$a$}}}   
+      \cell{\oneof[$a$]{\on<11->{\blank}}}                    \smhead[ob=<10>]
+      \cell{\blank}
+    \end{tikzpicture}
+  }
+ 
+  \on<9->[y=-30mm] {
+    \begin{tikzpicture}[turingMachine, x=25mm, y=15mm]
+      \state[example on=<9>]  (q) at (0,0) {$q$};
+      \state                  (1) at (1,0) {\faForward}; 
+      \state[alert ob=<10>]   (2) at (2,0) {\blank}; 
+      \state                  (b) at (3,0) {$b$}; 
+      \state                  (a) at (3,1) {$a$}; 
+      \state[example on=<11>] (f) at (4,0) {$q'$};
+      
+      \path (q) edge                          node             {\smTMtransR{a}{\text{\faMapMarker}}} (1);
+      \path (1) edge[loop above]              node             {\smAlign{\smTMtransR{a}{a}\smTMtransR{b}{b}}} (1);
+      \path (1) edge                          node             {\smTMtransL{\blank}{\blank}} (2);
+      \path (2) edge                          node[sloped]     {\smTMtransL{a}{\blank}} (a);
+      \path (2) edge                          node[sloped]     {\smTMtransL{b}{\blank}} (b);
+      \path (a) edge[bend left]               node[sloped]     {\smTMtransL{b}{a}} (b);
+      \path (b) edge[bend left]               node[sloped]     {\smTMtransL{a}{b}} (a);
+      \path (b) edge                          node[sloped]     {\smTMtransS{\text{\faMapMarker}}{b}} (f);
+      \path (a) edge                          node[sloped]     {\smTMtransS{\text{\faMapMarker}}{a}} (f);
+      \path (a) edge[loop right]              node             {\smTMtransL{a}{a}} (a);
+      \path (b) edge[loop, out=-120, in=-150] node[yshift=2mm] {\smTMtransL{b}{b}} (b);
+      
+      \path[example, dashed] (q) edge[bend right=15] node      {\smTMtransM{a}} (f);
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\endgroup

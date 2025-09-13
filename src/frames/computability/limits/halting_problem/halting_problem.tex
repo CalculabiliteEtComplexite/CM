@@ -1,0 +1,89 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\SetKwData{X}{x}
+\SetKwData{I}{i}
+\SetKwFunction{AlgoCompter}{compter}
+\SetKwFunction{AlgoBoucler}{boucler}
+
+\begin{frame}{Problème de l'arrêt}
+
+  \onBlock[top=3mm]{Définition -- Problème de l'arrêt}{
+    \begin{description}
+    \item[Entrées :]
+      \begin{itemize}
+      \item \alert{$\mathit{algo}$} : un \structure{algorithme avec un paramètre} 
+      \item \alert{$x$} : un \structure{argument pour $\mathit{algo}$} 
+      \end{itemize}
+    \item[Question :] est-ce que \alert{l'exécution de $\mathit{algo}(x)$ se termine} ?
+    \end{description}
+  }
+
+  \onExampleBlock[bottom=3mm,left=.5\textwidth]{Exemple d'instance positive}{
+    \begin{itemize}
+    \item $\mathit{algo} = \AlgoCompter$
+    \item $x = 5$
+    \end{itemize}
+    \vspace{2mm}
+    \begin{algorithm}[H]
+      \Proc{$\AlgoCompter(\X \in \mathbb{N})$}{
+        \For{$\I$ \From $1$ \To $\X$}{
+          $\Print(\I)$\;
+        }
+      }
+    \end{algorithm}
+  }
+
+  \onExampleBlock[bottom=3mm,right=.5\textwidth]{Exemple d'instance négative}{
+    \begin{itemize}
+    \item $\mathit{algo} = \AlgoBoucler$
+    \item $x = 5$
+    \end{itemize}
+    \vspace{2mm}
+    \begin{algorithm}[H]
+      \Proc{$\AlgoBoucler(\X \in \mathbb{N})$}{
+        \While{\True}{
+          $\Print(\X)$\;
+        }
+      }
+    \end{algorithm}
+  }
+\end{frame}
+
+
+
+\begin{frame}{Problème de l'arrêt}
+  \small
+ 
+  \begin{block}{Définition -- Le langage $L_{halt}$}
+    Étant données une MTD $M$ et une entrée $u$, est-ce que $M$ termine sur $u$ ? 
+ 
+    $$L_{\mathit{halt}} \eqdef \{ \langle \mathit{encode}(M), u \rangle \in (\{0,1\}^\star)^2  \mid M \text{ termine sur } u \}$$ 
+    
+  \end{block}
+ 
+  \pause 
+  \begin{block}{Propriétés}
+    \begin{enumerate}
+    \item<2-> $L_{\mathit{halt}}$ est \structure{récursivement énumérable}.
+    \item<3-> $L_{\mathit{halt}}$ est \structure{indécidable}.
+    \item<4-> $\overline{L_{\mathit{halt}}}$ n'est \structure{pas récursivement énumérable}.
+    \end{enumerate}
+  \end{block}
+ 
+  \begin{block}{Démonstration}
+    \begin{enumerate}
+    \item<2-> $L_{\mathit{halt}}$ est reconnu par la MTD universelle normalisée pour la reconnaissance.
+    \item<3-> Un peu plus difficile...
+    \item<4-> Sinon, $L_{\mathit{halt}}$ et $\overline{L_{\mathit{halt}}}$ seraient récursivement énumérable, donc décidables.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\endgroup

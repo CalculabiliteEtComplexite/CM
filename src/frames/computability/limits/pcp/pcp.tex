@@ -1,0 +1,55 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Problème de Correspondance de Post}
+
+  \on[text, top]{
+    Soit $\Sigma$ un alphabet contenant au moins deux symboles. 
+    \begin{block}{Le problème PCP}
+      \begin{description}
+      \item[Entrée :] \vspace{-2mm}Un ensemble fini de \structure{sortes de dominos} $D \in \mathscr{P}(\Sigma^+ \times \Sigma^+)$.
+        \begin{itemize}
+        \item Dominos de la forme \VDomino{$\alpha$}{$\beta$}, avec $\alpha$ et $\beta$ des mots sur $\Sigma$
+        \end{itemize}
+      \item[Solution :] Un mot non-vide
+        $\VDomino{\alpha_1}{\beta_1} \cdots \VDomino{\alpha_k}{\beta_k} \in D^+$ de dominos\footnote[frame]{On peut utiliser chaque domino autant de fois qu'on veut} tel que :
+        \begin{itemize}
+        \item $\alpha_{1} \cdots \alpha_{k} = \beta_{1} \cdots \beta_{k}$
+        \end{itemize}
+      \item[Sortie :] \alert{\og oui \fg} s'il existe une solution, \alert{\og non \fg} sinon.
+      \end{description}
+    \end{block}
+  }
+
+  \onImage<1>[bottom=5mm]{%
+    width=1.5cm,
+    title={Emil Post},
+    license={Domaine public (\href{https://commons.wikimedia.org/wiki/File:Emil_Leon_Post.jpg}{Wikimedia})},
+    img={Post.jpg}
+  }
+
+  \onExampleBlock<2-|handout> [bottom=2mm] {Exemples} {
+    \begin{itemize}
+    \item $\left\{\VDomino{a}{baa}, 
+      \VDomino{ab}{aa}, 
+      \VDomino{bba}{bb}\right\}$
+      \uncover<3-|handout> {a pour solution
+        \VDomino{bba}{bb}
+        \VDomino{ab}{aa}
+        \VDomino{bba}{bb}
+        \VDomino{a}{baa}.}
+    \item $\left\{\VDomino{a}{ba}, 
+      \VDomino{ab}{b}\right\}$
+      \uncover<3-|handout> {n'a pas de solution.}
+    \end{itemize}
+  }
+ 
+\end{frame}
+
+\endgroup

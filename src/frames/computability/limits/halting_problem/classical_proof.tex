@@ -1,0 +1,86 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\SetKwFunction{Diagonale}{diag}
+\SetKwFunction{Decide}{decide}
+
+\begin{frame}{L'argument classique de Turing}
+  \small
+  
+  \hspace{-3mm}
+  \begin{tikzpicture}
+    \draw[white] (5,10) -- (5,2.5);
+
+    \draw (5,10) node{\begin{minipage}{\textwidth}
+        \begin{itemize}
+        \item Supposons (par l'absurde) qu'il existe une MTD \structure{$\Decide_{\mathit{halt}}$}
+          qui décide $L_{\mathit{halt}}$.
+          \begin{itemize}
+          \item Qui utilise deux rubans \textsc{m} et \textsc{u} pour son entrée $\langle \mathit{encode}(M), u \rangle$.
+          \end{itemize}
+        \item On considère la MTD qui implémente la fonction $\alert{\Diagonale}$ ci-dessous : 
+        \end{itemize}
+    \end{minipage}};
+    
+    \draw (3.5,8) node{\begin{minipage}{.4\textwidth}
+        \begin{algorithm}[H]
+          \Fun{$\Diagonale(u)$}{
+            \uIf{$\Decide_{\mathit{halt}} \langle u, u \rangle$}{
+              \lWhile{\True}{}
+            }\lElse{\Return \True}
+          }
+        \end{algorithm}
+    \end{minipage}};
+
+    \draw (5,6.5) node{\scalebox{.8}{\begin{tikzpicture}[shorten >=1pt, node distance=2.3cm, on grid, auto]
+
+          \draw[fill=structure!20, rounded corners=8]  (7.5,-.25) rectangle (5,2.25); 
+          \draw[structure]  (5,2.25) node[below right] {$\Decide_{\mathit{halt}}$}; 
+          \draw[structure]  (4,0) node {\scriptsize $\forall x \neq \blank$}; 
+
+          \node[state, initial, initial text=] (A)  at (0.0,1)    {\faPencil}; 
+          \node[state] (B)  at (2.5,1)    {\faBackward}; 
+          \node[state, fill=structure!20] (D0) at (5.0,1)    {\faPlay}; 
+          \node[state, fill=structure!20] (DO) at (7.5,1.75) {\faCheck}; 
+          \node[state, fill=structure!20, accepting] (DN) at (7.5,0.25) {\faTimes}; 
+
+          \path [dashed,->, structure]    (D0) edge[bend left=5mm]  (DO);
+          \path [dashed,->, structure]    (D0) edge  (DO);
+          \path [dashed,->, structure]    (D0) edge[bend right=5mm] (DO);
+          
+          \path [dashed,->, structure]    (D0) edge[bend left=5mm]  (DN);
+          \path [dashed,->, structure]    (D0) edge  (DN);
+          \path [dashed,->, structure]    (D0) edge[bend right=5mm] (DN);
+
+          \path [->] (A) edge node[swap]{\scriptsize$\left\{\begin{array}{c}\textsc{m}:\smTMtransL{\blank}{\blank}\\\textsc{u}:\smTMtransL{\blank}{\blank}\end{array}\right.$} (B);
+          \path [->] (B) edge node[swap]{\scriptsize$\left\{\begin{array}{c}\textsc{m}:\smTMtransR{\blank}{\blank}\\\textsc{u}:\smTMtransR{\blank}{\blank}\end{array}\right.$} (D0);
+
+          \path [->] (A) edge[loop below, looseness=5] node{\scriptsize$\left\{\begin{array}{c}\textsc{m}:\smTMtransR{\blank}{x}\\\textsc{u}:\smTMtransR{x}{x}\end{array}\right.$} (A);
+          \path [->] (B) edge[loop below, looseness=5] node{\scriptsize$\left\{\begin{array}{c}\textsc{m}:\smTMtransL{x}{x}\\\textsc{u}:\smTMtransL{x}{x}\end{array}\right.$} (B);
+          \path [->] (DO) edge[loop right, looseness=5] node{\scriptsize$\begin{array}{c}\smTMtransR{y}{y}\\\forall y\in \Gamma\end{array}$} (DO);
+
+    \end{tikzpicture}}};
+
+
+    \draw (5,4) node{\begin{minipage}{\textwidth}
+        \begin{itemize}
+        \item Que retourne \alert{$\Decide_{\mathit{halt}} \langle \Diagonale, \Diagonale \rangle$} ?
+          \begin{itemize}
+          \item<2-> Si $\Diagonale(\Diagonale)$ termine, alors $\Diagonale(\Diagonale)$ ne termine pas.
+          \item<2-> Si $\Diagonale(\Diagonale)$ ne termine pas, alors $\Diagonale(\Diagonale)$ termine.
+          \end{itemize}
+        \item<3-> Absurde, donc $\Decide_{\mathit{halt}}$ n'existe pas et \alert{$L_{\mathit{halt}}$ est indécidable}. 
+        \end{itemize}
+    \end{minipage}};
+
+  \end{tikzpicture}
+
+\end{frame}
+
+\endgroup

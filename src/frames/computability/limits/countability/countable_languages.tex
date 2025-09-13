@@ -1,0 +1,43 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+
+\begin{frame}{Dénombrabilité des langages}
+
+  Soient $\Sigma$ un alphabet et $f$ une bijection de $\Sigma$ dans $\{1, ..., |\Sigma|\}$.
+
+  \begin{block}{Propriété -- Dénombrabilité de chaque langage}
+    Tout langage $L \subseteq \Sigma^\star$ est dénombrable.
+  \end{block}
+
+  \vspace{-1mm}
+  \begin{block}{Démonstration}
+    On interprète les mots de $L$ comme des écritures en base $|\Sigma| + 1$.
+    \begin{itemize}
+    \item La fonction suivante est injective :
+      \vspace{-2mm}
+      $$
+      g = \left\{\begin{array}{ccc}
+      L &\rightarrow& \mathbb{N}\\
+      u_{n-1}...u_{0} &\mapsto&  \displaystyle \sum_{i=0}^{n-1} f(u_i) \times (|\Sigma| + 1)^{i}  \\ 
+      \end{array}\right.
+      $$
+    \item Exemples : 
+    \begin{itemize}
+    \item Si $\Sigma = \{1, ..., 9\}$ et $f : x \mapsto x$, on a $\example{g(12345) = 12345}$
+    \item Si $\Sigma = \{a, b\}$, avec $f(a) = 1$ et $f(b) = 2$, on a $\example{g(abab) = 50}$
+      \begin{itemize}
+      \item car $50 = 2\times 3^3 + 1\times 3^2 + 2\times 3^1 + 1\times 3^0$
+      \end{itemize}
+    \item Si $|\Sigma| = 1$, on a $\example{g(u) = 2^{|u| -1}}$
+    \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+\endgroup

@@ -1,0 +1,37 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Reconnaissance par une machine de Turing}
+  
+  Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une machine de Turing.
+ 
+  \begin{block}{Définition -- Configuration acceptante}
+    Une configuration $c$ de $M$ est dite :
+    \begin{description}
+    \item[d'arrêt :] si aucune action n'est possible à partir de $c$ : $\alert{\forall c', c\not\leadsto_M c'}$
+    \item[acceptante :] si $q \in F$ et $c$ est une configuration d'arrêt
+    \item[de rejet :] si $q \notin F$ et $c$ est une configuration d'arrêt
+    \end{description}
+  \end{block}
+  \pause
+  \begin{block}{Définition -- Reconnaissance par une machine de Turing}
+    \begin{itemize}
+    \item Un mot $u \in \Sigma^\star$ est \structure{reconnu} (ou \structure{accepté}) par $M$ s'il existe un chemin d'actions menant
+      de $C_{\mathit{init}}(u)$ à une configuration acceptante.
+    \item Le \structure{langage reconnu par $M$} est l'ensemble \structure{$\mathcal{L}(M)$} des mots reconnus par $M$.
+ 
+      $$\alert{\mathcal{L}(M) \eqdef \{u \in \Sigma^\star | \exists c\text{ acceptante}, C_{\mathit{init}}(u) \leadsto_M^\star c\}}$$
+    \item Un langage $L$ est dit \structure{reconnaissable} s'il existe $M_L$ telle que $L=\mathcal{L}(M_L)$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\endgroup
+
+

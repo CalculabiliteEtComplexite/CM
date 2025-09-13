@@ -1,0 +1,48 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Généralisation : le théorème de Rice}
+  ~
+  
+ \vspace{-9mm}
+  \begin{tikzpicture}
+  \hspace{-3mm}
+
+    \draw (5,5) node[above]{\begin{minipage}{1.1\textwidth}
+        \begin{block}{Théorème -- Théorème de Rice}
+          Toute propriété sémantique non triviale \\d'un programme est indécidable.
+
+          \vspace{2mm}
+          \begin{description}
+            \item[\og Sémantique \fg : ] prédicat sur les exécutions
+            \item[\og Non-triviale \fg : ] vraie sur certains programmes, \\\hspace{5mm}fausse sur d'autres
+          \end{description}
+        \end{block}  
+    \end{minipage}};
+
+    \draw (5,5) node[below]{\begin{minipage}{1.1\textwidth}
+        \begin{exampleblock}{Exemples de propriétés indécidables}
+          \begin{itemize}
+          \item Le programme s'arrête sur une certaine entrée
+          \item Le programme s'arrête sur toutes ses entrées
+          \item Le programme retourne le même résultat qu'un autre programme
+          \item Le programme retourne un résultat correct par rapport à sa spécification
+          \item Le programme ne déréférence pas le pointeur nul
+          \item Le programme ne lève pas d'exception
+          \item Le programme est un virus
+          \end{itemize}
+        \end{exampleblock}  
+    \end{minipage}};
+
+%    \draw (8.5,6) node{\includegraphics[width=2.5cm]{Rice}};
+%    \draw[structure] (8.5,4.4) node{Gordon Henry Rice};
+  \end{tikzpicture}
+\end{frame}
+
+\endgroup

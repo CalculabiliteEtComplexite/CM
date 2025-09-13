@@ -1,0 +1,104 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Exemple -- Fonction calculable à plusieurs arguments}
+
+  \onBlock[top]{Addition de deux nombres entiers}{
+    \begin{itemize}
+    \item Entrées : $a$ et $b$, sur leur ruban respectif
+    \item Sortie : $a + b$, sur le ruban $c$
+    \end{itemize}
+  }
+
+  \on[x=-20mm, y=10mm]{
+    \begin{tikzpicture}[tape, x=5mm, y=5mm]
+      \cell{}    \smheadb<11>
+      \cell{$1$} \smhead<1,10,12>
+      \cell{$0$} \smheadb<9>
+      \cell{$0$} \smheadb<8>
+      \cell{$1$} \smheadb<7>
+      \cell{$0$} \smheadb<6>
+      \cell{$1$} \smheadb<5>
+      \cell{$0$} \smheadb<3-4>
+      \cell{}    \smheadfromb<2>{-7}
+    \end{tikzpicture}
+  }
+  \on[x=-20mm, y=00mm]{
+    \begin{tikzpicture}[tape, x=5mm, y=5mm]
+      \cell{}    \smheadb<11>
+      \cell{}    \smheadb<10,12>
+      \cell{}    \smheadb<9>
+      \cell{}    \smheadb<8>
+      \cell{$1$} \smhead<1,7>
+      \cell{$1$} \smheadb<6>
+      \cell{$0$} \smheadb<5>
+      \cell{$0$} \smheadb<4>
+      \cell{}    \smheadfromb<3>{-4}
+    \end{tikzpicture}
+  }
+
+  \on[x=-20mm, y=-10mm]{
+    \begin{tikzpicture}[tape, x=5mm, y=5mm]
+      \cell{}                \smheadb<11>
+      \cell{$\onlyb<11->{1}$} \smheadb<10,12>
+      \cell{$\onlyb<10->{0}$} \smheadb<9>
+      \cell{$\onlyb<9->{1}$}  \smheadb<8>
+      \cell{$\onlyb<8->{0}$}  \smheadb<7>
+      \cell{$\onlyb<7->{1}$}  \smheadb<6>
+      \cell{$\onlyb<6->{1}$}  \smheadb<5>
+      \cell{$\onlyb<5->{0}$}  \smhead<-4>
+      \cell{}
+    \end{tikzpicture}
+  }
+
+  \on[x=30mm, y=0mm]{
+    \begin{tikzpicture}[turingMachine]
+      \state[alert ob=<{-2}>,initial]    (a) at (1,3) {a}; 
+      \state[alert ob=<{3}>]            (b) at (1,2) {b}; 
+      \state[alert ob=<{4-7,9-11}>]     (0) at (1,1) {0}; 
+      \state[alert ob=<{8}>]            (1) at (0,1) {1}; 
+      \state[alert ob=<{12}>,accepting] (f) at (1,0) {f}; 
+      
+      \scriptsize
+      \path (a) edge[loop right] node {\smAlign{\smTMtransR[a]{0}{0}\smTMtransR[a]{1}{1}}} (a);
+      \path (b) edge[loop right] node {\smAlign{\smTMtransR[b]{0}{0}\smTMtransR[b]{1}{1}}} (b);
+      \path (0) edge[loop right] node {$\delta_0, \delta_{\blank}$} (0);
+      \path (1) edge[loop below] node {$\delta_1, \delta_{\blank}$} (1);
+      \path (0) edge[bend left]  node {\smGroup{\smTMtransL[a]{1}{1}\smTMtransL[b]{1}{1}\smTMtransL[c]{\blank}{0}}} (1);
+      \path (1) edge[bend left]  node {\smGroup{\smTMtransL[a]{0}{0}\smTMtransL[b]{0}{0}\smTMtransL[c]{\blank}{1}}} (0);
+      \path (a) edge             node {\smTMtransL[a]{\blank}{\blank}} (b);
+      \path (b) edge             node {\smTMtransL[b]{\blank}{\blank}} (0);
+      \path (0) edge             node {\smGroup{\smTMtransR[a]{\blank}{\blank}\smTMtransR[b]{\blank}{\blank}\smTMtransR[c]{\blank}{\blank}}} (f);
+    \end{tikzpicture}
+  }
+
+  \on[text, bottom]{\scriptsize
+    \begin{itemize}
+    \item $\rightarrow_0 =
+      \left\{\begin{array}{c} a : \smTMtransL{0}{0} \\ b : \smTMtransL{0}{0} \\ c : \smTMtransL{\blank}{0} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransL{1}{1} \\ b : \smTMtransL{0}{0} \\ c : \smTMtransL{\blank}{1} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransL{0}{0} \\ b : \smTMtransL{1}{1} \\ c : \smTMtransL{\blank}{1} \end{array}\right.
+      $
+    \item $\rightarrow_1 =
+      \left\{\begin{array}{c} a : \smTMtransL{0}{0} \\ b : \smTMtransL{1}{1} \\ c : \smTMtransL{\blank}{0} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransL{1}{1} \\ b : \smTMtransL{0}{0} \\ c : \smTMtransL{\blank}{0} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransL{1}{1} \\ b : \smTMtransL{1}{1} \\ c : \smTMtransL{\blank}{1} \end{array}\right.
+      $
+    \item $\rightarrow_{\blank} =
+      \left\{\begin{array}{c} a : \smTMtransR{0}{0} \\ b : \smTMtransR{\blank}{0} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransR{1}{1} \\ b : \smTMtransR{\blank}{0} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransR{\blank}{0} \\ b : \smTMtransR{0}{0} \end{array}\right.
+      \left\{\begin{array}{c} a : \smTMtransR{\blank}{0} \\ b : \smTMtransR{1}{1} \end{array}\right.
+      $
+    \end{itemize}
+  }
+  
+\end{frame}
+
+\endgroup

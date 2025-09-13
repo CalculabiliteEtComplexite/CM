@@ -1,0 +1,51 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}[fragile]{Simulation d'une machine de Turing déterministe}
+  \small
+  
+  \begin{block}{Théorèmes : équivalence entre langage IMP et MTD}
+    \begin{itemize}
+    \item Toute MTD peut être \structure{simulée} par un algorithme en IMP
+      
+      \begin{algorithm}[H]
+        \SetKwFunction{Forcebrute}{force\_brute}
+        \SetKwData{A}{lu}
+        \SetKwData{Etat}{etat}
+        \SetKwData{Tete}{tete}
+        \SetKwData{Ruban}{ruban}
+        \SetKwFunction{Ecrire}{ecrit}
+        \SetKwFunction{Deplace}{deplace}
+        \SetKwFunction{Trans}{transition}
+        \Fn{simule($M$ : MTD, $u$ : mot) : booléen}{
+          $\Ruban \leftarrow u$;
+          $\Tete \leftarrow 1$;
+          $\Etat \leftarrow q_0$\;
+          \Tantque{$\Etat\neq q_a \land \Etat\neq q_r$}{
+            $\A \leftarrow \Ruban[\Tete]$\;
+            $\Ruban[\Tete] \leftarrow \Ecrire[\Etat][\A]$\;
+            $\Tete \leftarrow \Tete+\Deplace[\Etat][\A]$\;
+            $\Etat \leftarrow \Trans[\Etat][\A]$\;
+            
+            \uSi{$\Tete=0$} {
+              $\Ruban \leftarrow \text{``$\blank$''} + \Ruban$; $\Tete \leftarrow 1$
+            }
+            \SinonSi{$\Tete>|\Ruban|$} {
+              $\Ruban \leftarrow \Ruban + \text{``$\blank$''} $
+            }
+          }
+          \Retourner $\Etat=q_a$\;
+        }
+      \end{algorithm}
+    \item<2-> Réciproquement, tout algorithme IMP peut être \structure{compilé} en une MTD.
+    \end{itemize}
+  \end{block}
+  
+\end{frame}
+\endgroup

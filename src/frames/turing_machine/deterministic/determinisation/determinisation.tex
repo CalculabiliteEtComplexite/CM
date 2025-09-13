@@ -1,0 +1,85 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Déterminisation d'une machine de Turing}
+  
+  \onBlock[top=-3mm]{Théorème -- Équivalence entre MTND et MTD}{
+    Soit $\Sigma$ un alphabet, et $L \subseteq \Sigma^\star$ un langage sur $\Sigma$. 
+    \begin{itemize}
+    \item Si $L$ est reconnaissable, alors $L$ est semi-décidable.
+    \item Si $L$ est généré par une MTND, alors $L$ est récursivement énumérable.
+    \end{itemize}
+  }
+
+  \obBlock<1>[anchor=north, y=12mm]{Conséquence}{
+    Les cinq notions suivantes sont équivalentes :
+    \begin{itemize}
+    \item $L$ est reconnaissable
+    \item $L$ est semi-décidable
+    \item $L$ est généré par une MTND
+    \item $L$ est engendré par une grammaire
+    \item $L$ est récursivement énumérable
+    \end{itemize}
+  }
+
+  \onBlock<2>[anchor=north, y=12mm]{Démonstration}{
+    Soit $M$ une MTND reconnaissant $L$.\\
+    On construit une MTD $M_D$ reconnaissant $L$.
+    \begin{itemize}
+    \item On considère l'arbre d'exécution pour un mot $u$
+      \begin{itemize}
+      \item La racine est la configuration initiale $C_{\mathit{init}}(u)$
+      \item Les fils de $c$ sont les $c'$ telles que $c\leadsto_M c'$
+        \begin{itemize}
+        \item Le nombre de fils de $c$ est borné par $|\rightarrow|$
+        \end{itemize}
+      \end{itemize}
+    \item $M_D$  cherche une configuration acceptante
+      \begin{itemize}
+      \item Une exploration en profondeur ne fonctionne pas :
+        \begin{itemize}
+        \item certaines branches peuvent être infinies
+        \end{itemize}
+      \item $M_D$ exécute une exploration en largeur
+        \begin{itemize}
+        \item Nécessite une file (FIFO) de configurations
+        \end{itemize}
+      \end{itemize}
+    \end{itemize}
+  }
+
+  \on<2>[x=40mm,y=5mm] {
+    \begin{tikzpicture}[turingMachine, example, x=15mm]
+      \state[accepting]     (2) at (0,0) {$2$}; 
+      \state[initial above] (0) at (1,0) {$0$}; 
+      \state                (1) at (2,0) {$1$}; 
+
+      \path (0) edge[bend left=5mm] node       {$\smTMtransR{a}{a}$} (1);
+      \path (1) edge[bend left=5mm] node       {$\smTMtransL{a}{a}$} (0);
+      \path (0) edge                node[swap] {$\smTMtransR{a}{a}$} (2);
+    \end{tikzpicture}
+  }
+  
+  \on<2>[x=42mm,y=-23mm] {
+    \begin{tikzpicture}[tree, example, x=17mm, y=10mm]\small
+      \tree[edges=leadsto, xshift=-.5]{$\langle \langle \varepsilon, aa \rangle, 0 \rangle$}{
+        \tree{$\langle \langle a, a \rangle, 1 \rangle$}{
+          \tree[xshift=-.5]{$\langle \langle \varepsilon, aa \rangle, 0 \rangle$}{
+            \tree{$\langle \langle a, a \rangle, 1 \rangle$}{}           
+            \tree{$\langle \langle a, a \rangle, 2 \rangle$}{}            
+          }
+        }           
+        \tree[xshift=-1]{$\langle \langle a, a \rangle, 2 \rangle$}{}
+      }
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\endgroup

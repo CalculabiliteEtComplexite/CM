@@ -1,0 +1,112 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Démonstration de l'indécidabilité de PCP}
+  \newcommand\sep{\bullet}
+  \small
+    \begin{tikzpicture}
+
+      \draw (8, 3.6) node{\begin{minipage}{\textwidth}
+          Réduction du problème de correspondance de Post initialisé.
+          \begin{itemize}
+          \item Soit $\structure{\left\langle D, \HDomino[1.1]{\gamma_1\cdots \gamma_{|\gamma|}}{\rightarrow_1\cdots \rightarrow_{|\rightarrow|}} \right\rangle}$ une instance du PCPI sur $\Sigma$
+          \item<1,7->  $\left\langle D, \HDomino{\gamma}{\rightarrow} \right\rangle$ a une solution ssi l'instance $\alert{D'}$ du PCP sur $\alert{\Sigma'}$ a une solution :
+
+            \uncover<7->{
+              $$\begin{array}{rcl}
+                \Sigma' &=&\Sigma\cup \{\sep\}
+                \vspace{1mm}\\
+                D' &=&
+                \left\{\VDomino[2]{~\alert{\sep}~\gamma_1\sep ...\sep\gamma_{|\gamma|}~~~~}{\alert{\sep}~~\rightarrow_1\sep ... \sep\rightarrow_{|\rightarrow|}~~\alert{\sep}}\right\}
+                \vspace{1mm}\\
+                &\cup&
+                \left\{ \VDomino[2]{\alert{\sep}~~\alpha_1 \sep ... \sep\alpha_{|\alpha|}~~~~}{~~~~\beta_1\sep ... \sep\beta_{|\beta|}~~\alert{\sep}} \,\middle|\,
+                \VDomino[1.1]{\alpha_1 ... \alpha_{|\alpha|}}{\beta_1 ... \beta_{|\beta|}} \in D
+                \right\}
+                \vspace{1mm}\\
+                &\cup&
+                \left\{
+                \VDomino{\alert{\sep~\sep}}{\phantom{\sep}~\alert{\sep}}
+                \right\}
+              \end{array}
+              $$
+            }
+          \item<1,8-> \vspace{-1mm}Où la réduction $\left\langle D, \HDomino{\gamma}{\rightarrow} \right\rangle \mapsto D'$  est calculable.
+          \item<1,8-> Or le problème de correspondance de Post initialisé est indécidable.
+          \item<1,8-> Donc le problème de correspondance de Post est indécidable.
+          \end{itemize}
+      \end{minipage}};
+
+      \draw<1> (8, 3.6) node{$\begin{array}{ccc}\Sigma' &=& ???\\ D' &=& ???\end{array}$};
+
+      
+      \draw<2-6> (8, 3) node{\begin{minipage}{\textwidth}
+          \begin{exampleblock}{Exemple : $\color{black}\left\langle D=\left\{
+              \HDomino{a}{baa},
+              \HDomino{ab}{aa},
+              \HDomino{bba}{bb}
+              \right\},
+              d_0 = \HDomino{bba}{bb}
+              \right\rangle$}
+            \begin{enumerate}
+            \item<3-> Nouveau caractère $\sep$ à gauche pour forcer l'initialisation avec $d_0$
+            \item<4-> Intercaller $\sep$ entre toutes les lettres pour permettre le découpage
+            \item<5-> Ajouter un domino final pour terminer par $\sep\sep$
+            \end{enumerate}
+
+            \uncover<3-> {
+            $$D' = \left\{
+            \only<-3>{
+              \VDomino[1.1]{\alert{\sep} b b a}{\alert{\sep} b b},
+              \VDomino[1.1]{\alert{\sep} a}{b a a},
+              \VDomino[1.1]{\alert{\sep} a b}{a a},
+              \VDomino[1.1]{\alert{\sep} b b a}{b b}
+            }
+            \only<4>{
+              \VDomino[1.1]{\sep b \alert{\sep} b \alert{\sep} a} {\sep b \alert{\sep} b \,\alert{\sep}},
+              \VDomino[1.1]{\sep a}                               {b \alert{\sep} a \alert{\sep} a \,\alert{\sep}},
+              \VDomino[1.1]{\sep a \alert{\sep} b}                {a \alert{\sep} a \,\alert{\sep}},
+              \VDomino[1.1]{\sep b \alert{\sep} b \alert{\sep} a} {b \alert{\sep} b \,\alert{\sep}}
+            }
+            \only<5->{
+              \VDomino[1.1]{\sep b \sep b\sep a}{\sep b\sep b\,\sep},
+              \VDomino[1.1]{\sep a}{b\sep a\sep a\,\sep},
+              \VDomino[1.1]{\sep a\sep b}{a\sep a\,\sep },
+              \VDomino[1.1]{\sep b\sep b\sep a}{b\sep b\,\sep }
+            }
+            \uncover<5->{, \VDomino{\alert<5>{\sep\sep}}{\alert<5>{\sep}}}
+            \right\}$$
+            }
+
+            \uncover<6-> {
+            \begin{tabular}{ll}
+              \example{Solution pour $D'$ :}&  \scalebox{.9}{
+                $\VDomino[1.1]{\sep b \sep b\sep a}{\sep b\sep b\sep}\,
+                \VDomino[1.1]{\sep a\sep b}{a\sep a\sep}\,
+                \VDomino[1.1]{\sep b\sep b\sep a}{b\sep b\sep}\,
+                \VDomino[1.1]{\sep a}{b\sep a\sep a\sep}\,
+                \VDomino{\sep\sep}{\sep}$
+              }
+            \vspace{1mm}\\
+            \example{Solution pour $D$ :}&
+            \scalebox{.9}{
+              $\VDomino[1.1]{b b a}{ b b}\,
+              \VDomino[1.1]{ab}{a a}\,
+              \VDomino[1.1]{bba}{b b}\,
+              \VDomino[1.1]{a}{baa}$
+            }
+            \end{tabular}
+            }
+
+          \end{exampleblock}
+      \end{minipage}};
+    \end{tikzpicture}
+\end{frame}
+
+\endgroup

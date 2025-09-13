@@ -1,0 +1,163 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Passer à la configuration suivante}
+
+  \vspace{-2mm}
+  \begin{tikzpicture}
+    \hspace{-3mm}
+
+    \draw (5,3) node{\begin{minipage}{\textwidth}
+        \begin{block}{Étapes}
+          \begin{enumerate}
+          \item<2-> Aller au début de $f$
+          \item<3-> Aller au début de $c$
+          \item<4-> Déplacer la première configuration de $f$ à $c$
+          \item<5-> Retourner à la fin de $f$
+          \item<6-> Se placer sur l'état de $c$
+          \end{enumerate}
+        \end{block}
+    \end{minipage}};
+
+    \draw (5,7.5) node{\begin{minipage}{\textwidth}\centering\scalebox{.7}{\begin{tikzpicture}[shorten >=1pt,node distance=2.5cm,on grid,auto]
+
+            \draw [rounded corners, fill=example!10] (0,-1.75) rectangle (12.5,1.5); 
+            \draw[example] (0, 1.5) node[below right] {Reinit}; 
+
+            \node  (A0)               {}; 
+            \node  (B0) [right=of A0] {}; 
+            \node  (C0) [right=of B0] {}; 
+            \node  (D0) [right=of C0] {}; 
+            \node  (E0) [right=of D0] {}; 
+            \node  (F0) [right=of E0] {}; 
+            
+            \node [fill=example!20, state, initial, initial text=] (A) at (A0) {$A$}; 
+            \node [fill=example!20, state]                         (B) at (B0) {$B$}; 
+            \node [fill=example!20, state]                         (C) at (C0) {$C$}; 
+            \node [fill=example!20, state]                         (D) at (D0) {$D$}; 
+            \node [fill=example!20, state]                         (E) at (E0) {$E$}; 
+            \node [fill=example!20, state]                         (F) at (F0) {$F$}; 
+
+            \node<1> [fill=alert!20, state, initial, initial text=] (A) at (A0) {$A$}; 
+            \node<2> [fill=alert!20, state]                         (B) at (B0) {$B$}; 
+            \node<3> [fill=alert!20, state]                         (C) at (C0) {$C$}; 
+            \node<4> [fill=alert!20, state]                         (D) at (D0) {$D$}; 
+            \node<5> [fill=alert!20, state]                         (E) at (E0) {$E$}; 
+            \node<6> [fill=alert!20, state]                         (F) at (F0) {$F$}; 
+
+            \path [->] (A) edge node {\scriptsize$f:\smTMtransL{\sharp}{\sharp}$} (B);
+            \path [->] (B) edge[loop below, looseness=5] node {\scriptsize$\begin{array}{c}f:\smTMtransL{x}{x}\\\forall x\neq \sharp \end{array}$} (B);
+            \path [->] (B) edge node {\scriptsize$f:\smTMtransR{\sharp}{\sharp}$} (C);
+            \path [->] (C) edge[loop below, looseness=5] node {\scriptsize$\begin{array}{c}c:\smTMtransL{x}{x}\\\forall x\neq \text{\small\blank} \end{array}$} (C);
+            \path [->] (C) edge node {\scriptsize$\left\{\begin{array}{l}f:\smTMtransR{\,|\,}{\sharp}\\c:\smTMtransR{\text{\small \blank}}{\text{\small \blank}}\end{array}\right.$} (D);
+            \path [->] (D) edge[loop below, looseness=5] node {\scriptsize$\begin{array}{c}\left\{\begin{array}{l}
+                f:\smTMtransR{x}{\sharp}\\
+                c:\smTMtransR{y}{x}\end{array}\right. \\
+                \forall x, y \in \Gamma\cup Q
+              \end{array}$} (D);
+            \path [->] (D) edge node {\scriptsize$\begin{array}{c}c:\smTMtransL{x}{\text{\small \blank}}\\\forall x \in \Gamma\cup Q\end{array}$} (E);
+            \path [->] (E) edge[loop below, looseness=5] node {\scriptsize$\begin{array}{c}f:\smTMtransR{x}{x}\\\forall x\neq \sharp \end{array}$} (E);
+            \path [->] (E) edge node {\scriptsize$f:\smTMtransR{\sharp}{\sharp}$} (F);
+            \path [->] (F) edge[loop, looseness=5, out=-150, in=-120] node[below left] {\scriptsize$\begin{array}{c}c:\smTMtransL{x}{x}\\\forall x\in \Gamma \end{array}$} (F);
+
+    \end{tikzpicture}}\end{minipage}};
+
+    \draw (5,5) node{\begin{minipage}{\textwidth}\centering\scalebox{.9}{\begin{tikzpicture}
+
+            \draw (0.5,1.25) node{$f$ :}; 
+            
+            \draw ( 1.0,1) -- +(.5,0) -- +(.5,.5) -- +(0,.5) +(.25,.25) node{$\ldots$};
+            \draw ( 1.5,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};
+            \draw ( 2.0,1) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$|$}\only<4->{$\sharp$}};            
+            \draw ( 2.5,1) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$g_1^1$}\only<4->{$\sharp$}};      
+            \draw ( 3.0,1) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$g_1^2$}\only<4->{$\sharp$}};      
+            \draw ( 3.5,1) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$q_1$  }\only<4->{$\sharp$}};       
+            \draw ( 4.0,1) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$d_1^1$}\only<4->{$\sharp$}};       
+            \draw ( 4.5,1) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$d_1^2$}\only<4->{$\sharp$}};      
+            \draw ( 5.0,1) rectangle +(.5,.5) +(.25,.25) node{$|$    };     
+            \draw ( 5.5,1) rectangle +(.5,.5) +(.25,.25) node{$g_2^1$};     
+            \draw ( 6.0,1) rectangle +(.5,.5) +(.25,.25) node{$g_2^2$};
+            \draw ( 6.5,1) rectangle +(.5,.5) +(.25,.25) node{$q_2$  };
+            \draw ( 7.0,1) rectangle +(.5,.5) +(.25,.25) node{$d_2^1$};
+            \draw ( 7.5,1) rectangle +(.5,.5) +(.25,.25) node{$d_2^2$};
+            \draw ( 8.0,1) rectangle +(.5,.5) +(.25,.25) node{$|$    };
+            \draw ( 8.5,1) rectangle +(.5,.5) +(.25,.25) node{$g_3^1$};
+            \draw ( 9.0,1) rectangle +(.5,.5) +(.25,.25) node{$g_3^2$};
+            \draw ( 9.5,1) rectangle +(.5,.5) +(.25,.25) node{$b$    };
+            \draw (10.0,1) rectangle +(.5,.5) +(.25,.25) node{$q_3$  };
+            \draw (10.5,1) rectangle +(.5,.5) +(.25,.25) node{$d_3^1$};
+            \draw (11.0,1) rectangle +(.5,.5) +(.25,.25) node{$d_3^2$};
+            \draw (11.5,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};
+            \draw (12.0,1) +(.5,0) -- +(0,0) -- +(0,.5) -- +(.5,.5) +(.25,.25) node{$\ldots$};
+
+            \draw<4>[fill=example!20] ( 2.0,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};            
+            \draw<4>[fill=example!20] ( 2.5,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};      
+            \draw<4>[fill=example!20] ( 3.0,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};      
+            \draw<4>[fill=example!20] ( 3.5,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};       
+            \draw<4>[fill=example!20] ( 4.0,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};       
+            \draw<4>[fill=example!20] ( 4.5,1) rectangle +(.5,.5) +(.25,.25) node{$\sharp$};      
+
+            \fill<1> [alert] (11.5,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<2>[alert!20] (11.0,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+            \draw<2>[alert, -latex] (11,.85) -- (2.0, .85);
+            \fill<2> [alert] (1.5,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<3> [alert] (2.0,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<4>[alert!20] (2.5,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+            \draw<4>[alert, -latex] (3,.85) -- (5, .85);
+            \fill<4> [alert] (5.0,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<5>[alert!20] (5,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+            \draw<5>[alert, -latex] (5.5,.85) -- (11.5, .85);
+            \fill<5-> [alert] (11.5,1) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+
+
+            \draw (7.0,0.25) node{$c$ :};
+            
+            \draw ( 7.5,0) -- +(.5,0) -- +(.5,.5) -- +(0,.5) +(.25,.25) node{$\ldots$};
+            \draw ( 8.0,0) rectangle +(.5,.5) +(.25,.25) node{$\blank$};
+            \draw ( 8.5,0) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$g_1$}\only<4->{$g_1^1$}};
+            \draw ( 9.0,0) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$g_2$}\only<4->{$g_1^2$}};
+            \draw ( 9.5,0) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$q$}\only<4->{$q_1$}};
+            \draw (10.0,0) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$a$}\only<4->{$d_1^1$}};
+            \draw (10.5,0) rectangle +(.5,.5) +(.25,.25) node{\only<-3>{$d_1$}\only<4->{$d_1^2$}};
+            \draw (11.0,0) rectangle +(.5,.5) +(.25,.25) node{\only<-4>{$d_2$}\only<5->{$\blank$}};
+            \draw (11.5,0) rectangle +(.5,.5) +(.25,.25) node{$\blank$};
+            \draw (12.0,0) +(.5,0) -- +(0,0) -- +(0,.5) -- +(.5,.5) +(.25,.25) node{$\ldots$};
+
+            \draw<4>[fill=example!20] ( 8.5,0) rectangle +(.5,.5) +(.25,.25) node{$g_1^1$};
+            \draw<4>[fill=example!20] ( 9.0,0) rectangle +(.5,.5) +(.25,.25) node{$g_1^2$};
+            \draw<4>[fill=example!20] ( 9.5,0) rectangle +(.5,.5) +(.25,.25) node{$q_1$};
+            \draw<4>[fill=example!20] (10.0,0) rectangle +(.5,.5) +(.25,.25) node{$d_1^1$};
+            \draw<4>[fill=example!20] (10.5,0) rectangle +(.5,.5) +(.25,.25) node{$d_1^2$};
+            \draw<5>[fill=example!20] (11.0,0) rectangle +(.5,.5) +(.25,.25) node{$\blank$};
+
+
+            \fill<-2> [alert] (9.5,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<3>[alert!20] (9.5,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+            \draw<3>[alert, -latex] (9.5,-.15) -- (8.5, -.15);
+            \fill<3> [alert] (8,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<4>[alert!20] (8.5,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+            \draw<4>[alert, -latex] (9,-.15) -- (11, -.15);
+            \fill<4-5> [alert] (11,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+
+            \fill<6>[alert!20] (10.5,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+            \draw<6>[alert, -latex] (10.5,-.15) -- (10, -.15);
+            \fill<6-> [alert] (9.5,0) +(.1,-.3) -- +(.25,0) -- +(.4,-.3);
+    \end{tikzpicture}}\end{minipage}};
+
+  \end{tikzpicture}
+
+\end{frame}
+\endgroup
