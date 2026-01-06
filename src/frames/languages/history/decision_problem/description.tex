@@ -1,0 +1,45 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Comment décrire les problèmes de décision ?}
+
+  \begin{alertblock}{Remarque}
+    \begin{itemize}
+    \item Un problème doit être décrit dans un formalisme centré sur un langage
+    \end{itemize}
+  \end{alertblock}
+  
+  \begin{exampleblock}{Exemples : langage composé des seuls mots $aa$ et $ab$}
+    \begin{description}[Grammaires algébriques :]
+    \item[Mathématiques :]
+      $\{aa, ab\}$
+    \item[Expressions rationnelles :]
+      $a (a\mid b)$
+    \item[Grammaires algébriques :]
+      $\{S \rightarrow aa \mid ab\}$
+    \item[Langage C++ :]
+      \lstinline0bool decide(string s) \{return s=="aa" || s=="ab";\}0
+    \end{description}
+  \end{exampleblock}
+
+  \begin{block}{Définition -- Langage de descriptions}
+    Un \structure{langage de descriptions} $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ est un langage muni d'une sémantique :
+    \begin{description}[$\llbracket \cdot \rrbracket : \mathcal{L} \rightarrow \textsc{lang}$]
+    \item[$\mathcal{L} \in \textsc{lang}$] est la \alert{syntaxe} du langage de descriptions
+    \item[$\llbracket \cdot \rrbracket : \mathcal{L} \rightarrow \textsc{lang}$] est la \alert{sémantique} du langage de descriptions
+    \end{description}
+    \begin{itemize}
+    \item Un mot \structure{$u \in \mathcal{L}$} est la représentation du problème formel \structure{$\llbracket u \rrbracket \in \textsc{lang}$}.
+    \end{itemize}
+  \end{block}
+  
+\end{frame}
+
+\endgroup
+\endinput

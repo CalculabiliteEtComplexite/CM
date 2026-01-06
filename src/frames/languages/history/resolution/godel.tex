@@ -1,0 +1,108 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Vers une axiomatisation nécessairement incomplète}
+ 
+  \onBlock[right=.75\textwidth, top=-2mm]{Théorème d'incomplétude de Gödel (1931)}{
+    Il n'existe pas de système de preuve :
+    \begin{itemize}
+    \item formel (\textsc{Vérification des preuves} est décidable)
+    \item suffisamment expressif pour l'arithmétique entière
+    \item à la fois complet et cohérent
+    \end{itemize}
+  }
+ 
+  \onBlock<2->[left=.71\textwidth, bottom=-3mm]{Vers une théorie des ensembles cohérente}{
+    \begin{itemize}
+    \item Schéma de compréhension restreint
+      $\structure{\{x \alert{\in E} \mid P(x) \}}$
+    \item La base de l'axiomatisation moderne (ZFC)
+      \begin{itemize}
+      \item Complétée par Fraenkel, Skolem, Von Neumann...
+      \end{itemize}
+    \item Cohérence toujours indémontrée
+    \end{itemize}
+    \begin{minipage}{.9\textwidth}
+      \myquote{David Hilbert}{Personne ne doit pouvoir nous chasser du paradis que Cantor nous a créé}
+    \end{minipage}
+  }
+  
+  \onImage[x=-.4\textwidth,top]{%
+    height=25mm,
+    title={Kurt Gödel},
+    licenselogo={\ccPublicDomain},
+    license*={Domaine public (Vienne, 1925. \href{https://commons.wikimedia.org/wiki/File:Young_Kurt_G\%C3\%B6del_as_a_student_in_1925.jpg}{Wikimedia})},
+    img={Godel.jpg}
+  }
+ 
+  \onImage<2->[x=.4\textwidth,bottom=5mm]{%
+    height=30mm,
+    title={Ernst Zermelo},
+    licenselogo={\ccPublicDomain},
+    license*={Domaine public (Italie, vers 1900. \href{https://commons.wikimedia.org/wiki/File:Ernst_Zermelo_1900s.jpg}{Wikimedia})},
+    img={Zermelo.jpg}
+  }
+  
+\end{frame}
+
+
+
+
+%\begin{frame}{Thèse de Church -- Turing}
+% 
+%  \onBlock[left=.75\textwidth, y=22mm]{Thèse de Church -- Turing (1936-1937)}{
+%    \centering
+%    \structure{La définition des \og fonctions calculables \fg par des \\
+%      \alert{Machines de Turing déterministes}  \\
+%      caractérise la notion intuitive de \og procédure effective \fg.}
+%  }
+%  
+%  \onBlock[y=-15mm]{Arguments en faveur de la thèse}{
+%    \begin{itemize}
+%    \item Équivalence entre formalismes
+%      \begin{itemize}
+%      \item Machines de Turing, $\lambda$-calcul, langages de programmation...
+%      \end{itemize}
+%    \item On ne connaît pas de machine plus puissante 
+%      \begin{itemize}
+%      \item Les formalismes plus expressifs necessitent des \og oracles \fg
+%        \begin{itemize}
+%        \item Par exemple, on peut \emph{définir} des objets mathématiques non-calculables
+%        \end{itemize}
+%      \item Les limites au formalisme sont internes
+%        \begin{itemize}
+%        \item L'indécidabilité du \structure{problème de l'arrêt} vient d'un paradoxe
+%        \end{itemize}
+%      \end{itemize}
+%    \item Possibilité de simuler l'univers...
+%      \begin{itemize}
+%      \item ... donc toute machine qui peut y être effectivement construite 
+%      \end{itemize}
+%    \end{itemize}
+%  }
+% 
+%  \onImage[x=42mm,y=15mm]{%
+%    width=2.3cm,
+%    title={Alonzo Church},
+%    license={$\copyright$ - Princeton University Library (voir \href{https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg}{Wikimedia}). Utilisation non commerciale à des fins pédagogiques (fair use)},
+%    img={Church.jpg}
+%  }
+% 
+% 
+%%  Constructivisme mathématique
+%%  
+%%  L.E.J. Brouwer, Intuitionism and Formalism (1908) :
+%%  
+%%  « A mathematical assertion is true only if we have a construction for it. »
+%  
+%\end{frame}
+
+
+
+\endgroup

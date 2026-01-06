@@ -1,0 +1,40 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\begin{frame}{Décision de l'appartenance à un langage contextuel}
+
+  \begin{block}{Problème de décision}
+    Soit $L$ un langage contextuel
+    
+    \Probleme{\structure{Decision$_L$}}{
+      Un mot \structure{$u \in \Sigma^\star$}
+    }{
+      Est-ce que \structure{$u \in L$} ?
+    }
+  \end{block}
+
+  \begin{block}{Algorithme de recherche ascendante par force brute} 
+
+    \begin{description}
+    \item [Entrées :]
+      \begin{itemize}
+      \item Une grammaire $G$, si possible contextuelle
+      \item Un mot $u$
+      \end{itemize}
+
+    \item [Sortie :] une réponse booléenne sur \structure{$u \in \mathcal{L}(G)$}
+    \item [Teminaison :] garantie si $G$ est contextuelle
+    \item [Complexité :] exponentielle par rapport à $|u|$
+    \end{description}
+  \end{block}
+  
+\end{frame}
+
+\endgroup
+\endinput

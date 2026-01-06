@@ -1,0 +1,308 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+
+\ifdefined\HANDOUT
+  \documentclass[9pt, handout]{beamer}
+  \usetheme{Nantes}
+\else
+  \documentclass[9pt]{beamer}
+  \usetheme[sectionpage]{Nantes}
+\fi
+
+\usepackage{src/sty/config}
+
+\title[Calculabilité et Complexité]{Calculabilité et Complexité}
+
+\author[Matthieu Perrin]{
+  Matthieu Perrin\\
+  Laboratoire des Sciences du Numérique de Nantes \\
+  UMR CNRS 6004\\
+  Bureau 410, bâtiment 34 \\
+  \url{matthieu.perrin@univ-nantes.fr}\\
+}
+
+\date{
+  Nantes Université\\
+  Licence d'Informatique, troisième année\\
+  2025-2026
+}
+
+\hypersetup{
+  pdftitle  = {\insertshorttitle},
+  pdfauthor = {\insertshortauthor},
+  pdfsubject  = {Cours de L3 sur les limites de l'algorithmique en calculabilité et en complexité},
+  pdfkeywords = {machines de Turing, décidabilité, semi-décidabilité, calculabilité, complexité, P versus NP}
+}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+  \on[text, bottom=-5mm]{\scriptsize
+    \begin{description}
+    \item[Licence :] \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0} (\ccbysa{}) — Matthieu Perrin
+    \item[Code source :]\vspace{-.5mm}  \url{https://github.com/CalculabiliteEtComplexite}
+    \end{description}
+  }
+\end{frame}
+
+
+\part{Langages et problèmes de décision}
+
+
+\section{Organisation du module}
+ 
+\subsection{Généralités}
+\input{languages/organization/generalities/organization}
+ 
+\section{De la crise des fondements à l'informatique moderne}
+ 
+\subsection{Contexte historique}
+\input{languages/history/antiquity/language}
+\input{languages/history/antiquity/conventions}
+\input{languages/history/antiquity/writing}
+\input{languages/history/antiquity/bronze_age}
+\input{languages/history/antiquity/greece}
+\input{languages/history/antiquity/modern}
+ 
+\subsection{La crise des fondements}
+\input{languages/history/foundations/cantor}
+\input{languages/history/foundations/barber}
+\input{languages/history/foundations/russel}
+\input{languages/history/foundations/proof_system}
+\input{languages/history/foundations/crisis}
+\input{languages/history/foundations/hilbert}
+ 
+\subsection{Le problème de la décision}
+\input{languages/history/decision_problem/binary_problem}
+\input{languages/history/decision_problem/informal}
+\input{languages/history/decision_problem/formal}
+\input{languages/history/decision_problem/description}
+\input{languages/history/decision_problem/structure}
+\input{languages/history/decision_problem/expressiveness}
+\input{languages/history/decision_problem/consequences}
+\input{languages/history/decision_problem/entscheidungs}
+ 
+\subsection{Résolution de la crise}
+\input{languages/history/resolution/godel}
+\input{languages/history/resolution/church_turing}
+\input{languages/history/resolution/thesis}
+\input{languages/history/resolution/imitation}
+\input{languages/history/resolution/thinkingmachine}
+ 
+\section{Langages et grammaires}
+ 
+\subsection{Grammaires générales}
+\input{languages/chomsky/grammars/problem}
+\input{languages/chomsky/grammars/definition}
+\input{languages/chomsky/grammars/language}
+\input{languages/chomsky/grammars/graph}
+ 
+\subsection{Restrictions sur les grammaires}
+\input{languages/chomsky/types/algebraic}
+\input{languages/chomsky/types/rational}
+\input{languages/chomsky/types/contextual}
+\input{languages/chomsky/types/example}
+ 
+\subsection{La hiérarchie de Chomsky}
+\input{languages/chomsky/hierarchy/grammars}
+\input{languages/chomsky/hierarchy/inclusion}
+\input{languages/chomsky/hierarchy/languages}
+\input{languages/chomsky/hierarchy/pumping}
+ 
+\section{Décision des langages rationnels}
+ 
+\subsection{Notion d'automate fini}
+\input{languages/automata/definition/decision}
+\input{languages/automata/definition/lexer}
+\input{languages/automata/definition/modelisation}
+\input{languages/automata/definition/configuration}
+\input{languages/automata/definition/action}
+\input{languages/automata/definition/language}
+ 
+\subsection{Automates complets et déterministes}
+\input{languages/automata/determinism/deterministic}
+\input{languages/automata/determinism/interpretation}
+\input{languages/automata/determinism/equivalence}
+\input{languages/automata/determinism/algorithm}
+ 
+\subsection{Expressivité des automates finis}
+\input{languages/automata/expressiveness/kleene}
+\input{languages/automata/expressiveness/formalisms}
+ 
+\section{Décision des langages algébriques}
+ 
+\subsection{Notion d'automate à pile}
+\input{languages/pushdown/intuition/decision}
+\input{languages/pushdown/intuition/generalized}
+\input{languages/pushdown/intuition/recursion}
+ 
+\subsection{Formalisme}
+\input{languages/pushdown/definition/modelisation}
+\input{languages/pushdown/definition/configuration}
+\input{languages/pushdown/definition/action}
+\input{languages/pushdown/definition/language}
+\input{languages/pushdown/definition/example}
+\input{languages/pushdown/definition/equivalence}
+ 
+\subsection{Automates à pile déterministes}
+\input{languages/pushdown/determinism/deterministic}
+\input{languages/pushdown/determinism/determinisation}
+\input{languages/pushdown/determinism/nondeterministic}
+
+\section{Décision des langages contextuels}
+
+\subsection{Recherche ascendante par force brute}
+\input{languages/decidability/brute_force/decision}
+\input{languages/decidability/brute_force/brute_force}
+\input{languages/decidability/brute_force/termination}
+
+\subsection{Décidabilité des types de langage}
+\input{languages/decidability/hierarchy/decidability}
+\input{languages/decidability/hierarchy/automata}
+
+
+%\part{Machines de Turing}
+% 
+% 
+%\section{Machines de Turing Déterministes}
+% 
+%\subsection{Définition des machines de Turing}
+%\input{turing_machine/non_deterministic/definition/ram}
+%\input{turing_machine/non_deterministic/definition/tape_automaton}
+%\input{turing_machine/non_deterministic/definition/busy_beaver}
+%\input{turing_machine/non_deterministic/definition/ndtm}
+%\input{turing_machine/non_deterministic/definition/configuration}
+%\input{turing_machine/non_deterministic/definition/action}
+%\input{turing_machine/deterministic/definitions/execution}
+% 
+%\subsection{Machines de Turing déterministes}
+%\input{turing_machine/deterministic/decidable/dtm}
+%\input{turing_machine/deterministic/definitions/usages}
+%\input{turing_machine/deterministic/decidable/decidable}
+%\input{turing_machine/deterministic/decidable/semi_decidable}
+%\input{turing_machine/deterministic/decidable/anbn_enumerate}
+%\input{computability/introduction/computable_function/computable_function}
+% 
+%\subsection{Introduction à la Complexité}
+%\input{turing_machine/deterministic/complexity/brute_force}
+%\input{turing_machine/deterministic/complexity/complexity_tm}
+%\input{turing_machine/deterministic/complexity/complexity_problem}
+%\input{turing_machine/deterministic/complexity/complexity_classes}
+%\input{turing_machine/deterministic/complexity/p_np}
+%\input{turing_machine/deterministic/complexity/subset_sum}
+%\input{turing_machine/deterministic/complexity/verify_solution}
+%\input{turing_machine/deterministic/complexity/verify_solution_proof1}
+%\input{turing_machine/deterministic/complexity/verify_solution_proof2}
+% 
+%\subsection{Extensions du Modèle}
+%\input{turing_machine/non_deterministic/extensions/generalized}
+%\input{turing_machine/non_deterministic/extensions/k_tapes_example}
+%\input{computability/introduction/computable_function/addition}
+% 
+%\input{turing_machine/non_deterministic/definition/normalisation}
+%\input{turing_machine/non_deterministic/extensions/moves}
+%\input{turing_machine/non_deterministic/extensions/k_tapes}
+%\input{turing_machine/non_deterministic/extensions/k_tapes_compression}
+%\input{turing_machine/non_deterministic/extensions/k_tapes_simulation}
+% 
+%\section{Machines de Turing Non-Déterministes}
+% 
+%\subsection{Langages Générés et Engendrés}
+%\input{turing_machine/non_deterministic/definition/acceptation}
+%\input{turing_machine/non_deterministic/definition/executions}
+%\input{turing_machine/non_deterministic/subsetsum/turingmachine}
+% 
+%\input{turing_machine/non_deterministic/generation/generator}
+%\input{turing_machine/non_deterministic/generation/equivalence}
+%\input{turing_machine/non_deterministic/generation/proof_recognized_generated}
+%\input{turing_machine/non_deterministic/generation/proof_recognized_generated_example}
+%\input{turing_machine/non_deterministic/generation/proof_generated_grammar}
+%\input{turing_machine/non_deterministic/generation/proof_generated_grammar_example}
+%\input{turing_machine/non_deterministic/generation/proof_grammar_generated}
+%\input{turing_machine/non_deterministic/generation/brute_force}
+%\input{turing_machine/non_deterministic/generation/proof_grammar_generated_2}
+%\input{turing_machine/non_deterministic/generation/proof_grammar_generated_example}
+% 
+%\subsection{Déterminisation d'une Machine de Turing}
+%\input{turing_machine/deterministic/determinisation/determinisation}
+%\input{turing_machine/deterministic/determinisation/simulation}
+%\input{turing_machine/deterministic/determinisation/data_structure}
+%\input{turing_machine/deterministic/determinisation/right_transition}
+%\input{turing_machine/deterministic/determinisation/left_transition}
+%\input{turing_machine/deterministic/determinisation/next_configuration}
+%\input{turing_machine/deterministic/determinisation/example}
+%\input{turing_machine/deterministic/determinisation/classes}
+% 
+%\subsection{Introduction à la Complexité}
+%\input{turing_machine/deterministic/complexity/brute_force}
+%\input{turing_machine/deterministic/complexity/complexity_tm}
+%\input{turing_machine/deterministic/complexity/complexity_problem}
+%\input{turing_machine/deterministic/complexity/complexity_classes}
+%\input{turing_machine/deterministic/complexity/p_np}
+%\input{turing_machine/deterministic/complexity/subset_sum}
+%\input{turing_machine/deterministic/complexity/verify_solution}
+%\input{turing_machine/deterministic/complexity/verify_solution_proof1}
+%\input{turing_machine/deterministic/complexity/verify_solution_proof2}
+% 
+% 
+%\part{Limites de l'algorithmique}
+% 
+% 
+%\section{Introduction à la Calculabilité}
+% 
+%\subsection{Langages}
+%\input{turing_machine/deterministic/decidable/closure}
+%\input{turing_machine/deterministic/decidable/closure_proof}
+% 
+%\subsection{Universalité de la Machine de Turing}
+%\input{computability/introduction/universality/universal}
+%\input{computability/introduction/universality/encoding}
+%\input{computability/introduction/universality/example}
+%\input{computability/introduction/universality/hypothesis}
+%\input{computability/introduction/computable_function/turing_complete}
+% 
+%\section{Limites à la Calculabilité}
+% 
+%\subsection{Argument par Dénombrement}
+%\input{computability/limits/countability/classes}
+%\input{computability/limits/countability/equipotence}
+%\input{computability/limits/countability/countable}
+%\input{computability/limits/countability/countable_languages}
+%\input{computability/limits/countability/uncountable_languages}
+% 
+%\subsection{Problème de l'Arrêt}
+%\input{computability/limits/halting_problem/halting_problem}
+%\input{computability/limits/halting_problem/perfect_odd}
+%\input{computability/limits/halting_problem/strachey}
+%\input{computability/limits/halting_problem/classical_proof}
+%\input{computability/limits/halting_problem/meaning}
+%\input{computability/limits/halting_problem/halt_empty}
+% 
+%\subsection{Notion de réduction}
+%\input{computability/limits/reductions/definition}
+%\input{computability/limits/reductions/classes}
+%\input{computability/limits/reductions/examples}
+%\input{computability/limits/reductions/rice}
+%\input{computability/limits/reductions/map}
+% 
+%\subsection{Le Problème de Correspondance de Post}
+%\input{computability/limits/pcp/pcp}
+%\input{computability/limits/pcp/pcpi}
+%\input{computability/limits/pcp/automaton}
+%\input{computability/limits/pcp/automaton_solution}
+%\input{computability/limits/pcp/TM_to_pcpi}
+%\input{computability/limits/pcp/halt_to_pcpi}
+%\input{computability/limits/pcp/pcpi_to_pcp}
+%\input{computability/limits/pcp/ambiguity}
+%\input{computability/limits/pcp/pcp_to_ambiguity}
+% 
+%\section{Limites de Complexité}
+ 
+\end{document}
+ 
+\endinput
+
+
+\input{introduction/pushdown/CNF}
+\input{introduction/languages/grammars/linear}
