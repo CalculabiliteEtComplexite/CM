@@ -24,9 +24,9 @@
   \on[left=.5\textwidth, y=-10mm]{
     \begin{algorithm}[H]\small
       \Algo{$\Syracuse(n\in \mathbb{N}) \in \mathbb{B}$}{
-        \While{\Example<1,22-23>{$n\neq 1$}}{
-          \uIf{\Structure<1-5,17-21>{$n \bmod 2 = 0$}}{\Structure<1-5,18-21>{$n\leftarrow \frac{n}{2}$};}
-          \lElse{\Alert<1,6-16>{$n\leftarrow \frac{3n+1}{2}$}}
+        \While{\,\Example<1,22-23>{$n\neq 1$}}{\vspace{.1mm}
+          \Structure<1-5,18-21>{\lIf{$n \equiv 0 \pmod 2$}{$n\leftarrow \frac{n}{2}$;}}\vspace{.5mm}
+          \Alert<1,6-16>{\lElse{$n\leftarrow \frac{3n+1}{2}$;}}
         }
         \Return \True\;
       }
@@ -69,7 +69,7 @@
 
   \on[x=25mm,bottom=-2mm]{
     \begin{tikzpicture}[turingMachine,x=20mm, y=20mm]\small
-      \state[example ob=<1>,alert ob=<{11}>,structure ob=<{2-4,18}>,initial above] (s) at (0,1) {\faForward};
+      \state[example on=<1>,alert ob=<{11}>,structure ob=<{2-4,18}>,initial above] (s) at (0,1) {\faForward};
       \state[alert on=<{1,10}>,structure ob=<{17}>                               ] (0) at (1,1) {0};
       \state[alert on=<{1,9,14,16}>                                              ] (1) at (2,1) {1};
       \state[structure on=<{1,5,19-21}>,alert ob=<{6,12}>,example ob=<{22}>      ] (d) at (0,0) {\textdiv};
@@ -86,9 +86,9 @@
       \path (0) edge[loop below]     node[swap]   {\smTMtransL{0}{0}}                                  (0);
       \path (0) edge                 node[swap]   {\smTMtransL{1}{1}}                                  (1);
       \path (0) edge                 node[swap]   {\smTMtransR{\blank}{\blank}}                        (s);
-      \path (1) edge[bend right=5mm] node[swap]   {\smTMtransR{0}{1}~\fade{\&}~\smTMtransR{\blank}{1}} (0);
+      \path (1) edge[bend right=5mm] node[swap]   {\smAlign{\smTMtransL{0}{1}\smTMtransL{\blank}{1}}} (0);
       \path (1) edge                 node[swap]   {\smTMtransL{1}{0}}                                  (2);
-      \path (2) edge[bend right]     node[swap]   {\smAlign{\smTMtransR{0}{0}\smTMtransR{\blank}{0}}}  (1);
+      \path (2) edge[bend right]     node[swap]   {\smAlign{\smTMtransL{0}{0}\smTMtransL{\blank}{0}}}  (1);
       \path (2) edge[loop right]     node[swap]   {\smTMtransL{1}{1}}                                  (2);
     \end{tikzpicture}
   }

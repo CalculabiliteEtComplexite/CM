@@ -1,0 +1,40 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Lemme : caractérisation $\Rightarrow$ définition}
+  \small
+  Soient $\Sigma$ un alphabet et $L \subseteq \Sigma^\star$ un langage.\\
+  S'il existe fonction de certification $f$ telle que $\{ \langle u, f(u) \rangle \mid u\in L \} \in \textsc{p}$, alors $L \in \textsc{np}$.
+  \begin{block}{Démonstration}
+    \begin{itemize}
+    \item Soit $M$ une MTD qui décide $\{ \langle u, f(u) \rangle \mid u\in L \}$ en temps $P(n)$, avec $|f(u)| \le Q(|u|)$.
+    \item On construit une MTND $M'$ qui reconnaît $L$ en temps $P(n) + Q(n)$.
+      \begin{itemize}
+      \item Générer tous les certificats $c$ possibles \structure{de manière non-déterministe}
+      \item Décider $\langle u, c \rangle$ grâce à $M$
+      \end{itemize}
+    \end{itemize}    
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,node distance=1.8cm,on grid,auto]
+        \node [state,initial, initial text=] (A)   {$\Sigma^\star$};
+        
+        \node [state, structure, fill=structure!20] (M1) at (2.5,0)  {$M_0$};
+        \node (M2) [right=of M1, cloud, cloud puffs=11 ,cloud puff arc=120, aspect=2, inner ysep=1em, fill=structure!20] {$M$ sur $\langle u, c\rangle$};
+        \node [state, accepting, structure, fill=structure!20] (M3) [right=of M2]  {$M_f$};
+        
+        \path [->] (A) edge[loop above, looseness=5] node {\scriptsize$\begin{array}{c}\left\{c:\smTMtransL{\blank}{x}\right.\\ \forall x \in \Sigma_c\end{array}$} (A);
+        \path [->] (A) edge node[swap] {\scriptsize$\left\{c:\smTMtransR{\blank}{\blank}\right.$} (M1);
+        
+        \path [dashed,->, structure]    (M1) edge[bend left=5mm]  (M3);
+        \path [dashed,->, structure]    (M1) edge[bend right=5mm] (M3);
+      \end{tikzpicture}
+    \end{center}
+  \end{block}
+\end{frame}
+\endgroup

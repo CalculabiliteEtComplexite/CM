@@ -11,10 +11,10 @@
 
   Une \structure{machine de Turing} est un septuplet \alert{$M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$} :
   \begin{description}[-------]
-  \item[\alert{$\Sigma$}] : ensemble fini non vide : \structure{l'alphabet d'entrée}
-  \item[\alert{$\Gamma$}] : ensemble fini, avec  $\Sigma \subseteq \Gamma$ : \structure{l'alphabet de ruban}
-  \item[\alert{\blank}] $\in \Gamma\setminus\Sigma$ : \structure{le symbole blanc}
-  \item[\alert{$Q$}] : ensemble fini \structure{d'états}
+  \item[\alert{$\Sigma$}] $\in \Omega_f$ : ensemble fini non vide : \structure{l'alphabet d'entrée}
+  \item[\alert{$\Gamma$}] $\in \Omega_f$ tel que $\Sigma \subseteq \Gamma$ : \structure{l'alphabet de ruban}
+  \item[\alert{\blank}] $\in \Gamma\setminus\Sigma$ : \structure{le symbole vide}
+  \item[\alert{$Q$}] $\in \Omega_f$ : ensemble fini \structure{d'états}
   \item[\alert{$q_0$}] $\in Q$ : \structure{état initial}
   \item[\alert{$F$}] $\subseteq Q$ : l'ensemble des \structure{états accepteurs}
   \item[\alert{$\rightarrow$}] $\subseteq \left(Q \times \Gamma\right) \times \left(Q \times \Gamma \times \{ \triangleleft, \triangleright \}\right)$ : \structure{la relation de transition}

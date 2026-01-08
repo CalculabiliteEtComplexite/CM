@@ -1,0 +1,48 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Complexité d'une machine de Turing}
+  \small
+  
+  \vspace{-1mm}
+  \begin{block}{Pour la décision (Deterministic \alert{T}ime complexity)}
+    \vspace{-1mm}
+    Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une machine de Turing déterministe qui termine.
+    \begin{itemize}
+    \item La \structure{complexité temporelle} de $M$ sur un mot $u \in \Sigma^\star$, est : \\
+      \alert{$T_M(u) = n \in \mathbb{N} \text{ tel que } \exists C_f \text{ configuration d'arrêt}, C_{\mathit{init}}(u) \leadsto^n C_f$}. 
+    \item La \structure{complexité temporelle dans le pire cas} de $M$, pour $n\in \mathbb{N}$, est : \\
+      \alert{$T_M(n) = \max \{T_M(u) \mid |u| = n \land u \in \Sigma^\star \}$}. 
+    \end{itemize}
+  \end{block}
+\pause
+
+  \vspace{-1mm}
+  \begin{block}{Pour la reconnaissance (\alert{N}on-deterministic \alert{T}ime complexity)}
+    \vspace{-1mm}
+    Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une machine de Turing non-déterministe.
+    \begin{itemize}
+    \item La \structure{complexité temporelle} de $M$ sur un mot $u \in \mathcal{L}(M)$, est : \\
+      \alert{$NT_M(u) = \min \{n \in \mathbb{N} \mid \exists C_f \text{ configuration acceptante}, C_{\mathit{init}}(u) \leadsto^n C_f \}$}. 
+    \item La \structure{complexité temporelle dans le pire cas} de $M$, pour $n\in \mathbb{N}$, est : \\
+      \alert{$NT_M(n) = \max \{T_M(u) \mid |u| = n \land u \in \mathcal{L}(M)\}$}. 
+      %    \item $NT$ signifie : \og \alert{N}on-deterministic \alert{T}ime complexity\fg. 
+    \end{itemize}
+  \end{block}
+\pause
+  \begin{block}{Remarques}
+    \vspace{-1mm}
+    \begin{itemize}
+    \item Des définitions similaires existent pour la \structure{complexité spatiale} (\alert{$S_M$}, \alert{$NS_M$})
+    \item On s'intéresse alors à $\alert{\max |C_i|}$ pour une exécution $C_0 \leadsto^\star C_n$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\endgroup

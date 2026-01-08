@@ -17,19 +17,19 @@
     \end{itemize}
   }
 
-  \onExampleBlock[y=7mm]{Exemple -- Décision de $\{a^n b^n c^n \mid n \in \mathbb{N} \}$}
+  \onExampleBlock[y=7mm]{Exemple -- Décision de $\{a^n b^n c^n \mid n > 0 \}$}
 
   \on[y=-3mm] {
     \begin{tikzpicture}[tape, x=7mm, y=7mm]%
       \cell{}
       \cell{}
-      \cell{\alt<-1>{$a$}{$A$}} \smhead <1>     \smheadfromb<4>{3}  
-      \cell{\alt<-5>{$a$}{$A$}} \smheadb<5>     \smheadfromb<8>{3}  
-      \cell{\alt<-2>{$b$}{$B$}} \smheadb<9>     \smheadfromb<2>{-1} 
-      \cell{\alt<-6>{$b$}{$B$}}                 \smheadfromb<6>{-1} 
-      \cell{\alt<-3>{$c$}{$C$}}                 \smheadfromb<3>{-1}
-      \cell{\alt<-7>{$c$}{$C$}} \smheadb<11>    \smheadfromb<7>{-1}
-      \cell{}                                   \smheadfromb<10>{-3}
+      \cell{\alt<-1>{$a$}{$A$}} \smhead[alert]<1>      \smheadfromb[alert]<4>{3}  
+      \cell{\alt<-5>{$a$}{$A$}} \smheadb[alert]<5>     \smheadfromb[alert]<8>{3}  
+      \cell{\alt<-2>{$b$}{$B$}} \smheadb[alert]<9>     \smheadfromb[alert]<2>{-1} 
+      \cell{\alt<-6>{$b$}{$B$}}                        \smheadfromb[alert]<6>{-1} 
+      \cell{\alt<-3>{$c$}{$C$}}                        \smheadfromb[alert]<3>{-1}
+      \cell{\alt<-7>{$c$}{$C$}} \smheadb[alert]<11>    \smheadfromb[alert]<7>{-1}
+      \cell{}                                          \smheadfromb[alert]<10>{-3}
       \cell{}
     \end{tikzpicture}%
   }
