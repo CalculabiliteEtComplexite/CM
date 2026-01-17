@@ -10,21 +10,21 @@
 \begin{frame}{Comparaisons asymptotiques de fonctions}
 
   \onBlock[top=-4mm]{Notations de Landau}{
-    Soient $f$ et $g$ deux suites de $\mathbb{N}$ dans $\mathbb{N}^+$. On dit que :
+    Soient $f$ et $g$ deux suites de $\mathbb{N}$ dans $\mathbb{R}^+$. On dit que :
     \begin{itemize}
     \item $f$ est \structure{dominé} par $g$, noté \alert{$f \in \mathcal{O}(g)$}, si \alert{$\exists n_0, c \in \mathbb{N}, \forall n > n_0, f(n) \le c \times g(n)$}
     \item<2-> $f$ est \structure{minorée} par $g$, noté \alert{$f \in \Omega(g)$}, si \alert{$g \in \mathcal{O}(f)$}
     \item<2-> $f$ est \structure{du même ordre de grandeur} que $g$, noté \alert{$f \!\in\! \Theta(g)$}, si \alert{$f \!\in\! \mathcal{O}(g) \!\cap\! \Omega(g)$}
     \end{itemize}
     \begin{center}
-      \alert{$\mathcal{O}(1)
-        \subsetneq \mathcal{O}(\log(n))
-        \subsetneq \mathcal{O}(n)
-        \subsetneq \mathcal{O}(n\log(n))
-        \subsetneq \mathcal{O}(n^2)
-        \subsetneq \mathcal{O}(n^3)
-        \subsetneq \mathcal{O}(2^n)
-        \subsetneq \mathcal{O}(n!)$}
+      \alert{$\mathcal{O}\left(1\right)
+        \subsetneq \mathcal{O}\left(\log(n)\right)
+        \subsetneq \mathcal{O}\left(n\right)
+        \subsetneq \mathcal{O}\left(n\log(n)\right)
+        \subsetneq \mathcal{O}\left(n^2\right)
+        \subsetneq \mathcal{O}\left(n^3\right)
+        \subsetneq \mathcal{O}\left(2^n\right)
+        \subsetneq \mathcal{O}\left(n!\right)$}
     \end{center}
   }
 
