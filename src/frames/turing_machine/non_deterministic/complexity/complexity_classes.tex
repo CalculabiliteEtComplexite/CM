@@ -8,67 +8,58 @@
 \begingroup
 
 \begin{frame}{Classes de complexité importantes}
-  \small
-  \begin{tikzpicture}
-    \draw (0,9.5) node{\scalebox{.85}{\begin{minipage}{.6\textwidth}
-          \begin{block}{Décision en temps (MTD)}
-            \begin{description}
-            \item[Polynomial :]
-              $\alert{\displaystyle \textsc{p} = \bigcup_{k\in \mathbb{N}} \textsc{time}(n^k)}$
-            \item[Exponentiel :]
-              $\alert{\displaystyle \textsc{exptime} = \bigcup_{k\in \mathbb{N}} \textsc{time}(2^{n^k})}$
-            \end{description}
-          \end{block}
-    \end{minipage}}};
 
-    \draw (.5\textwidth,9.5) node{\scalebox{.85}{\begin{minipage}{.6\textwidth}
-          \begin{block}{Reconnaissance en temps (MTND)}
-            \begin{description}
-            \item[Polynomial :]
-              $\alert{\displaystyle \textsc{np} = \bigcup_{k\in \mathbb{N}} \textsc{ntime}(n^k)}$
-            \item[Exponentiel :]
-              $\alert{\displaystyle \textsc{nexptime} = \bigcup_{k\in \mathbb{N}} \textsc{ntime}(2^{n^k})}$
-            \end{description}
-          \end{block}
-    \end{minipage}}};
-    
+  \begin{block}{Classes de complexité \alert{non-déterministe} importantes}
 
-    \draw (0,7) node{\scalebox{.85}{\begin{minipage}{.6\textwidth}
-          \begin{block}{Décision en espace (MTD)}
-            \begin{description}
-            \item[Polynomial :]
-              $\alert{\displaystyle \textsc{pspace} = \bigcup_{k\in \mathbb{N}} \textsc{dspace}(n^k)}$
-            \item[Exponentiel :]
-              $\alert{\displaystyle \textsc{expspace} = \bigcup_{k\in \mathbb{N}} \textsc{dspace}(2^{n^k})}$
-            \end{description}
-          \end{block}
-    \end{minipage}}};
+    \begin{tikzpicture}[y=8mm, x=22mm]\footnotesize
+      \draw (0,0) -- (4,0);
+      \draw (0,2) -- (4,2);
+      \draw (0,4) -- (4,4);
+      \draw (0, 0) -- (0, 4);
+      \draw (2, 0) -- (2, 4);
+      \draw (4, 0) -- (4, 4);
+      
+      \node[align=center] at (1,3) {
+        $\begin{array}{@{}r@{~}c@{~}l@{}}
+          \alert{\textsc{np}} & \alert{\eqdef} & \displaystyle\alert{\bigcup_{k\in \mathbb{N}} \textsc{ntime}\left(n^k\right)}\\
+          \textsc{co-np} & \eqdef & \left\{ \overline{L} \mid L \in \textsc{np} \right\}
+        \end{array}$
+      };
+      \node[align=center] at (3,3) {
+        $\begin{array}{@{}r@{~}c@{~}l@{}}
+          \alert{\textsc{nexptime}} & \alert{\eqdef} & \displaystyle \alert{\bigcup_{k\in \mathbb{N}} \textsc{ntime}\left(2^{n^k}\right)}\\
+          \textsc{co-nexptime} & \eqdef & \left\{ \overline{L} \mid L \in \textsc{nexptime} \right\}
+        \end{array}$
+      };
+      \node[align=center] at (1,1) {
+        $\begin{array}{@{}r@{~}c@{~}l@{}}
+          \alert{\textsc{npspace}} & \alert{\eqdef} & \displaystyle\alert{\bigcup_{k\in \mathbb{N}} \textsc{nspace}\left(n^k\right)}\\
+          \textsc{co-npspace} & \eqdef & \left\{ \overline{L} \mid L \in \textsc{npspace} \right\}
+        \end{array}$
+      };
+      \node[align=center] at (3,1) {
+        $\begin{array}{@{}r@{~}c@{~}l@{}}
+          \alert{\textsc{nexpspace}} & \alert{\eqdef} & \displaystyle \alert{\bigcup_{k\in \mathbb{N}} \textsc{nspace}\left(2^{n^k}\right)}\\
+          \textsc{co-nexpspace} & \eqdef & \left\{ \overline{L} \mid L \in \textsc{nexpspace} \right\}
+        \end{array}$
+      };
+      \node[align=center, above] at (1,4) {Complexité \structure{polynomiale}};
+      \node[align=center, above] at (3,4) {Complexité \structure{exponentielle}};
+      \node[align=right,  left ] at (0,1) {Complexité\\[-2pt]\structure{spatiale}};
+      \node[align=right,  left ] at (0,3) {Complexité\\[-2pt]\structure{temporelle}};
+    \end{tikzpicture}
+  \end{block}
 
-    \draw (.5\textwidth,7) node{\scalebox{.85}{\begin{minipage}{.6\textwidth}
-          \begin{block}{Reconnaissance en espace (MTND)}
-            \begin{description}
-            \item[Polynomial :]
-              $\alert{\displaystyle \textsc{npspace} = \bigcup_{k\in \mathbb{N}} \textsc{nspace}(n^k)}$
-            \item[Exponentiel :]
-              $\alert{\displaystyle \textsc{nexpspace} = \bigcup_{k\in \mathbb{N}} \textsc{nspace}(2^{n^k})}$
-            \end{description}
-          \end{block}
-    \end{minipage}}};
+  \structure{Remarque :} classes stables pour les extensions du modèle de MTND
 
-    \uncover<2>{
-    \draw (2,4.5) node{\scalebox{.85}{\begin{minipage}{\textwidth}
-          \begin{block}{Quelques résultats connus}
-            \begin{itemize}
-            \item $\textsc{p} \subseteq \textsc{np} \subseteq \textsc{exptime}  \subseteq \textsc{nexptime} \subseteq \textsc{expspace}$
-            \item $\textsc{p} \neq \textsc{exptime}$
-            \item $\textsc{np} \subseteq \textsc{pspace} = \textsc{npspace} \subsetneq \textsc{expspace} = \textsc{nexpspace}$
-            \end{itemize}
-          \end{block}
-    \end{minipage}}};
-    }
-    
-  \end{tikzpicture}
-
+  \begin{exampleblock}{Exemple -- Le problème \textsc{Subset-Sum}}
+    \begin{itemize}
+    \item On a une MTND étendue qui reconnaît \textsc{Subset-Sum} en temps linéaire
+    \item Donc il y a une MTND stricte qui reconnaît \textsc{Subset-Sum} en temps $\textsc{poly}$
+    \item Donc \example{$\textsc{Subset-Sum} \in \textsc{np}$}
+    \end{itemize}
+  \end{exampleblock}
+  
 \end{frame}
 
 \endgroup

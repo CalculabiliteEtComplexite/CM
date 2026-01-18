@@ -1,0 +1,55 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Inclusion des classes de complexité}
+
+  \on[y=10mm]{
+  \begin{tikzpicture}[x=6mm, y=3.5mm]\small
+    \node[draw=example,   fill=example!10,   rounded corners, fit={(0,0)(15,15)}] (se) {};
+    \node[                fill=white,        rounded corners, fit={(2,2)(14,14)}]      {};
+    \node[draw=structure, fill=structure!10, rounded corners, fit={(1,1)(13,13)}] (ne) {};
+    \node[draw=black,                        rounded corners, fit={(2,2)(14,14)}] (ce) {};
+    \node[draw=alert,     fill=alert!10,     rounded corners, fit={(3,3)(12,12)}] (de) {};
+    \node[draw=example,   fill=example!10,   rounded corners, fit={(4,4)(11,11)}] (sp) {};
+    \node[                fill=white,        rounded corners, fit={(6,6)(10,10)}]      {};
+    \node[draw=structure, fill=structure!10, rounded corners, fit={(5,5)(9,9)}]   (np) {};
+    \node[draw=black,                        rounded corners, fit={(6,6)(10,10)}] (cp) {};
+    \node[draw=alert,     fill=alert!10,     rounded corners, fit={(7,7)(8,8)}]   (dp) {};
+
+    \node[example,   below] at (se.north)  {$\textsc{expspace} = \textsc{nexpspace} = \textsc{co-nexpspace}$ \footnotesize (Théorème de Savitch)};
+    \node[structure, below] at (ne.north)  {$\textsc{co-nexptime}$};
+    \node[black,     below] at (ce.north)  {$\textsc{nexptime}$};
+    \node[alert,     below] at (de.north)  {$\textsc{exptime}$};
+    \node[example,   below] at (sp.north)  {$\textsc{pspace} = \textsc{npspace} = \textsc{co-npspace}$};
+    \node[black,     below] at (cp.north)  {$\textsc{co-np}$};
+    \node[structure, below] at (np.north)  {$\textsc{np}$};
+    \node[alert,          ] at (dp.center) {$\textsc{p}$};
+  \end{tikzpicture}
+  }
+  
+  \onBlock[y=-17mm, anchor=north, left=.5\textwidth]{Quelques résultats connus}{
+    \begin{itemize}
+    \item $\textsc{pspace} = \textsc{npspace} = \textsc{co-npspace}$
+    \item $\textsc{p} \subsetneq \textsc{exptime}$
+    \end{itemize}
+  }
+
+  \onBlock[y=-17mm, anchor=north, right=.5\textwidth]{Quelques résultats inconnus}{
+    \begin{itemize}
+    \item $\textsc{p} \stackrel{?}{=} \textsc{np} \stackrel{?}{=} \textsc{co-np} \stackrel{?}{=} \textsc{pspace}$
+    \item $\textsc{pspace} \stackrel{?}{=} \textsc{exptime}$
+    \end{itemize}
+  }
+
+  \footnoteref{W. J. Savitch. \textit{Relationships between nondeterministic and deterministic tape complexities.} JCSS (1970)}
+  
+\end{frame}
+
+\endgroup
+\endinput

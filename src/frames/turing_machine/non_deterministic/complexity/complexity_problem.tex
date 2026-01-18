@@ -7,22 +7,37 @@
 
 \begingroup
 
-\begin{frame}{Complexité d'un problème}
-  \small
-  \begin{block}{Classes de complexité temporelle}
-  Soient $\Sigma$ un alphabet et $f : \mathbb{N} \rightarrow \mathbb{N}$ une fonction. \\
-    On définit les trois \structure{classes de complexité} : 
-    \begin{description}
-    \item[$\textsc{time}(f)$ :] les problèmes décidables en temps $\mathcal{O}(f)$ \structure{par une MTD} :
-      $$\alert{\textsc{time}_\Sigma(f) = \{L \in \Sigma^\star \mid \exists M, L = \mathcal{L}(M) \land  T_M = \mathcal{O}(f) \}}$$
-    \item[$\textsc{ntime}(f)$ :] les problèmes reconnus en temps $\mathcal{O}(f)$  \structure{par une MTND} :
-      $$\alert{\textsc{ntime}_\Sigma(f) = \{L \in \Sigma^\star \mid \exists M, L = \mathcal{L}(M) \land  NT_M = \mathcal{O}(f) \}}$$
-    \item[$\textsc{co-ntime}(f)$ :] les problèmes dont le complémentaire est dans $\textsc{ntime}(f)$ :
-      $$\alert{\textsc{co-time}_\Sigma(f) = \{L \in \Sigma^\star \mid \exists M, \overline{L} = \mathcal{L}(M) \land T_M = \mathcal{O}(f) \}}$$
+\begin{frame}{Complexité non-déterministe d'un problème}
+
+  \begin{block}{Classes de complexité \alert{non-déterministe} d'un problème}
+    Soit $f$ une suite de $\mathbb{N}$ dans $\mathbb{R}^+$. 
+    On définit les \structure{classes de complexité} : 
+    \begin{description}[$\textsc{co-nspace}(f)$ :]
+    \item[$\textsc{\alert{n}time}(f)$ :] langages reconnaissables en temps $\mathcal{O}(f)$ \structure{par une MT\alert{N}D} :
+      
+      \vspace{-2mm}
+      $$\structure{\textsc{\alert{n}time}(f) \eqdef \left\{L \in \textsc{lang} \mid \exists M, L = \mathcal{L}(M) \land \alert{N}T_M \in \mathcal{O}(f) \right\}}$$
+    \item[$\textsc{\alert{n}space}(f)$ :] langages reconnaissables en espace $\mathcal{O}(f)$ \structure{par une MT\alert{N}D} :
+
+      \vspace{-2mm}
+      $$\structure{\textsc{\alert{n}space}(f) \eqdef \left\{L \in \textsc{lang} \mid \exists M, L = \mathcal{L}(M) \land \alert{N}S_M \in \mathcal{O}(f) \right\}}$$
+    \end{description}
+
+    On s'intéresse aussi à la complexité de reconnaissance du complémentaire :
+    \begin{description}[$\textsc{co-nspace}(f)$ :]
+    \item[$\textsc{\alert{co}-\alert{n}time}(f)$ :] langages dont le complémentaire est dans $\textsc{\alert{n}time}(f)$
+      
+      \vspace{-2mm}
+      $$\structure{\textsc{\alert{co}-\alert{n}time}(f) \eqdef \left\{L \in \textsc{lang} \mid \overline{L} \in \textsc{\alert{n}time}(f)\right\}}$$
+
+    \item[$\textsc{\alert{co}-\alert{n}space}(f)$ :] langages dont le complémentaire est dans $\textsc{\alert{n}space}(f)$
+      
+      \vspace{-2mm}
+      $$\structure{\textsc{\alert{co}-\alert{n}space}(f) \eqdef \left\{L \in \textsc{lang} \mid \overline{L} \in \textsc{\alert{n}space}(f)\right\}}$$
     \end{description}
   \end{block}
-  \begin{block}{Classes de complexité spatiale}
-    Définitions similaires pour la \structure{complexité spatiale} : \alert{$\textsc{dspace}(f)$}, \alert{$\textsc{nspace}(f)$}
-  \end{block}
+
 \end{frame}
+
 \endgroup
+\endinput
