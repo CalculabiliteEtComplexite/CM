@@ -52,7 +52,7 @@
       
     \item\vspace{2mm} Généralisation du \structure{non-déterministe} :\\
       pour toutes transitions $\langle \langle \alert{q}, \alert{u_1}, ..., \alert{u_k} \rangle, ... \rangle \,\alert{\neq}\, \langle \langle \alert{q}, \alert{u'_1}, ..., \alert{u'_k} \rangle, ... \rangle$,
-      $$\exists i \in \{1, ..., k\}, \alert{u_1 \notin \mathit{Prefix}(u'_i)} \land \alert{u'_1 \notin \mathit{Prefix}(u_i)}$$
+      $$\exists i \in \{1, ..., k\}, \alert{u_i \notin \mathit{Prefix}(u'_i)} \land \alert{u'_i \notin \mathit{Prefix}(u_i)}$$
       
     \end{itemize}
   }
@@ -62,7 +62,7 @@
       \state (q)  at (0,0) {$q$}; 
       \state (q1) at (1,0) {$q'$}; 
       \path  (q) edge node {\smGroup{\smTMtrans[r_1]{u_1}{v_1}{d_1}...\\\smTMtrans[r_k]{u_k}{v_k}{d_k}}} (q1);
-      \path  (q) edge node[below] {\begin{tabular}{c}ou \smTMtransS[r_i]{\varepsilon}{\varepsilon}\\si non spécifié\end{tabular}} (q1);
+      \path  (q) edge node[below] {\begin{tabular}{c}ou \smTMtransS[r_i]{\varepsilon}{\varepsilon}\\si $r_i$ pas mentionné\end{tabular}} (q1);
     \end{tikzpicture}
   }
 

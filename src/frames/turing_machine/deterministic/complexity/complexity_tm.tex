@@ -14,28 +14,29 @@
     \begin{itemize}
     \item\vspace{-1mm} La \structure{complexité temporelle} de $M$ sur $u$ est le \alert{nombre d'actions} lors de l'exécution de $u$ par $M$ :
 
-      \vspace{-2mm}
-      $$\alert{T_M(u) = n \in \mathbb{N} \text{ tel que } \exists C_f \text{ configuration d'arrêt}, C_{\mathit{init}}(u) \leadsto^n C_f}.$$ 
+      \vspace{-4mm}
+      $$\alert{T_M(u) = \operatorname{unique}\left\{n \in \mathbb{N} \mid \exists C_f \text{ configuration d'arrêt}, C_{\mathit{init}}(u) \leadsto^n C_f\right\}}.$$ 
 
     \item\vspace{-1mm} La \structure{complexité temporelle dans le pire cas} de $M$, pour $n\in \mathbb{N}$, est : \\
 
       \vspace{-2mm}
-      $$\alert{T_M(n) = \max \{T_M(u) \mid |u| = n \land u \in \Sigma^\star \}}.$$ 
+      $$\alert{T_M(n) = \max \left\{T_M(u) \mid u \in \Sigma^n \right\}}.$$ 
     \end{itemize}
   \end{block}
 
+  \vspace{-2mm}
   \begin{block}{Complexité spatiale déterministe}
     \begin{itemize}
     \item\vspace{-1mm} La \structure{complexité spatiale} de $M$ sur $u$ est le \alert{nombre maximal de cases du ruban utilisées} lors de l'exécution de $u$ par $M$ :
 
       \vspace{-2mm}
-      $$\alert{S_M(u) = \max\left\{|GD| \mid \exists q\in Q, C_0(u) \leadsto^\star \langle G, g, D \rangle \right\}}.$$ 
+      $$\alert{S_M(u) = \max\left\{|GD| \mid \exists q\in Q, C_{\mathit{init}}(u) \leadsto^\star \langle G, q, D \rangle \right\}}.$$ 
 
       
     \item\vspace{-1mm} La \structure{complexité spatiale dans le pire cas} de $M$, pour $n\in \mathbb{N}$, est : \\
 
       \vspace{-2mm}
-      $$\alert{S_M(n) = \max \{S_M(u) \mid |u| = n \land u \in \Sigma^\star \}}.$$ 
+      $$\alert{S_M(n) = \max \{S_M(u) \mid u \in \Sigma^n \}}.$$ 
     \end{itemize}
   \end{block}
 

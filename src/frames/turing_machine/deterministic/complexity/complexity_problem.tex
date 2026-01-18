@@ -10,7 +10,7 @@
 \begin{frame}{Complexité d'un problème}
 
   \begin{block}{Classes de complexité d'un problème}
-    Soit $f : \mathbb{N} \rightarrow \mathbb{N}$ une fonction. 
+    Soit $f$ une suite de $\mathbb{N}$ dans $\mathbb{R}^+$. 
     On définit les \structure{classes de complexité} : 
     \begin{description}[$\textsc{dspace}(f)$ :]
     \item[$\textsc{dtime}(f)$ :] les problèmes décidables en temps $\mathcal{O}(f)$ \structure{par une MTD} :
@@ -43,8 +43,8 @@
 
       \node[align=center, above] at (1,4) {Complexité \structure{polynomiale}};
       \node[align=center, above] at (3,4) {Complexité \structure{exponentielle}};
-      \node[align=right,  left ] at (0,1) {Complexité\\[-2pt]\structure{temporelle}};
-      \node[align=right,  left ] at (0,3) {Complexité\\[-2pt]\structure{spatiale}};
+      \node[align=right,  left ] at (0,1) {Complexité\\[-2pt]\structure{spatiale}};
+      \node[align=right,  left ] at (0,3) {Complexité\\[-2pt]\structure{temporelle}};
     \end{tikzpicture}
     
     $$ \textsc{dtime}\left(\log(n)\right) \subsetneq \alert{\textsc{p}} \subsetneq \textsc{dtime}\left(n^{\log(n)}\right) \subsetneq \alert{\textsc{exptime}} \subsetneq \textsc{dtime}\left(n!\right) $$

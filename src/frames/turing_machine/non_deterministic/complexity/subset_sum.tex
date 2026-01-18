@@ -8,44 +8,46 @@
 \begingroup
 
 \begin{frame}{Un exemple : le \og Subset-Sum Problem\fg}
-    Existe-t-il un sous-ensemble non-vide de nombres dont la somme est $0$ ? 
 
-  \vspace{2mm}
-  \begin{center}
-    \scalebox{1.1}{
-    \begin{tikzpicture}
-      \draw (5,3) node  {\large $31$};
-      \draw (2,1) node  {\large $27$};
-      \draw (3,2) node  {\large $-11$};
-      \draw (4.5,0) node  {\large $81$};
-      \draw (5,1) node  {\large $22$};
-      \draw (6.5,2) node  {\large $-10$};
-      \draw (7.5,0) node  {\large $99$};
-      \draw (8,1) node  {\large $77$};
-      \draw (1.5,3) node {\large $-15$};
-      \draw (6,3) node  {\large $52$};
-      \draw (7.5,3) node  {\large \alert<3->{$47$}};
-      \draw (9,1) node  {\large \alert<3->{$-82$}};
-      \draw (3,0) node  {\large \alert<3->{$58$}};
-      \draw (3.5,1) node  {\large \alert<3->{$43$}};
-      \draw (4.5,2) node  {\large \alert<3->{$-19$}};
-      \draw (6,0) node  {\large \alert<3->{$75$}};
-      \draw (6.5,1) node  {\large \alert<3->{$-54$}};
-      \draw (8,2) node  {\large \alert<3->{$-33$}};
-      \draw (9,3) node {\large \alert<3->{$14$}};
-      \draw (3.5,3) node  {\large \alert<3->{$-49$}};
-    \end{tikzpicture}}
-  \end{center}
+  \Probleme{Subset-Sum}{
+    Un ensemble fini d'entiers $E \subset \mathbb{Z}$
+  }{
+    Existe-t-il $S \subseteq E$ non vide tel que $\displaystyle\alert{\sum_{n\in S} n = 0}$ ?
+  }
 
+  \begin{exampleblock}{Exemple}
+    \centering
+    \begin{tikzpicture}[y=8mm]\large
+      \node at (5,3)   {$31$};
+      \node at (2,1)   {$27$};
+      \node at (3,2)   {$-11$};
+      \node at (4.5,0) {$81$};
+      \node at (5,1)   {$22$};
+      \node at (6.5,2) {$-10$};
+      \node at (7.5,0) {$99$};
+      \node at (8,1)   {$77$};
+      \node at (1.5,3) {$-15$};
+      \node at (6,3)   {$52$};
+      \node at (7.5,3) {\alert<2->{$47$}};
+      \node at (9,1)   {\alert<2->{$-82$}};
+      \node at (3,0)   {\alert<2->{$58$}};
+      \node at (3.5,1) {\alert<2->{$43$}};
+      \node at (4.5,2) {\alert<2->{$-19$}};
+      \node at (6,0)   {\alert<2->{$75$}};
+      \node at (6.5,1) {\alert<2->{$-54$}};
+      \node at (8,2)   {\alert<2->{$-33$}};
+      \node at (9,3)   {\alert<2->{$14$}};
+      \node at (3.5,3) {\alert<2->{$-49$}};
+    \end{tikzpicture}
+  \end{exampleblock}
+  
   \pause
-  \begin{block}{Solution}
+  \begin{alertblock}{Réponse}
     \begin{itemize}
-    \item<2-> La réponse est oui
-    \item<3-> $47-82+58+43-19+75-54-33 + 14 -49 = 0$
-      \begin{itemize}
-      \item On ajoute un \structure{certificat polynomial} pour permettre la vérification
-      \end{itemize}
+    \item $47-82+58+43-19+75-54-33 + 14 -49 = 0$
     \end{itemize}
-  \end{block}
+  \end{alertblock}
+
 \end{frame}
+
 \endgroup

@@ -9,26 +9,22 @@
 
 \begin{frame}{Générateur d'un langage}
   
-  \onBlock[top=-2mm]{Langage généré par $M$}{
-    Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une machine de Turing. 
- 
-    Le langage \structure{généré} par $M$ est l'ensemble $\alert{\mathcal{L}_G(M)}$ des mots écrits sur le ruban quand $M$ atteint un état accepteur à partir de $C_{\mathit{init}}(\varepsilon)$ :
-    $$
-    \alert{\mathcal{L}_G(M) \eqdef \left\{ \mathit{mot}(r) \in \Sigma^\star \middle| \exists q_f\in F, C_{\mathit{init}}(\varepsilon) \leadsto_M^\star \langle r, q_f \rangle \right\}}.
-    $$
- 
+  \onBlock[top=-4mm]{Définition -- Génération d'un langage}{
+    Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une MTND.
     \begin{itemize}
-    \item $\langle r, q_f \rangle$ n'est pas forcément une configuration d'arrêt
+    \item Le \structure{langage généré par $M$} est l'ensemble des mots écrits sur le ruban quand $M$ passe par un état accepteur à partir du mot vide:
+      $$\alert{\mathcal{L}_G(M) = \left\{G\cdot D \in \Sigma^\star \;\middle\mid\; \exists q\in F,~ C_{\mathit{init}}(\varepsilon) \leadsto_M^\star \langle G, q, D \rangle \right\}}$$
     \item $M$ est appelée un \structure{générateur} du langage $\mathcal{L}_G(M)$
+    \item \structure{Rappel :} Si $M$ est déterministe, alors $\mathcal{L}_G(M)$ est énuméré par $M$
     \end{itemize}
   }
   
   \onExampleBlock[y=-15mm]{Exemple : générateur du langage $\mathcal{L}(ba^\star b)$}{}
  
-  \on[y=-30mm, x=-30mm]{
-    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+  \on[y=-25mm, x=-27mm, anchor=mid]{
+    \begin{tikzpicture}[tape, x=6mm, y=6mm, baseline={(0,0)}]
       \cell{$\blank$}
-      \cell{\alt<-1>{$\blank$}{$b$}} \smheadb<1>  
+      \cell{\alt<-1>{$\blank$}{$b$}} \smhead<1>  
       \cell{\alt<-2>{$\blank$}{$a$}} \smheadb<2> 
       \cell{\alt<-2>{$\blank$}{$a$}} 
       \cell{\alt<-3>{$\blank$}{$b$}} \smheadfromb<3>{-2}
@@ -36,11 +32,11 @@
     \end{tikzpicture}
   }
   
-  \on[y=-30mm, x=30mm]{
-    \begin{tikzpicture}[turingMachine]
+  \on[y=-25mm, x=27mm, anchor=mid]{
+    \begin{tikzpicture}[turingMachine, x=17mm, baseline=(0)]
       \state[alert on=<{1}>,   initial] (0) at (0,0) {$0$}; 
-      \state[alert ob=<{2,3}>         ] (1) at (1,0) {$1$}; 
-      \state[alert ob=<{4}>, accepting] (2) at (2,0) {$2$}; 
+      \state[alert ob=<{2,3}>         ] (1) at (1,0) {\faRandom}; 
+      \state[alert ob=<{4}>, accepting] (2) at (2,0) {\faCheck}; 
       
       \path (0) edge             node {\smTMtransR{\blank}{b}} (1);
       \path (1) edge[loop below] node {\smTMtransR{\blank}{a}} (1);

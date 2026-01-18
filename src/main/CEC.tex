@@ -46,7 +46,7 @@
   }
 \end{frame}
 
-
+ 
 \part{Langages et problèmes de décision}
  
  
@@ -195,22 +195,45 @@
 \input{turing_machine/deterministic/complexity/poly_func}
 \input{turing_machine/deterministic/complexity/complexity_problem}
 \input{turing_machine/deterministic/complexity/p_np}
-
+ 
 \subsection{Extensions du Modèle}
 \input{turing_machine/deterministic/extensions/generalized}
 \input{turing_machine/deterministic/extensions/definitions}
 \input{turing_machine/deterministic/extensions/addition}
 \input{turing_machine/deterministic/extensions/k_tapes_compression}
 \input{turing_machine/deterministic/extensions/k_tapes_simulation}
-
-%\section{Machines de Turing Non-Déterministes}
-% 
-%\subsection{Langages Générés et Engendrés}
-%\input{turing_machine/non_deterministic/definition/acceptation}
-%\input{turing_machine/non_deterministic/definition/executions}
-%\input{turing_machine/non_deterministic/subsetsum/turingmachine}
  
-%\input{turing_machine/non_deterministic/generation/generator}
+\section{Machines de Turing Non-Déterministes}
+ 
+\subsection{Notion de non-déterminisme}
+\input{turing_machine/non_deterministic/definition/usages}
+\input{turing_machine/non_deterministic/definition/acceptation}
+\input{turing_machine/non_deterministic/complexity/subset_sum}
+\input{turing_machine/non_deterministic/subsetsum/turingmachine}
+\input{turing_machine/non_deterministic/generation/generator}
+
+%\subsection{Complexité non-déterministe}
+%\input{turing_machine/deterministic/complexity/complexity_tm}
+%\input{turing_machine/deterministic/complexity/anbn}
+%\input{turing_machine/deterministic/complexity/complexity_problem}
+ 
+%\subsection{La classe des problèmes récursivement énumérables}
+%\input{turing_machine/deterministic/complexity/brute_force}
+%\input{turing_machine/deterministic/complexity/complexity_tm}
+%\input{turing_machine/deterministic/complexity/complexity_problem}
+%\input{turing_machine/deterministic/complexity/complexity_classes}
+%\input{turing_machine/deterministic/complexity/p_np}
+%\input{turing_machine/deterministic/complexity/verify_solution}
+%\input{turing_machine/deterministic/complexity/verify_solution_proof1}
+%\input{turing_machine/deterministic/complexity/verify_solution_proof2}
+%\input{turing_machine/non_deterministic/determinisation/determinisation}
+%\input{turing_machine/non_deterministic/determinisation/simulation}
+%\input{turing_machine/non_deterministic/determinisation/data_structure}
+%\input{turing_machine/non_deterministic/determinisation/right_transition}
+%\input{turing_machine/non_deterministic/determinisation/left_transition}
+%\input{turing_machine/non_deterministic/determinisation/next_configuration}
+%\input{turing_machine/non_deterministic/determinisation/example}
+%\input{turing_machine/non_deterministic/determinisation/classes}
 %\input{turing_machine/non_deterministic/generation/equivalence}
 %\input{turing_machine/non_deterministic/generation/proof_recognized_generated}
 %\input{turing_machine/non_deterministic/generation/proof_recognized_generated_example}
@@ -220,28 +243,9 @@
 %\input{turing_machine/non_deterministic/generation/brute_force}
 %\input{turing_machine/non_deterministic/generation/proof_grammar_generated_2}
 %\input{turing_machine/non_deterministic/generation/proof_grammar_generated_example}
-% 
-%\subsection{Déterminisation d'une Machine de Turing}
-%\input{turing_machine/deterministic/determinisation/determinisation}
-%\input{turing_machine/deterministic/determinisation/simulation}
-%\input{turing_machine/deterministic/determinisation/data_structure}
-%\input{turing_machine/deterministic/determinisation/right_transition}
-%\input{turing_machine/deterministic/determinisation/left_transition}
-%\input{turing_machine/deterministic/determinisation/next_configuration}
-%\input{turing_machine/deterministic/determinisation/example}
-%\input{turing_machine/deterministic/determinisation/classes}
-% 
-%\subsection{Introduction à la Complexité}
-%\input{turing_machine/deterministic/complexity/brute_force}
-%\input{turing_machine/deterministic/complexity/complexity_tm}
-%\input{turing_machine/deterministic/complexity/complexity_problem}
-%\input{turing_machine/deterministic/complexity/complexity_classes}
-%\input{turing_machine/deterministic/complexity/p_np}
-%\input{turing_machine/deterministic/complexity/subset_sum}
-%\input{turing_machine/deterministic/complexity/verify_solution}
-%\input{turing_machine/deterministic/complexity/verify_solution_proof1}
-%\input{turing_machine/deterministic/complexity/verify_solution_proof2}
-% 
+
+%\subsection{La classe des problèmes décidables}
+
 % 
 %\part{Limites de l'algorithmique}
 % 
@@ -249,8 +253,8 @@
 %\section{Introduction à la Calculabilité}
 % 
 %\subsection{Langages}
-%\input{turing_machine/deterministic/decidable/closure}
-%\input{turing_machine/deterministic/decidable/closure_proof}
+%\input{turing_machine/non_deterministic/decidable/closure}
+%\input{turing_machine/non_deterministic/decidable/closure_proof}
 % 
 %\subsection{Universalité de la Machine de Turing}
 %\input{computability/introduction/universality/universal}
@@ -295,14 +299,7 @@
 %\input{computability/limits/pcp/pcp_to_ambiguity}
 % 
 %\section{Limites de Complexité}
- 
+
 \end{document}
  
 \endinput
-
-
-\input{introduction/pushdown/CNF}
-\input{introduction/languages/grammars/linear}
-\input{turing_machine/deterministic/extensions/normalisation}
-\input{turing_machine/deterministic/extensions/moves}
-\input{turing_machine/deterministic/extensions/k_tapes}
