@@ -7,30 +7,34 @@
 
 \begingroup
 
+\begin{frame}{Équivalence entre formalismes}
 
-\begin{frame}{Classes de décidabilité}
-  Soit $\Sigma$ un alphabet.
-  \begin{block}{Expressivité des machines de Turing}
-    Les MTD permettent d'exprimer deux notions sur les langages. On note :
-    \begin{description}
-    \item[$\textsc{r}_\Sigma$] pour \structure{récursif} :\\
-      $\textsc{r}_\Sigma$ est l'ensemble des langages sur $\Sigma$
-      \begin{itemize}
-      \item \alert{décidables}
-      \end{itemize}
-    \item[$\textsc{re}_\Sigma$] pour \structure{récursivement énumérable} :\\
-      $\textsc{re}_\Sigma$ est l'ensemble des langages sur $\Sigma$ 
-      \begin{itemize}
-      \item \alert{semi-décidables},  
-      \item \alert{reconnaissables},
-      \item \alert{récursivement énumérables},
-      \item \alert{de type $0$}...
-      \end{itemize}
-    \end{description}
-  \end{block}
-  \begin{block}{Remarque}
-    On parle des \structure{classes} $\textsc{r}$ et $\textsc{re}$, indépendantes de $\Sigma$.
-  \end{block}
+  \on[text,top]{
+    \begin{itemize}
+    \item Les cinq classes suivantes sont égales
+    \item On nomme la classe commune \alert{\textsc{re}} (pour \structure{récursivement énumérable})
+    \end{itemize}
+  }
+  
+  \on[y=-10mm]{
+    \begin{tikzpicture}[x=38mm, y=33mm]\small
+      \tikzset{box/.style={structure, smBox, text width=27mm, minimum height=12mm},}
+      \node[box] (eng) at (1,1) {Langage\\\alert{engendré} par une\\ grammaire\\ non-restreinte};
+      \node[box] (rec) at (2,1) {Langage\\\alert{reconnu} par une \\ machine de Turing \\non déterministe};
+      \node[box] (gen) at (2,0) {Langage\\\alert{généré} par une \\ machine de Turing \\non déterministe};
+      \node[box] (sem) at (3,1) {Langage\\\alert{semi-décidé} par une \\ machine de Turing \\déterministe};
+      \node[box] (enu) at (3,0) {Langage\\\alert{énuméré} par une \\ machine de Turing \\déterministe};
+
+      \footnotesize
+      \path[-latex, densely dotted] (rec) edge            node[auto]               {énumération de $\Sigma^\star$}  (gen);
+      \path[-latex, densely dotted] (gen) edge            node[auto, sloped]       {encodage}                      (eng);
+      \path[-latex, densely dotted] (eng) edge[bend left] node[above]              {force brute}                   (rec);
+      \path[-latex, densely dotted] (rec) edge[bend left] node[above]              {déterminisation}               (sem);
+      \path[-latex, structure]      (sem) edge[bend left] node[below]              {inclusion}                     (rec);
+      \path[-latex, densely dotted] (gen) edge[bend left] node[above]              {déterminisation}               (enu);
+      \path[-latex, structure]      (enu) edge[bend left] node[below]              {inclusion}                     (gen);
+    \end{tikzpicture}
+  }
 \end{frame}
 
 \endgroup

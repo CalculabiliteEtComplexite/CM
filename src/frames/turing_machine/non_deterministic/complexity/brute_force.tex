@@ -7,6 +7,106 @@
 
 \begingroup
 
+\SetKwFunction{Reconnait}{reconnait}
+
+\begin{frame}{Tout langage engendré est reconnaissable}
+
+  \onBlock[top=-5mm]{Théorème}{
+    Tout langage de type 0 est reconnaissable.
+  }
+
+  \onBlock[y=10mm]{Démonstration -- Force brute ascendante non-déterministe}{
+    Soit \alert{$G = \langle \Sigma, \Gamma, S, \rightarrow \rangle$} une grammaire non-restreinte. $\mathcal{L}(G)$ est reconnu par :
+    
+    \begin{algorithm}[H]\small
+      \Fun{$\Reconnait_{\mathcal{L}(G)}(u)$}{
+        \While{$u\neq S \land \exists \alert{\alpha \rightarrow \beta}, \exists \structure{x}, \structure{y} \in (\Sigma \cup \Gamma)^\star,~ u = \structure{x} \alert{\beta} \structure{y}$}{
+          $u \leftarrow \structure{x} \alert{\alpha} \structure{y}$;
+          \tcp*[l]{Choix non déterministe de la règle $\alert{\alpha \rightarrow \beta}$ et la position dans $u$}
+        }
+        \Return $u=S$\;
+      }
+    \end{algorithm}
+  }
+  
+  \onExampleBlock[y=-10mm]{Exemple -- $\{a^n b^n c^n \mid n>0\}$}{}
+
+  \on[x=12mm, y=-13mm]{\example{
+      $\left\{\begin{array}{@{~}r@{~\rightarrow~}l@{~}}
+      S  & abc \mid aSBc\\
+      cB & Bc  \\
+      bB & bb  \\
+      \end{array}\right.$
+  }}
+
+  \on[bottom=0mm, x=40mm]{
+    \begin{tikzpicture}[x=6mm, y=8mm]
+      \node (40) at (2,4) {\structureb<10->{\alertb<8-9>{$S$}}};
+      \node (30) at (2,3) {\alertb<6-9>{$S$}};     \path[-latex, alert ob=<8-9>] (40) edge (30);
+      \node (20) at (0,2) {\alertb<8-9>{$a$}};     \path[-latex, alert ob=<8-9>] (40) edge (20);
+      \node (21) at (1,2) {\alertb<6-7>{$a$}};     \path[-latex, alert ob=<6-7>] (30) edge (21);
+      \node (23) at (3,2) {\alertb<4-7>{$c$}};     \path[-latex, alert ob=<6-7>] (30) edge (23);
+      \node (24) at (4,2) {\alertb<4-5,8-9>{$B$}}; \path[-latex, alert ob=<8-9>] (40) edge (24);
+      \node (25) at (5,2) {\alertb<8-9>{$c$}};     \path[-latex, alert ob=<8-9>] (40) edge (25);
+      \node (11) at (2,1) {\alertb<2-3,6-7>{$b$}}; \path[-latex, alert ob=<6-7> ] (30) edge (11);
+      \node (12) at (3,1) {\alertb<2-5>{$B$}};     \path[-latex, alert ob=<4-5>] (23) edge (12); \path[-latex, alert ob=<4-5>] (24) edge (12);
+      \node (13) at (4,1) {\alertb<4-5>{$c$}};     \path[-latex, alert ob=<4-5>] (23) edge (13); \path[-latex, alert ob=<4-5>] (24) edge (13);
+      \node (00) at (2,0) {\alertb<2-3>{$b$}};     \path[-latex, alert ob=<2-3>] (11) edge (00); \path[-latex, alert ob=<2-3>] (12) edge (00);
+      \node (01) at (3,0) {\alertb<2-3>{$b$}};     \path[-latex, alert ob=<2-3>] (11) edge (01); \path[-latex, alert ob=<2-3>] (12) edge (01);
+    \end{tikzpicture}
+  }
+
+  \on[bottom=-1mm, x=-6mm]{
+    \begin{tikzpicture}[tape, x=6mm, y=6mm]
+      \cell[structure ob=<10->]                 {}                                                                          \smheadfromb<10>{1}
+      \cell[alert ob=<{8,9}>,structure ob=<10->]{\oneof[$a$]{\on<9->{$S$}}}                                  \smhead<1,9,11>\smheadfromb<8>{1}
+      \cell[alert ob=<{6-8}>,structure ob=<10->]{\oneof[$a$]{\on<7->{$S$}\on<9->{}}}                         \smheadb<7,12> \smheadfromb<6>{2}
+      \cell[alert ob=<{2-3,6,8}>]               {\oneof[$b$]{\on<7->{$B$}\on<9->{}}}                         \smheadb<3,13> \smheadfromb<2>{-2}
+      \cell[alert ob=<{2-5,6,8}>]               {\oneof[$b$]{\on<3->{$B$}\on<5->{$c$}\on<7->{$c$}\on<9->{}}} \smheadb<5>    \smheadfromb<4>{-1}
+      \cell[alert ob=<4-5>]                     {\oneof[$c$]{\on<5->{$B$}\on<7->{}}}
+      \cell                                     {\oneof[$c$]{\on<7->{}}}
+      \cell                                     {}
+    \end{tikzpicture}
+  }
+
+  \on[bottom=5mm, x=-18mm]{
+    \begin{tikzpicture}[turingMachine,x=16mm]
+      \state[alert ob=<2-9>, structure ob=<10>, initial above] (0) at (0,0) {\faRandom};
+      \state[structure ob=<11>                               ] (1) at (1,0) {\blank};
+      \state[structure ob=<12>                               ] (2) at (2,0) {$S$};
+      \state[structure ob=<13>, accepting                    ] (3) at (3,0) {\blank};
+
+      \path (0) edge             node {\smTMtransR{\blank}{\blank}} (1);
+      \path (1) edge             node {\smTMtransR{S}{S}}           (2);
+      \path (2) edge             node {\smTMtransR{\blank}{\blank}} (3);
+      \path (0) edge[loop left]  node {
+        \smAlign{
+          \smTMtransL{\star}{\star}
+          \smTMtransR{\star}{\star}
+          \smTMtransS{aSBc}{S}
+          \smTMtransS{abc}{S}
+          \smTMtransS{Bc}{cB}
+          \smTMtransS{bb}{bB}
+      }} (0);
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+\begin{frame}{Complexité de la recherche ascendante}
+\end{frame}
+
+\begin{frame}{Automates linéairement bornés}
+\end{frame}
+
+
+\endgroup
+\endinput
+
+
+
+
+
 \begin{frame}{Complexité de la recherche ascendante}
   Soient $\structure{G = \langle \{a\}, \{S\}, S, \{S \rightarrow S \mid a \} \rangle}$ et $\structure{u = aaa}$.\\
   Combien de mots de $(\Sigma \cup \Gamma)^\star$ sont explorés par la machine de Turing :
@@ -54,4 +154,91 @@
     \end{itemize}
   \end{block}
 \end{frame}
-\endgroup
+
+
+
+
+
+
+
+\begin{frame}{Exemple : le langage $\{a^n b^n c^n \mid n>0\}$}
+
+  \on[top]{
+    \example{
+      $aabbcc\uncover<9->{\leftarrow aabBcc}\uncover<11->{\leftarrow aabcBc}\uncover<13->{\leftarrow aSBc}\uncover<15->{\leftarrow S}$
+    }
+  }
+
+  \ob<4> [y=15mm]{\alert{Bloqué !}}
+  \ob<16>[y=15mm]{\alert{Mot reconnu !}}
+
+  \on[top=5mm]{   
+    \begin{tikzpicture}[tape, x=7mm, y=7mm]
+      \cell{$\blank$}                                                               
+      \cell{\oneof[$a$]{\on<15->{$S$}}}                                       \smhead<1,14>  
+      \cell{\oneof[$a$]{\on<3-4>{$b$}\on<13-14>{$S$}\on<15->{$\blank$}}}          \smheadb<3-4,12,15,16>  \smheadfromb<2>{-1}\smheadfromb<15>{-1}\smheadfromb<16>{-2}
+      \cell{\oneof[$b$]{\on<4,7>{$c$}\on<13-14>{$B$}\on<15->{$\blank$}}}          \smheadb<6-7,13>        \smheadfromb<5>{-2}\smheadfromb<13>{-1}
+      \cell{\oneof[$b$]{\on<3-4,6-8,11-14>{$c$}\on<9,10>{$B$}\on<15->{$\blank$}}} \smheadb<8,10>   
+      \cell{\oneof[$c$]{\on<4,7,13->{$\blank$}\on<11-12>{$B$}}}                   \smheadb<9>             \smheadfromb<11>{-1}
+      \cell{\oneof[$c$]{\on<3-4,6-8,13->{$\blank$}}}                              
+      \cell{$\blank$}                                                             
+    \end{tikzpicture}
+  }
+
+  \on[bottom]{
+    \begin{tikzpicture}[turingMachine,x=15mm, y=9mm]
+      \path[anchor=mid,example] (-1cm,3) node [left=1mm]{$S $} node (G1) {$\rightarrow$} node[right=1mm]{$abc$} ;
+      \path[anchor=mid,example] (-1cm,2) node [left=1mm]{$S $} node (G2) {$\rightarrow$} node[right=1mm]{$aSBc$};
+      \path[anchor=mid,example] (-1cm,1) node [left=1mm]{$cB$} node (G3) {$\rightarrow$} node[right=1mm]{$Bc$}  ;
+      \path[anchor=mid,example] (-1cm,0) node [left=1mm]{$bB$} node (G4) {$\rightarrow$} node[right=1mm]{$bb$}  ;
+      \draw[example, decorate, decoration={brace, amplitude=10pt, raise=3mm}] (G4.south west) -- (G1.north west);
+
+      \node                                             (q1) at (5,4) {}; 
+      \state[alert ob=<{1,2,5,9,10,12,14,16}>, initial] (q0) at (0,4) {$q_0$};
+      \state[alert ob=<{3,13}>                        ] (1b) at (1,3) {};
+      \state[alert ob=<{4,13}>                        ] (1c) at (2,3) {};
+      \state[alert ob=<13>                            ] (1d) at (3,3) {};
+      \state[alert ob=<15>                            ] (2b) at (1,2) {};
+      \state[alert ob=<15>                            ] (2c) at (2,2) {};
+      \state[alert ob=<15>                            ] (2d) at (3,2) {};
+      \state[alert ob=<15>                            ] (2e) at (4,2) {};
+      \state[alert ob=<11>                            ] (3b) at (1,1) {};
+      \state[alert ob=<11>                            ] (3c) at (2,1) {};
+      \state[alert ob=<11>                            ] (3d) at (3,1) {};
+      \state[alert ob=<6>                             ] (4b) at (1,0) {};
+      \state[alert ob=<7>                             ] (4c) at (2,0) {};
+      \state[alert ob=<8>                             ] (4d) at (3,0) {};
+      \state[alert ob=<16>                            ] (5b) at (1,5) {};
+      \state[alert ob=<16>                            ] (5c) at (2,5) {};
+      \state[alert ob=<16>,                  accepting] (5d) at (3,5) {};
+
+      \path (q0) edge[loop, out=120, in=150] node[above left] {\smGroup{\smTMtransL{x}{x}\smTMtransR{x}{x}}} (q0);
+      \path (1b) edge                        node             {\smTMtransM{b}}                               (1c);
+      \path (1c) edge                        node             {\smTMtransM{c}}                               (1d);
+      \path (2b) edge                        node             {\smTMtransM{S}}                               (2c);
+      \path (2c) edge                        node             {\smTMtransM{B}}                               (2d);
+      \path (2d) edge                        node             {\smTMtransM{c}}                               (2e);
+      \path (3b) edge                        node             {\smTMtransM{c}}                               (3c);
+      \path (3c) edge                        node             {\smTMtransP{x}{c}}                            (3d);
+      \path (4b) edge                        node             {\smTMtransM{b}}                               (4c);
+      \path (4c) edge                        node             {\smTMtransP{x}{b}}                            (4d);
+      \path (5b) edge                        node             {\smTMtransR{S}{S}}                            (5c);
+      \path (5c) edge                        node             {\smTMtransL{\blank}{\blank}}                          (5d);
+
+      \draw [-latex, rounded corners] (q0) -- (0,3) -- node {\smTMtransM{a}}        (1b);
+      \draw [-latex, rounded corners] (q0) -- (0,2) -- node {\smTMtransM{a}}        (2b);
+      \draw [-latex, rounded corners] (q0) -- (0,1) -- node {\smTMtransM{B}}        (3b);
+      \draw [-latex, rounded corners] (q0) -- (0,0) -- node {\smTMtransM{b}}        (4b);
+      \draw [-latex, rounded corners] (q0) -- (0,5) -- node {\smTMtransR{\blank}{\blank}}   (5b);
+      \draw [        rounded corners] (1d) --          node {\smTMtransP{x}{S}}     (5,3) -- (5,3.2);
+      \draw [        rounded corners] (2e) --          node {\smTMtransP{x}{S}}     (5,2) -- (5,2.2);
+      \draw [        rounded corners] (3d) --          node {\smTMtransP{x}{B}}     (5,1) -- (5,1.2);
+      \draw [-latex, rounded corners] (4d) --          node {\smTMtransP{x}{B}}     (5,0) -- (5,4) -- (q0.east);
+
+      \node[structure, anchor=west] at (3.5,5) {$\forall x \in \{S, B, a, b, c, \blank\}$}; 
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+

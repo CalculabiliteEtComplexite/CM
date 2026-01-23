@@ -150,24 +150,14 @@
 \input{languages/pushdown/determinism/determinisation}
 \input{languages/pushdown/determinism/nondeterministic}
  
-\section{Décision des langages contextuels}
- 
-\subsection{Recherche ascendante par force brute}
-\input{languages/decidability/brute_force/decision}
-\input{languages/decidability/brute_force/brute_force}
-\input{languages/decidability/brute_force/termination}
- 
-\subsection{Décidabilité des types de langage}
-\input{languages/decidability/hierarchy/decidability}
-\input{languages/decidability/hierarchy/automata}
- 
  
 \part{Machines de Turing}
  
  
 \section{Notion de machine de Turing}
  
-\subsection{Définition des machines de Turing}
+\subsection{Introduction aux machines de Turing}
+\input{turing_machine/introduction/intuition/decision}
 \input{turing_machine/introduction/intuition/ram}
 \input{turing_machine/introduction/intuition/tape_automaton}
 \input{turing_machine/introduction/intuition/busy_beaver}
@@ -202,7 +192,7 @@
 \input{turing_machine/deterministic/extensions/addition}
 \input{turing_machine/deterministic/extensions/k_tapes_compression}
 \input{turing_machine/deterministic/extensions/k_tapes_simulation}
-
+ 
 \section{Machines de Turing Non-Déterministes}
  
 \subsection{Notion de non-déterminisme}
@@ -211,51 +201,54 @@
 \input{turing_machine/non_deterministic/complexity/subset_sum}
 \input{turing_machine/non_deterministic/subsetsum/turingmachine}
 \input{turing_machine/non_deterministic/generation/generator}
-
+ 
 \subsection{Complexité non-déterministe}
 \input{turing_machine/non_deterministic/complexity/complexity_tm}
 \input{turing_machine/non_deterministic/complexity/complexity_problem}
 \input{turing_machine/non_deterministic/complexity/complexity_classes}
 \input{turing_machine/non_deterministic/complexity/summary}
  
+\subsection{Déterminisation de la machine de Turing}
+\input{turing_machine/non_deterministic/determinisation/determinisation}
+\input{turing_machine/non_deterministic/determinisation/simulation}
+\input{turing_machine/non_deterministic/determinisation/complexity}
+
+%\section{Classes de calculabilité}
+% 
+%\subsection{Recherche ascendante par force brute}
+%\input{languages/decidability/brute_force/decision}
+%\input{languages/decidability/brute_force/brute_force}
+%\input{languages/decidability/brute_force/termination}
+%\input{languages/decidability/hierarchy/decidability}
+%\input{languages/decidability/hierarchy/automata}
+% 
 %\subsection{La classe des problèmes récursivement énumérables}
-%\input{turing_machine/deterministic/complexity/brute_force}
-%\input{turing_machine/deterministic/complexity/complexity_tm}
-%\input{turing_machine/deterministic/complexity/complexity_problem}
-%\input{turing_machine/deterministic/complexity/complexity_classes}
-%\input{turing_machine/deterministic/complexity/p_np}
+%\input{turing_machine/non_deterministic/determinisation/classes}
+%\input{turing_machine/non_deterministic/generation/proof_recognized_generated}
+%\input{turing_machine/non_deterministic/generation/proof_recognized_generated_example}
+%\input{turing_machine/non_deterministic/determinisation/classes}
+%\input{turing_machine/non_deterministic/generation/proof_generated_grammar}
+%\input{turing_machine/non_deterministic/generation/proof_generated_grammar_example}
+%\input{turing_machine/non_deterministic/determinisation/classes}
+%\input{turing_machine/non_deterministic/complexity/brute_force}
+%\input{turing_machine/non_deterministic/determinisation/classes}
+% 
+% 
+%\input{turing_machine/non_deterministic/generation/proof_grammar_generated}
+%\input{turing_machine/non_deterministic/generation/proof_grammar_generated_2}
+ 
+%\subsection{La classe des problèmes décidables}
+%\input{turing_machine/non_deterministic/decidable/closure}
+%\input{turing_machine/non_deterministic/decidable/closure_proof}
 %\input{turing_machine/deterministic/complexity/verify_solution}
 %\input{turing_machine/deterministic/complexity/verify_solution_proof1}
 %\input{turing_machine/deterministic/complexity/verify_solution_proof2}
-%\input{turing_machine/non_deterministic/determinisation/determinisation}
-%\input{turing_machine/non_deterministic/determinisation/simulation}
-%\input{turing_machine/non_deterministic/determinisation/data_structure}
-%\input{turing_machine/non_deterministic/determinisation/right_transition}
-%\input{turing_machine/non_deterministic/determinisation/left_transition}
-%\input{turing_machine/non_deterministic/determinisation/next_configuration}
-%\input{turing_machine/non_deterministic/determinisation/example}
-%\input{turing_machine/non_deterministic/determinisation/classes}
-%\input{turing_machine/non_deterministic/generation/equivalence}
-%\input{turing_machine/non_deterministic/generation/proof_recognized_generated}
-%\input{turing_machine/non_deterministic/generation/proof_recognized_generated_example}
-%\input{turing_machine/non_deterministic/generation/proof_generated_grammar}
-%\input{turing_machine/non_deterministic/generation/proof_generated_grammar_example}
-%\input{turing_machine/non_deterministic/generation/proof_grammar_generated}
-%\input{turing_machine/non_deterministic/generation/brute_force}
-%\input{turing_machine/non_deterministic/generation/proof_grammar_generated_2}
-%\input{turing_machine/non_deterministic/generation/proof_grammar_generated_example}
 
-%\subsection{La classe des problèmes décidables}
 
-% 
 %\part{Limites de l'algorithmique}
 % 
 % 
 %\section{Introduction à la Calculabilité}
-% 
-%\subsection{Langages}
-%\input{turing_machine/non_deterministic/decidable/closure}
-%\input{turing_machine/non_deterministic/decidable/closure_proof}
 % 
 %\subsection{Universalité de la Machine de Turing}
 %\input{computability/introduction/universality/universal}
