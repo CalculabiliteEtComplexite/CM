@@ -9,18 +9,19 @@
 
 \begin{frame}{Langage récursivement énumérable}
 
-  \onBlock[top=-4mm]{Définition -- Énumération d'un langage}{
+  \onBlock[top=-5mm]{Définition -- Énumération d'un langage}{
     Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une MTD.
     \begin{itemize}
     \item Le \structure{langage énuméré par $M$} est l'ensemble des mots écrits sur le ruban quand $M$ passe par un état accepteur à partir du mot vide:
       $$\alert{\mathcal{L}_E(M) = \left\{G\cdot D \in \Sigma^\star \;\middle\mid\; \exists q\in F,~ C_{\mathit{init}}(\varepsilon) \leadsto_M^\star \langle G, q, D \rangle \right\}}$$
     \item \structure{$L$ est récursivement énumérable} s'il existe une MTD qui énumère $L$
+    \item On note \alert{\textsc{re}} la classe des langages récursivement énumérables
     \end{itemize}
   }
 
-  \onExampleBlock[y=-8mm]{Exemple -- Énumération de $\{a^n b^n \mid n\in \mathbb{N}\}$}{}
+  \onExampleBlock[y=-10mm]{Exemple -- Énumération de $\{a^n b^n \mid n\in \mathbb{N}\}$}{}
   
-  \on[x=-20mm,y=-20mm]{
+  \on[x=-20mm,y=-22mm]{
     \begin{tikzpicture}[tape, x=7mm, y=7mm]
       \cell{}                              \smheadfromb<7>{5} 
       \cell[alert ob=<6>]{\alt<-5>{}{$a$}} \smheadfromb<5>{3} 

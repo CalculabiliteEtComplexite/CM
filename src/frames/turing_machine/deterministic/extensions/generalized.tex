@@ -50,9 +50,9 @@
   \on[y=-20mm, x=40mm]{
     \begin{tikzpicture}[tape, x=5mm, y=5mm]
       \node{\textsc{n} :};
-      \cell{}                  \smhead<6->
-      \cell{\alt<2-5>{$1$}{}}  \smhead<1,5>
-      \cell{\alt<3-4>{$1$}{}}  \smheadb<2,4>
+      \cell{}                  \smheadb<6->
+      \cell{\onlyb<2-5>{$1$}}  \smhead<1,5>
+      \cell{\onlyb<3-4>{$1$}}  \smheadb<2,4>
       \cell{}                  \smheadb<3>
     \end{tikzpicture}
   }

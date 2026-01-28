@@ -1,0 +1,43 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Équivalence entre formalismes}
+
+  \on[text,top]{
+    \begin{itemize}
+    \item Les cinq classes suivantes sont égales
+    \item On nomme la classe commune \alert{\textsc{re}} (pour \structure{récursivement énumérable})
+    \end{itemize}
+  }
+  
+  \on[y=-10mm]{
+    \begin{tikzpicture}[x=38mm, y=33mm]\small
+      \tikzset{box/.style={structure, smBox, text width=27mm, minimum height=12mm},}
+      \node[box] (eng) at (1,1) {Langage\\\alert{engendré} par une\\ grammaire\\ non-restreinte};
+      \node[box] (rec) at (2,0) {Langage\\\alert{reconnu} par une \\ machine de Turing \\non déterministe};
+      \node[box] (gen) at (2,1) {Langage\\\alert{généré} par une \\ machine de Turing \\non déterministe};
+      \node[box] (sem) at (3,0) {Langage\\\alert{semi-décidé} par une \\ machine de Turing \\déterministe};
+      \node[box] (enu) at (3,1) {Langage\\\alert{énuméré} par une \\ machine de Turing \\déterministe};
+      \node[box] (pus) at (1,0) {Langage\\reconnu par un \\ \alert{automate} \\ \alert{à deux piles}};
+
+      \footnotesize
+      \path[-latex, densely dotted] (rec) edge             node[right]       {énumération de $\Sigma^\star$} (gen);
+      \path[-latex, densely dotted] (gen) edge[bend right] node[auto,swap]   {encodage}                     (eng);
+      \path[-latex, densely dotted] (eng) edge             node[auto,sloped] {force brute}                  (rec);
+      \path[-latex, densely dotted] (rec) edge[bend left]  node[above]       {déterminisation}              (sem);
+      \path[-latex, structure]      (sem) edge[bend left]  node[below]       {inclusion}                    (rec);
+      \path[-latex, densely dotted] (gen) edge[bend left]  node[above]       {déterminisation}              (enu);
+      \path[-latex, structure]      (enu) edge[bend left]  node[below]       {inclusion}                    (gen);
+      \path[-latex, densely dotted] (rec) edge[bend left]  node[below]       {simulation}                   (pus);
+      \path[-latex, densely dotted] (pus) edge[bend left]  node[above]       {simulation}                   (rec);
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\endgroup

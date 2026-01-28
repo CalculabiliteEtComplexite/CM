@@ -1,0 +1,187 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: 
+% Section: 
+% Sub-section: 
+% Frame: 
+
+\begingroup
+
+\SetKwFunction{Enumere}{enumere}
+\SetKwFunction{Reconnait}{reconnait}
+\SetKwFunction{Generer}{generer}
+
+\begin{frame}{Reconnaissance et génération}
+
+  \onBlock[top=-5mm]{Théorème -- Langages reconnaissables et générés}{
+    Soient $\Sigma$ un alphabet et $L \subseteq \Sigma^\star$ un langage.\\
+    $L$ est \structure{reconnaissable} si, et seulement si, $L$ est \structure{généré} par une MTND.
+
+    \pause
+    
+    \vspace{3mm}
+    \structure{Transformations.}
+    Soit $M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$ une MTND sur un ruban $\textsc{m}$. 
+    
+    \vspace{3mm}
+    \structure{Reconnaissable $\Rightarrow$ généré. } \alert{$\mathcal{L}(M)$ est généré} par :
+    
+    \begin{algorithm}[H]
+      \Fun{$\Generer_{\mathcal{L}(M)}()$}{
+        \Let $u \in \Sigma^\star$; \tcp*[l]{Choix non déterministe}
+        \lIf{$M.\Reconnait(u)$}{\Return $u$;}
+      }
+    \end{algorithm}
+
+    \pause
+
+    \vspace{3mm}
+    \structure{Généré $\Rightarrow$ reconnaissable. } \alert{$\mathcal{L}_{G}(M)$ est reconnu} par :
+    
+    \begin{algorithm}[H]
+      \Fun{$\Reconnait_{\mathcal{L}_G(M)}(u \in \Sigma^\star)$}{
+        \Let $\textsc{m} \leftarrow M.\Generer()$; \tcp*[l]{Choix non déterministe dans $\mathcal{L}_G(M)$}
+        \Return $u=\textsc{m}$;
+      }
+    \end{algorithm}
+  }
+
+  \on<2->[x=30mm, y=-00mm]{\scriptsize
+    \begin{tikzpicture}[turingMachine, size=6mm]
+      \state[initial]              (A)  at (0,0) {$u$};
+      \state[structure]            (M0) at (3,0) {$M_0$};
+      \state[accepting, structure] (Mf) at (5,0) {$M_f$};
+      \cloudPath[structure] {M0}{Mf}
+      \path (A) edge[loop below] node {\smGroup{\smTMtransL[\textsc{u}]{\blank}{x}\smTMtransL[\textsc{m}]{\blank}{x}} $\forall x \in \Sigma$} (A);
+      \path (A) edge             node {\smGroup{\smTMtransR[\textsc{u}]{\blank}{\blank}\smTMtransR[\textsc{m}]{\blank}{\blank}}} (M0);
+      \node[structure] at (4,0) {\textsc{m}};
+    \end{tikzpicture}
+  }
+
+  \on<3->[y=-33mm]{\scriptsize
+    \begin{tikzpicture}[turingMachine, size=6mm]
+      \state[structure, initial]            (M0) at (0,0) {$M_0$};
+      \state[structure] (Mf) at (2,0) {$M_f$};
+      \state[]              (A)  at (5,0) {\faBackward};
+      \state[]              (B)  at (8,0) {$=$};
+      \state[accepting]              (C)  at (11,0) {\faCheck};
+      \cloudPath[structure] {M0}{Mf}
+      \path (Mf) edge             node[swap] {\smTMtransS{\varepsilon}{\varepsilon}}  (A);
+      \path (A)  edge             node[swap] {\smTMtransR[\textsc{m}]{\blank}{\blank}} (B);
+      \path (B)  edge             node[swap] {\smGroup{\smTMtransL[\textsc{u}]{\blank}{\blank}\smTMtransL[\textsc{m}]{\blank}{\blank}}} (C);
+      \path (A)  edge[loop above] node       {\smAlign{\smTMtransR[\textsc{m}]{x}{x}\smTMtransL[\textsc{m}]{x}{x}}} (A);
+      \path (B)  edge[loop above] node       {\smGroup{\smTMtransR[\textsc{u}]{x}{x}\smTMtransR[\textsc{m}]{x}{x}}} (B);
+      \node[structure] at (1,0) {\textsc{v}};
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
+%\SetKwFunction{Ecrire}{ecrire}
+% 
+%\begin{frame}{$1 \Rightarrow 2$}
+% 
+%  \onBlock[top=-2mm]{Lemme -- Reconnu $\Rightarrow$ généré}{
+%    Soit $L$ un langage reconnaissable par une MTND $M$.\\
+%    Alors il existe une MTND $M_G$ qui génère $L$.
+%  }
+% 
+%  \onBlock[y=2mm]{Démonstration}{
+%    On construit un générateur $M_G$ de $L$ :
+%    \begin{itemize}
+%    \item Générer tous les mots de $\Sigma^\star$ sur deux rubans $r$ et $g$
+%    \item \alert{De manière non-déterministe}, tenter de reconnaître chaque mot sur $r$
+%    \item Si le mot est reconnu, il est toujours écrit sur $g$
+%    \end{itemize}
+%  }
+% 
+%  \on[left=.5\textwidth, y=-30mm]{
+%    \begin{algorithm}[H]
+%      \Algo{$\Generer_L$}{
+%        \For{$u \in \Sigma^\star$}{
+%          \If{$\Reconnait_L(u)$} {
+%            $\Ecrire (u)$\;
+%          }
+%        }
+%      }
+%    \end{algorithm}
+%  }
+% 
+%  \on[right=.5\textwidth, y=-25mm]{
+%    \begin{tikzpicture}[turingMachine]
+%      \state[initial]              (A)  at (0,0) {$\Sigma^\star$};
+%      \state[structure]            (M0) at (1,0) {$M_0$};
+%      \state[accepting, structure] (Mf) at (2,0) {$M_f$};
+%      \cloudPath[structure] {M0}{Mf}
+%      \path (A) edge[loop above] node       {\smGroup{\smTMtransL[r]{\blank}{x}\smTMtransL[g]{\blank}{x}} $\forall x \in \Sigma$} (A);
+%      \path (A) edge             node[swap] {\smGroup{\smTMtransR[r]{\blank}{\blank}\smTMtransR[g]{\blank}{\blank}}} (M0);
+%    \end{tikzpicture}
+%  }
+%  
+%\end{frame}
+
+  
+  
+%  \onExampleBlock[y=-10mm]{Exemple -- $\{a^n b^n c^n \mid n>0\}$}{}
+% 
+%  \on[x=12mm, y=-13mm]{\example{
+%      $\left\{\begin{array}{@{~}r@{~\rightarrow~}l@{~}}
+%      S  & abc \mid aSBc\\
+%      cB & Bc  \\
+%      bB & bb  \\
+%      \end{array}\right.$
+%  }}
+% 
+%  \on[bottom=0mm, x=40mm]{
+%    \begin{tikzpicture}[x=6mm, y=8mm]
+%      \node (40) at (2,4) {\structureb<10->{\alertb<8-9>{$S$}}};
+%      \node (30) at (2,3) {\alertb<6-9>{$S$}};     \path[-latex, alert ob=<8-9>] (40) edge (30);
+%      \node (20) at (0,2) {\alertb<8-9>{$a$}};     \path[-latex, alert ob=<8-9>] (40) edge (20);
+%      \node (21) at (1,2) {\alertb<6-7>{$a$}};     \path[-latex, alert ob=<6-7>] (30) edge (21);
+%      \node (23) at (3,2) {\alertb<4-7>{$c$}};     \path[-latex, alert ob=<6-7>] (30) edge (23);
+%      \node (24) at (4,2) {\alertb<4-5,8-9>{$B$}}; \path[-latex, alert ob=<8-9>] (40) edge (24);
+%      \node (25) at (5,2) {\alertb<8-9>{$c$}};     \path[-latex, alert ob=<8-9>] (40) edge (25);
+%      \node (11) at (2,1) {\alertb<2-3,6-7>{$b$}}; \path[-latex, alert ob=<6-7> ] (30) edge (11);
+%      \node (12) at (3,1) {\alertb<2-5>{$B$}};     \path[-latex, alert ob=<4-5>] (23) edge (12); \path[-latex, alert ob=<4-5>] (24) edge (12);
+%      \node (13) at (4,1) {\alertb<4-5>{$c$}};     \path[-latex, alert ob=<4-5>] (23) edge (13); \path[-latex, alert ob=<4-5>] (24) edge (13);
+%      \node (00) at (2,0) {\alertb<2-3>{$b$}};     \path[-latex, alert ob=<2-3>] (11) edge (00); \path[-latex, alert ob=<2-3>] (12) edge (00);
+%      \node (01) at (3,0) {\alertb<2-3>{$b$}};     \path[-latex, alert ob=<2-3>] (11) edge (01); \path[-latex, alert ob=<2-3>] (12) edge (01);
+%    \end{tikzpicture}
+%  }
+% 
+%  \on[bottom=-1mm, x=-6mm]{
+%    \begin{tikzpicture}[tape, x=6mm, y=6mm]
+%      \cell[structure ob=<10->]                 {}                                                                          \smheadfromb<10>{1}
+%      \cell[alert ob=<{8,9}>,structure ob=<10->]{\oneof[$a$]{\on<9->{$S$}}}                                  \smhead<1,9,11>\smheadfromb<8>{1}
+%      \cell[alert ob=<{6-8}>,structure ob=<10->]{\oneof[$a$]{\on<7->{$S$}\on<9->{}}}                         \smheadb<7,12> \smheadfromb<6>{2}
+%      \cell[alert ob=<{2-3,6,8}>]               {\oneof[$b$]{\on<7->{$B$}\on<9->{}}}                         \smheadb<3,13> \smheadfromb<2>{-2}
+%      \cell[alert ob=<{2-5,6,8}>]               {\oneof[$b$]{\on<3->{$B$}\on<5->{$c$}\on<7->{$c$}\on<9->{}}} \smheadb<5>    \smheadfromb<4>{-1}
+%      \cell[alert ob=<4-5>]                     {\oneof[$c$]{\on<5->{$B$}\on<7->{}}}
+%      \cell                                     {\oneof[$c$]{\on<7->{}}}
+%      \cell                                     {}
+%    \end{tikzpicture}
+%  }
+% 
+%  \on[bottom=5mm, x=-18mm]{
+%    \begin{tikzpicture}[turingMachine,x=16mm]
+%      \state[alert ob=<2-9>, structure ob=<10>, initial above] (0) at (0,0) {\faRandom};
+%      \state[structure ob=<11>                               ] (1) at (1,0) {\blank};
+%      \state[structure ob=<12>                               ] (2) at (2,0) {$S$};
+%      \state[structure ob=<13>, accepting                    ] (3) at (3,0) {\blank};
+% 
+%      \path (0) edge             node {\smTMtransR{\blank}{\blank}} (1);
+%      \path (1) edge             node {\smTMtransR{S}{S}}           (2);
+%      \path (2) edge             node {\smTMtransR{\blank}{\blank}} (3);
+%      \path (0) edge[loop left]  node {
+%        \smAlign{
+%          \smTMtransL{\star}{\star}
+%          \smTMtransR{\star}{\star}
+%          \smTMtransS{aSBc}{S}
+%          \smTMtransS{abc}{S}
+%          \smTMtransS{Bc}{cB}
+%          \smTMtransS{bb}{bB}
+%      }} (0);
+%    \end{tikzpicture}
+%  }
+
+\endgroup
