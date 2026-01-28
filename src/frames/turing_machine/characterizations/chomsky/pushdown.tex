@@ -9,7 +9,7 @@
 
 \begin{frame}{Automates à plusieurs piles}
 
-  \on[top, text]{
+  \on[top=-2mm, text]{
     \begin{center}
       \structure{Les \alert{automates déterministes à deux piles} \\
         (extension du formalisme des automates à pile)\\
@@ -18,10 +18,10 @@
     \end{center}
   }
 
-  \onExampleBlock[left=.5\textwidth,  y=7mm] {Machine de Turing}{}
-  \onExampleBlock[right=.5\textwidth, y=7mm]{Automate à deux piles}{}
+  \onExampleBlock[left=.5\textwidth,  y=9mm] {Machine de Turing}{}
+  \onExampleBlock[right=.5\textwidth, y=9mm]{Automate à deux piles}{}
   
-  \on[x=0mm, y=-3mm]{
+  \on[x=2mm, y=-1mm]{
     \begin{tikzpicture}[word, size=6mm]
       \cell[open before]{...}
       \cell{}
@@ -58,7 +58,7 @@
     \end{tikzpicture}    
   }
 
-  \on[bottom=3mm, x=-33mm]{
+  \on[bottom=7mm, x=-33mm]{
     \begin{tikzpicture}[turingMachine, size=17mm]\footnotesize
       \state[example ob=<{1,5,9}>, initial above] (a) at (1,1) {$a$}; 
       \state[example ob=<{2,6}>                 ] (b) at (1,0) {\faForward}; 
@@ -76,7 +76,7 @@
     \end{tikzpicture}
   }
 
-  \on[bottom=3mm, x=30mm]{
+  \on[bottom=7mm, x=30mm]{
     \begin{tikzpicture}[pushdown, size=17mm]\footnotesize
       \state[example ob=<{1,5,9}>, initial above] (a) at (1,1) {$a$}; 
       \state[example ob=<{2,6}>                 ] (b) at (1,0) {\faForward}; 
@@ -92,6 +92,10 @@
       \path                  (d) edge               node         {\smPAtrans[d]{\varepsilon}{\blank}{\blank}} (a);
       \path                  (a) edge               node         {\smGroup{\smPAtrans[g]{\varepsilon}{\blank}{\varepsilon}\smPAtrans[d]{\varepsilon}{\blank}{\varepsilon}}} (e);
     \end{tikzpicture}
+  }
+
+  \on[text, bottom]{
+    \structure{À vous de jouer :} Mq. les \structure{automates à file} reconnaissent les langages \textsc{re}.
   }
   
 \end{frame}

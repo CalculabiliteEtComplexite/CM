@@ -167,7 +167,7 @@
 \input{turing_machine/introduction/definition/configuration}
 \input{turing_machine/introduction/definition/action}
 \input{turing_machine/introduction/definition/execution}
-
+ 
 \section{Machines de Turing Déterministes}
  
 \subsection{Machines de Turing déterministes}
@@ -177,35 +177,35 @@
 \input{turing_machine/deterministic/definitions/semi_decidable}
 \input{turing_machine/deterministic/definitions/enumerable}
 \input{turing_machine/deterministic/definitions/computable}
-
+ 
 \subsection{Introduction à la Complexité}
 \input{turing_machine/deterministic/complexity/complexity_tm}
 \input{turing_machine/deterministic/complexity/anbn}
 \input{turing_machine/deterministic/complexity/landau}
 \input{turing_machine/deterministic/complexity/poly_func}
 \input{turing_machine/deterministic/complexity/complexity_problem}
-\input{turing_machine/deterministic/complexity/p_np}
+\input{turing_machine/deterministic/complexity/p}
 \input{turing_machine/deterministic/complexity/example_p}
-
+ 
 \subsection{Extensions du Modèle}
 \input{turing_machine/deterministic/extensions/generalized}
 \input{turing_machine/deterministic/extensions/definitions}
 \input{turing_machine/deterministic/extensions/addition}
-\input{turing_machine/deterministic/extensions/k_tapes_compression}
-\input{turing_machine/deterministic/extensions/k_tapes_simulation}
+\input{turing_machine/deterministic/extensions/compression}
+\input{turing_machine/deterministic/extensions/simulation}
  
 \subsection{Lien entre décidable et semi-décidable}
-\input{turing_machine/non_deterministic/decidable/closure}
+\input{turing_machine/deterministic/decidable/closure}
 
 \section{Machines de Turing Non-Déterministes}
- 
+
 \subsection{Notion de non-déterminisme}
 \input{turing_machine/non_deterministic/definition/usages}
 \input{turing_machine/non_deterministic/definition/acceptation}
-\input{turing_machine/non_deterministic/complexity/subset_sum}
-\input{turing_machine/non_deterministic/subsetsum/turingmachine}
-\input{turing_machine/non_deterministic/generation/generator}
-\input{turing_machine/non_deterministic/generation/recognized_generated}
+\input{turing_machine/non_deterministic/definition/subset_sum}
+\input{turing_machine/non_deterministic/definition/subset_sum_TM}
+\input{turing_machine/non_deterministic/definition/generator}
+\input{turing_machine/non_deterministic/definition/equivalence}
  
 \subsection{Complexité non-déterministe}
 \input{turing_machine/non_deterministic/complexity/complexity_tm}
@@ -218,103 +218,82 @@
 \input{turing_machine/non_deterministic/determinisation/simulation}
 \input{turing_machine/non_deterministic/determinisation/classes}
 \input{turing_machine/non_deterministic/determinisation/complexity}
+\input{turing_machine/non_deterministic/determinisation/p_vs_np}
  
+\section{Caractérisations des langages semi-décidables}
+
 \subsection{Problèmes d'existence d'une solution}
-\input{turing_machine/deterministic/complexity/dec_rec}
-\input{turing_machine/deterministic/complexity/examples_re}
-\input{turing_machine/deterministic/complexity/formal}
-\input{turing_machine/deterministic/complexity/verify_solution_proof2}
-\input{turing_machine/deterministic/complexity/verify_solution_proof1}
-\input{turing_machine/deterministic/complexity/np}
-\input{turing_machine/deterministic/complexity/examples_np}
-
-
-
-
-%\subsection{Recherche ascendante par force brute}
-%\input{languages/decidability/brute_force/decision}
-%\input{languages/decidability/brute_force/brute_force}
-%\input{languages/decidability/brute_force/termination}
-%\input{turing_machine/deterministic/extensions/pushdown}
-%\input{turing_machine/deterministic/extensions/linearbounded}
-%\input{languages/decidability/hierarchy/automata}
-%\input{languages/decidability/hierarchy/decidability}
-% 
-%\input{turing_machine/non_deterministic/complexity/brute_force}
-%\input{turing_machine/non_deterministic/determinisation/classes}
-% 
-% 
-%\subsection{La classe des problèmes récursivement énumérables}
-%\input{turing_machine/non_deterministic/determinisation/classes}
-%\input{turing_machine/non_deterministic/generation/proof_recognized_generated}
-%\input{turing_machine/non_deterministic/generation/proof_recognized_generated_example}
-%\input{turing_machine/non_deterministic/determinisation/classes}
-%\input{turing_machine/non_deterministic/generation/proof_generated_grammar}
-%\input{turing_machine/non_deterministic/generation/proof_generated_grammar_example}
-%\input{turing_machine/non_deterministic/determinisation/classes}
-% 
-% 
-%\input{turing_machine/non_deterministic/generation/proof_grammar_generated}
-%\input{turing_machine/non_deterministic/generation/proof_grammar_generated_2}
-%\input{turing_machine/non_deterministic/grammar/classes}
+\input{turing_machine/characterizations/solution/certificate}
+\input{turing_machine/characterizations/solution/examples_re}
+\input{turing_machine/characterizations/solution/formal}
+\input{turing_machine/characterizations/solution/verify_find}
+\input{turing_machine/characterizations/solution/find_verify}
+\input{turing_machine/characterizations/solution/np}
+\input{turing_machine/characterizations/solution/examples_np}
  
+\subsection{Recherche ascendante par force brute}
+\input{turing_machine/characterizations/brute_force/decision}
+\input{turing_machine/characterizations/brute_force/brute_force}
+\input{turing_machine/characterizations/brute_force/termination}
+\input{turing_machine/characterizations/brute_force/ND_brute_force}
+\input{turing_machine/characterizations/brute_force/grammar_TM}
+\input{turing_machine/characterizations/brute_force/classes}
+
+\subsection{Retour sur la hiérarchie de Chomsky}
+\input{turing_machine/characterizations/chomsky/pushdown}
+\input{turing_machine/characterizations/chomsky/linearbounded}
+\input{turing_machine/characterizations/chomsky/hierarchy}
+\input{turing_machine/characterizations/chomsky/decidability}
 
 
-
-
-
-
-
-
-
-%\part{Limites de l'algorithmique}
-% 
-% 
-%\section{Introduction à la Calculabilité}
-% 
-%\subsection{Universalité de la Machine de Turing}
-%\input{computability/introduction/universality/universal}
-%\input{computability/introduction/universality/encoding}
-%\input{computability/introduction/universality/example}
-%\input{computability/introduction/universality/hypothesis}
-%\input{computability/introduction/computable_function/turing_complete}
-% 
-%\section{Limites à la Calculabilité}
-% 
-%\subsection{Argument par Dénombrement}
-%\input{computability/limits/countability/classes}
-%\input{computability/limits/countability/equipotence}
-%\input{computability/limits/countability/countable}
-%\input{computability/limits/countability/countable_languages}
-%\input{computability/limits/countability/uncountable_languages}
-% 
-%\subsection{Problème de l'Arrêt}
-%\input{computability/limits/halting_problem/halting_problem}
-%\input{computability/limits/halting_problem/perfect_odd}
-%\input{computability/limits/halting_problem/strachey}
-%\input{computability/limits/halting_problem/classical_proof}
-%\input{computability/limits/halting_problem/meaning}
-%\input{computability/limits/halting_problem/halt_empty}
-% 
-%\subsection{Notion de réduction}
-%\input{computability/limits/reductions/definition}
-%\input{computability/limits/reductions/classes}
-%\input{computability/limits/reductions/examples}
-%\input{computability/limits/reductions/rice}
-%\input{computability/limits/reductions/map}
-% 
-%\subsection{Le Problème de Correspondance de Post}
-%\input{computability/limits/pcp/pcp}
-%\input{computability/limits/pcp/pcpi}
-%\input{computability/limits/pcp/automaton}
-%\input{computability/limits/pcp/automaton_solution}
-%\input{computability/limits/pcp/TM_to_pcpi}
-%\input{computability/limits/pcp/halt_to_pcpi}
-%\input{computability/limits/pcp/pcpi_to_pcp}
-%\input{computability/limits/pcp/ambiguity}
-%\input{computability/limits/pcp/pcp_to_ambiguity}
-% 
-%\section{Limites de Complexité}
+\part{Limites de l'algorithmique}
+ 
+ 
+\section{Introduction à la Calculabilité}
+ 
+\subsection{Universalité de la Machine de Turing}
+\input{computability/introduction/universality/universal}
+\input{computability/introduction/universality/encoding}
+\input{computability/introduction/universality/example}
+\input{computability/introduction/universality/hypothesis}
+\input{computability/introduction/computable_function/turing_complete}
+ 
+\section{Limites à la Calculabilité}
+ 
+\subsection{Argument par Dénombrement}
+\input{computability/limits/countability/classes}
+\input{computability/limits/countability/equipotence}
+\input{computability/limits/countability/countable}
+\input{computability/limits/countability/countable_languages}
+\input{computability/limits/countability/uncountable_languages}
+ 
+\subsection{Problème de l'Arrêt}
+\input{computability/limits/halting_problem/halting_problem}
+\input{computability/limits/halting_problem/perfect_odd}
+\input{computability/limits/halting_problem/strachey}
+\input{computability/limits/halting_problem/classical_proof}
+\input{computability/limits/halting_problem/meaning}
+\input{computability/limits/halting_problem/halt_empty}
+ 
+\subsection{Notion de réduction}
+\input{computability/limits/reductions/definition}
+\input{computability/limits/reductions/classes}
+\input{computability/limits/reductions/examples}
+\input{computability/limits/reductions/rice}
+\input{computability/limits/reductions/map}
+ 
+\subsection{Le Problème de Correspondance de Post}
+\input{computability/limits/pcp/pcp}
+\input{computability/limits/pcp/pcpi}
+\input{computability/limits/pcp/automaton}
+\input{computability/limits/pcp/automaton_solution}
+\input{computability/limits/pcp/TM_to_pcpi}
+\input{computability/limits/pcp/halt_to_pcpi}
+\input{computability/limits/pcp/pcpi_to_pcp}
+\input{computability/limits/pcp/ambiguity}
+\input{computability/limits/pcp/pcp_to_ambiguity}
+ 
+\section{Limites de Complexité}
 
 \end{document}
  

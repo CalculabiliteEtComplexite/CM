@@ -11,27 +11,27 @@
 
   \on<-20>[x=23mm, y=25mm]{
     \begin{tikzpicture}[tape, x=6mm, y=6mm]
-      \cell{$\blank$}                 
-      \cell[structure ob=<1>,  alert ob=<2> ]{\alt<1>{$a$}{$\blank$}}   \smhead<1>           \smheadfromb<10>{4}
-      \cell[structure ob=<11>, alert ob=<12>]{\alt<-11>{$a$}{$\blank$}} \smheadb<2,11>       \smheadfromb<14>{2}  
-      \cell[structure ob=<15>, alert ob=<16>]{\alt<-15>{$a$}{$\blank$}} \smheadb<3,15,18>   
-      \cell[structure ob=<17>, alert ob=<18>]{\alt<-17>{$b$}{$\blank$}} \smheadb<4,17,19> 
-      \cell[structure ob=<13>, alert ob=<14>]{\alt<-13>{$b$}{$\blank$}} \smheadb<5,9,13,20>  \smheadfromb<16>{-1}
-      \cell[structure ob=<8>,  alert ob=<9> ]{\alt<-8>{$b$}{$\blank$}}  \smheadb<6,8>        \smheadfromb<12>{-3}  
-      \cell{$\blank$}                                                   \smheadb<7>            
+      \cell{}
+      \cell[structure ob=<1>,  alert ob=<2> ]{\alt<1>{$a$}{}}   \smhead<1>           \smheadfromb<10>{4}
+      \cell[structure ob=<11>, alert ob=<12>]{\alt<-11>{$a$}{}} \smheadb<2,11>       \smheadfromb<14>{2}  
+      \cell[structure ob=<15>, alert ob=<16>]{\alt<-15>{$a$}{}} \smheadb<3,15,18>   
+      \cell[structure ob=<17>, alert ob=<18>]{\alt<-17>{$b$}{}} \smheadb<4,17,19> 
+      \cell[structure ob=<13>, alert ob=<14>]{\alt<-13>{$b$}{}} \smheadb<5,9,13,20>  \smheadfromb<16>{-1}
+      \cell[structure ob=<8>,  alert ob=<9> ]{\alt<-8>{$b$}{}}  \smheadb<6,8>        \smheadfromb<12>{-3}  
+      \cell{}                                                   \smheadb<7>            
     \end{tikzpicture}
   }
 
   \ob<21->[x=23mm, y=25mm]{
     \begin{tikzpicture}[tape, x=6mm, y=6mm]
-      \cell                                 {$\blank$}
-      \cell[structure ob=<21>,alert ob=<22>]{\alt<-21>{$a$}{$\blank$}}  \smheadb<21>          \smheadfromb<24>{4}
-      \cell[alert ob=<25->]                 {$b$}                       \smheadb<25->
+      \cell                                 {}
+      \cell[structure ob=<21>,alert ob=<22>]{\alt<-21>{$a$}{}}  \smheadb<21>          \smheadfromb<24>{4}
+      \cell[alert ob=<25->]                 {$b$}               \smheadb<25->
       \cell                                 {$a$}
       \cell                                 {$b$}
       \cell                                 {$a$}
-      \cell[structure ob=<23>,alert ob=<24>]{\alt<-23>{$b$}{$\blank$}}  \smheadb<23>
-      \cell                                 {$\blank$}                                        \smheadfromb<22>{-5}
+      \cell[structure ob=<23>,alert ob=<24>]{\alt<-23>{$b$}{}}  \smheadb<23>
+      \cell                                 {}                                        \smheadfromb<22>{-5}
     \end{tikzpicture}
   }
 

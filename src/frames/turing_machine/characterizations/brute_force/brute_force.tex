@@ -10,13 +10,13 @@
 \SetKwFunction{Forcebrute}{force\_brute}
 \SetKwData{Old}{old}
 \SetKwData{New}{etape}
-\SetKwData{Vu}{union}
+\SetKwData{Vu}{explore}
 
 \begin{frame}[fragile]{Recherche ascendante par force brute}
 
   \on[top=-2mm]{
     \begin{algorithm}[H]
-      \Fun{\Forcebrute($G = \langle \Sigma, \Gamma, S, R \rangle$ : grammaire, $u$ : mot) : booléen}{
+      \Fun{$\Forcebrute(G = \langle \Sigma, \Gamma, S, R \rangle \text{: grammaire}, u \in \Sigma^\star) \in \mathbb{B}$}{
         \Alertb<1>{$\New \leftarrow \{u\}$};
         $\Vu \leftarrow \New$;\\
         \While{$\Alertb<5>{\New \neq \emptyset} \land \Alertb<4-5>{S\notin \New}$}{

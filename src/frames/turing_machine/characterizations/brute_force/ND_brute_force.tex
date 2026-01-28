@@ -1,28 +1,26 @@
 % SPDX-License-Identifier: CC-BY-SA-4.0
 % Author: Matthieu Perrin
-% Part: 
-% Section: 
-% Sub-section: 
-% Frame: 
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
 
 \begingroup
 
-\SetKwFunction{Enumere}{enumere}
 \SetKwFunction{Reconnait}{reconnait}
-\SetKwFunction{Generer}{generer}
 
-\begin{frame}{Tout langage reconnaissable est généré}
+\begin{frame}{Tout langage engendré est reconnaissable}
 
-  \onBlock[top=-5mm]{Théorème}{
-    Tout langage reconnaissable est généré par une MTND.
+  \onBlock[top=-5mm]{Théorème -- Engendré $\Rightarrow$ reconnu}{
+    Tout langage de type 0 est reconnaissable.
   }
 
   \onBlock[y=10mm]{Démonstration -- Force brute ascendante non-déterministe}{
-    Soit \alert{$M=\langle \Sigma, \Gamma, \blank, Q, q_0, F, \rightarrow \rangle$} une MTND. $\mathcal{L}(M)$ est généré par :
+    Soit \alert{$G = \langle \Sigma, \Gamma, S, \rightarrow \rangle$} une grammaire non-restreinte. $\mathcal{L}(G)$ est reconnu par :
     
     \begin{algorithm}[H]\small
-      \Fun{$\Generer_{\mathcal{L}(M)}()$}{
-        \While{$\exists \alert{\alpha \rightarrow \beta}, \exists \structure{x}, \structure{y} \in (\Sigma \cup \Gamma)^\star,~ u = \structure{x} \alert{\beta} \structure{y}$}{
+      \Fun{$\Reconnait_{\mathcal{L}(G)}(u)$}{
+        \While{$u\neq S \land \exists \alert{\alpha \rightarrow \beta}, \exists \structure{x}, \structure{y} \in (\Sigma \cup \Gamma)^\star,~ u = \structure{x} \alert{\beta} \structure{y}$}{
           $u \leftarrow \structure{x} \alert{\alpha} \structure{y}$;
           \tcp*[l]{Choix non déterministe de la règle $\alert{\alpha \rightarrow \beta}$ et la position dans $u$}
         }
@@ -95,54 +93,5 @@
 
 \end{frame}
 
-
 \endgroup
 \endinput
-
-
-\SetKwFunction{Ecrire}{ecrire}
-\SetKwFunction{Reconnait}{reconnait}
-\SetKwFunction{Generer}{generer}
-
-\begin{frame}{$1 \Rightarrow 2$}
-
-  \onBlock[top=-2mm]{Lemme -- Reconnu $\Rightarrow$ généré}{
-    Soit $L$ un langage reconnaissable par une MTND $M$.\\
-    Alors il existe une MTND $M_G$ qui génère $L$.
-  }
-
-  \onBlock[y=2mm]{Démonstration}{
-    On construit un générateur $M_G$ de $L$ :
-    \begin{itemize}
-    \item Générer tous les mots de $\Sigma^\star$ sur deux rubans $r$ et $g$
-    \item \alert{De manière non-déterministe}, tenter de reconnaître chaque mot sur $r$
-    \item Si le mot est reconnu, il est toujours écrit sur $g$
-    \end{itemize}
-  }
-
-  \on[left=.5\textwidth, y=-30mm]{
-    \begin{algorithm}[H]
-      \Algo{$\Generer_L$}{
-        \For{$u \in \Sigma^\star$}{
-          \If{$\Reconnait_L(u)$} {
-            $\Ecrire (u)$\;
-          }
-        }
-      }
-    \end{algorithm}
-  }
-
-  \on[right=.5\textwidth, y=-25mm]{
-    \begin{tikzpicture}[turingMachine]
-      \state[initial]              (A)  at (0,0) {$\Sigma^\star$};
-      \state[structure]            (M0) at (1,0) {$M_0$};
-      \state[accepting, structure] (Mf) at (2,0) {$M_f$};
-      \cloudPath[structure] {M0}{Mf}
-      \path (A) edge[loop above] node       {\smGroup{\smTMtransL[r]{\blank}{x}\smTMtransL[g]{\blank}{x}} $\forall x \in \Sigma$} (A);
-      \path (A) edge             node[swap] {\smGroup{\smTMtransR[r]{\blank}{\blank}\smTMtransR[g]{\blank}{\blank}}} (M0);
-    \end{tikzpicture}
-  }
-  
-\end{frame}
-
-\endgroup
