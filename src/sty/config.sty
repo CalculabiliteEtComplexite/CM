@@ -46,7 +46,28 @@
 
 \PassOptionsToPackage{vlined}{algorithm2e}
 \RequirePackage{algos}
+\lstset{
+  language=java,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{alertColor},
+  stringstyle=\bfseries\color{exampleColor},
+  commentstyle=\color{structure.fg},
+  showstringspaces=false,
+  numbers=none,
+  numberstyle=\scriptsize,
+  morekeywords={specification, var, record},
+  escapeinside={(*}{*)},
+  numbers=none,
+  gobble=2,
+}
+
+
+
+
 \RequirePackage{citations}
+
+
+
 
 \RequirePackage{tabularx}
 \RequirePackage{multirow}

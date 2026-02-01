@@ -149,11 +149,11 @@
 \input{languages/pushdown/determinism/deterministic}
 \input{languages/pushdown/determinism/determinisation}
 \input{languages/pushdown/determinism/nondeterministic}
-
-
+ 
+ 
 \part{Machines de Turing}
-
-
+ 
+ 
 \section{Notion de machine de Turing}
  
 \subsection{Introduction aux machines de Turing}
@@ -196,9 +196,9 @@
  
 \subsection{Lien entre décidable et semi-décidable}
 \input{turing_machine/deterministic/decidable/closure}
-
+ 
 \section{Machines de Turing Non-Déterministes}
-
+ 
 \subsection{Notion de non-déterminisme}
 \input{turing_machine/non_deterministic/definition/usages}
 \input{turing_machine/non_deterministic/definition/acceptation}
@@ -221,7 +221,7 @@
 \input{turing_machine/non_deterministic/determinisation/p_vs_np}
  
 \section{Caractérisations des langages semi-décidables}
-
+ 
 \subsection{Problèmes d'existence d'une solution}
 \input{turing_machine/characterizations/solution/certificate}
 \input{turing_machine/characterizations/solution/examples_re}
@@ -238,7 +238,7 @@
 \input{turing_machine/characterizations/brute_force/ND_brute_force}
 \input{turing_machine/characterizations/brute_force/grammar_TM}
 \input{turing_machine/characterizations/brute_force/classes}
-
+ 
 \subsection{Retour sur la hiérarchie de Chomsky}
 \input{turing_machine/characterizations/chomsky/pushdown}
 \input{turing_machine/characterizations/chomsky/linearbounded}
@@ -246,54 +246,56 @@
 \input{turing_machine/characterizations/chomsky/decidability}
 
 
-%\part{Limites de l'algorithmique}
-% 
-% 
-%\section{Introduction à la Calculabilité}
-% 
-%\subsection{Universalité de la Machine de Turing}
-%\input{computability/introduction/universality/universal}
-%\input{computability/introduction/universality/encoding}
-%\input{computability/introduction/universality/example}
-%\input{computability/introduction/universality/hypothesis}
-%\input{computability/introduction/computable_function/turing_complete}
-% 
+\part{Limites de l'algorithmique}
+ 
+ 
+\section{Notion d'universalité}
+
+\subsection{Problème universel et semi-décidabilité}
+\input{limits/universality/introduction/machines}
+\input{limits/universality/introduction/computer}
+\input{limits/universality/introduction/interpreter}
+\input{limits/universality/universality/universal}
+\input{limits/universality/universality/example}
+\input{limits/universality/introduction/programming}
+
+\subsection{Indécidabilité du langage universel}
+\input{limits/universality/undecidable/halting_problem}
+\input{limits/universality/undecidable/perfect_odd}
+\input{limits/universality/undecidable/strachey}
+\input{limits/universality/undecidable/classical_proof}
+\input{limits/universality/undecidable/meaning}
+
 %\section{Limites à la Calculabilité}
 % 
 %\subsection{Argument par Dénombrement}
-%\input{computability/limits/countability/classes}
-%\input{computability/limits/countability/equipotence}
-%\input{computability/limits/countability/countable}
-%\input{computability/limits/countability/countable_languages}
-%\input{computability/limits/countability/uncountable_languages}
-% 
-%\subsection{Problème de l'Arrêt}
-%\input{computability/limits/halting_problem/halting_problem}
-%\input{computability/limits/halting_problem/perfect_odd}
-%\input{computability/limits/halting_problem/strachey}
-%\input{computability/limits/halting_problem/classical_proof}
-%\input{computability/limits/halting_problem/meaning}
-%\input{computability/limits/halting_problem/halt_empty}
+%\input{limits/universality/undecidable/halt_empty}
+%\input{limits/computability/countability/classes}
+%\input{limits/computability/countability/equipotence}
+%\input{limits/computability/countability/countable}
+%\input{limits/computability/countability/countable_languages}
+%\input{limits/computability/countability/uncountable_languages}
 % 
 %\subsection{Notion de réduction}
-%\input{computability/limits/reductions/definition}
-%\input{computability/limits/reductions/classes}
-%\input{computability/limits/reductions/examples}
-%\input{computability/limits/reductions/rice}
-%\input{computability/limits/reductions/map}
+%\input{limits/computability/reductions/definition}
+%\input{limits/computability/reductions/classes}
+%\input{limits/computability/reductions/examples}
+%\input{limits/computability/reductions/rice}
+%\input{limits/computability/reductions/map}
 % 
 %\subsection{Le Problème de Correspondance de Post}
-%\input{computability/limits/pcp/pcp}
-%\input{computability/limits/pcp/pcpi}
-%\input{computability/limits/pcp/automaton}
-%\input{computability/limits/pcp/automaton_solution}
-%\input{computability/limits/pcp/TM_to_pcpi}
-%\input{computability/limits/pcp/halt_to_pcpi}
-%\input{computability/limits/pcp/pcpi_to_pcp}
-%\input{computability/limits/pcp/ambiguity}
-%\input{computability/limits/pcp/pcp_to_ambiguity}
+%\input{limits/computability/pcp/pcp}
+%\input{limits/computability/pcp/pcpi}
+%\input{limits/computability/pcp/automaton}
+%\input{limits/computability/pcp/automaton_solution}
+%\input{limits/computability/pcp/TM_to_pcpi}
+%\input{limits/computability/pcp/halt_to_pcpi}
+%\input{limits/computability/pcp/pcpi_to_pcp}
+%\input{limits/computability/pcp/ambiguity}
+%\input{limits/computability/pcp/pcp_to_ambiguity}
 % 
 %\section{Limites de Complexité}
+
 
 \end{document}
  

@@ -13,52 +13,6 @@
 \SetKwFunction{AlgoBoucler}{boucler}
 
 \begin{frame}{Problème de l'arrêt}
-
-  \onBlock[top=3mm]{Définition -- Problème de l'arrêt}{
-    \begin{description}
-    \item[Entrées :]
-      \begin{itemize}
-      \item \alert{$\mathit{algo}$} : un \structure{algorithme avec un paramètre} 
-      \item \alert{$x$} : un \structure{argument pour $\mathit{algo}$} 
-      \end{itemize}
-    \item[Question :] est-ce que \alert{l'exécution de $\mathit{algo}(x)$ se termine} ?
-    \end{description}
-  }
-
-  \onExampleBlock[bottom=3mm,left=.5\textwidth]{Exemple d'instance positive}{
-    \begin{itemize}
-    \item $\mathit{algo} = \AlgoCompter$
-    \item $x = 5$
-    \end{itemize}
-    \vspace{2mm}
-    \begin{algorithm}[H]
-      \Proc{$\AlgoCompter(\X \in \mathbb{N})$}{
-        \For{$\I$ \From $1$ \To $\X$}{
-          $\Print(\I)$\;
-        }
-      }
-    \end{algorithm}
-  }
-
-  \onExampleBlock[bottom=3mm,right=.5\textwidth]{Exemple d'instance négative}{
-    \begin{itemize}
-    \item $\mathit{algo} = \AlgoBoucler$
-    \item $x = 5$
-    \end{itemize}
-    \vspace{2mm}
-    \begin{algorithm}[H]
-      \Proc{$\AlgoBoucler(\X \in \mathbb{N})$}{
-        \While{\True}{
-          $\Print(\X)$\;
-        }
-      }
-    \end{algorithm}
-  }
-\end{frame}
-
-
-
-\begin{frame}{Problème de l'arrêt}
   \small
  
   \begin{block}{Définition -- Le langage $L_{halt}$}

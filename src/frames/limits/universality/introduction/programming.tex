@@ -1,0 +1,46 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\begin{frame}{Langage de programmation et langage universel}
+
+  \vspace{-2mm}
+  \begin{block}{Définition -- Langage de programmation}
+    Un \structure{langage de programmation} est un langage de descriptions 
+    \alert{$\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$} tq :
+    \begin{description}[Turing-complet :]
+    \item[Turing-complet :] $\alert{\operatorname{Im}(\llbracket \cdot \rrbracket) = \textsc{re}}$
+      \begin{itemize}\small
+      \item Tout problème semi-décidable est \structure{encodable} dans $\mathcal{L}$
+      \item Les MTDs sont encodées à \structure{équivalence sémantique} près
+      \item $\llbracket \cdot \rrbracket$ n'est pas forcément bijective
+      \end{itemize}
+    \item[Effectif :] $\alert{\left\{ \langle P, u \rangle \mid P \in \mathcal{L} \land u \in \llbracket P \rrbracket \right\} \in \textsc{re}}$
+      \begin{itemize}\small
+      \item Il s'agit du langage universel :
+
+        \vspace{-2mm}
+        $$\structure{\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle} \eqdef \left\{ \langle P, u \rangle \mid P \in \mathcal{L} \land u \in \llbracket P \rrbracket \right\}}$$
+      \item\vspace{-1mm} Il existe un interpréteur qui semi-décide $\llbracket P \rrbracket$
+      \item En particulier, on peut décoder les programmes et les simuler
+      \end{itemize}
+    \end{description}
+  \end{block}
+
+  \begin{alertblock}{Remarques -- Décidabilité des langages universels}
+    Soit $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ un langage de programmation (existe d'après le slide précédent). 
+
+    \begin{itemize}
+    \item $\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est semi-décidable par définition
+    \item $\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est-il décidable ?
+    \end{itemize}
+  \end{alertblock}
+
+\end{frame}
+
+\endgroup

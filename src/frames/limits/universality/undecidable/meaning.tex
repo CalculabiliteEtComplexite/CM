@@ -7,15 +7,15 @@
 
 \begingroup
 
+\SetKwFunction{IsPow}{isPow2}
 \SetKwFunction{AlgoSearchPerfect}{search\_perfect}
-\SetKwFunction{AlgoCompter}{compter}
-\SetKwFunction{AlgoBoucler}{boucler}
 
 \begin{frame}{Signification de l'indécidabilité}
+
   \begin{block}{Ce que l'indécidabilité signifie :}
     \begin{itemize}
-    \item Aucun \alert{algorithme général} ne décide l'arrêt \alert{pour tous les $\langle M, u \rangle$} 
-    \item En pratique, il y a bien des algorithmes difficiles à analyser 
+    \item Aucun \alert{algorithme général} ne décide \textsc{universal} \alert{pour tous les $\langle P, u \rangle$} 
+    \item En pratique, il y a bien des programmes difficiles à analyser 
     \end{itemize}
   \end{block}
 
@@ -46,10 +46,15 @@
         \node[alert]     at (1.85,0)  {$\bullet$};
         \node[structure] at (-1.5, .5)  {$\bullet$};
         \node[example]   at (-1.5,-.5) {$\bullet$};
+        \node[structure] at (1.1, .7)  {$\bullet$};
+        \node[example]   at (1.1,-.7) {$\bullet$};
       \end{scope}
-      \node[alert, right]     at (2,0)      {\small\AlgoSearchPerfect};
-      \node[structure, left]  at (-1.7, .5) {\small\AlgoCompter};
-      \node[example, left]    at (-1.7,-.5) {\small\AlgoBoucler};
+      \small
+      \node[alert, right]     at ( 2.0,  0)      {$\langle \AlgoSearchPerfect, 3 \rangle$};
+      \node[structure, left]  at (-1.8, .5) {$\langle \IsPow, 8 \rangle$};
+      \node[example, left]    at (-1.8,-.5) {$\langle \IsPow,12 \rangle$};
+      \node[structure, right] at ( 1.6, .7) {$\langle \AlgoSearchPerfect, 2 \rangle$};
+      \node[example, right]   at ( 1.6,-.7) {$\langle \IsPow, 0 \rangle$};
     \end{tikzpicture}
   \end{center}
   
@@ -57,7 +62,8 @@
     \begin{itemize}
     \item Restreindre le problème à une sous-classe.
       \begin{itemize}
-      \item Par exemple, boucles \KWStyle{pour} avec borne explicite
+      \item boucles \KWStyle{pour} avec borne explicite
+      \item langages de types 1, 2 ou 3 dans la hiérarchie de Chomsky
       \end{itemize}
     \item Utiliser des approximations et des heuristiques
       \begin{itemize}
@@ -66,6 +72,7 @@
       \end{itemize}
     \end{itemize}
   \end{block}
+
 \end{frame}
 
 \endgroup
