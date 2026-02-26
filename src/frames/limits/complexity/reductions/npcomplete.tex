@@ -79,19 +79,19 @@
       \path[-latex] (D)      edge (F);
 
       \footnotesize
-      \node[alert, above]               at (R.center) {$\textsc{p}$};
-      \node[alert, above]               at (1.5,2)      {$\textsc{np} \cap \textsc{co-np}$};
-      \node[structure]                  at (NP.center)            {\textsc{np-complet}};
-      \node[example, align=center]      at (CP.center)            {\textsc{co-np-}\\\textsc{complet}};
-      \node[structure]                  at (2,2.8)                {\textsc{np}};
-      \node[example]                    at (2,1.2)                {\textsc{co-np}};
-      \node[black!60, below]            at (8,3.75)               {\textsc{np-difficile}};
-      \node[black!60, above]            at (8,0.25)               {\textsc{co-np-difficile}};
-
+      \node[alert, above]               at (R.center)  {$\textsc{p}$};
+      \node[alert, above]               at (1.5,2)     {$\textsc{np} \cap \textsc{co-np}$};
+      \node[structure]                  at (NP.center) {\textsc{np-complet}};
+      \node[example, align=center]      at (CP.center) {\textsc{co-np-}\\\textsc{complet}};
+      \node[structure]                  at (2,2.8)     {\textsc{np}};
+      \node[example]                    at (2,1.2)     {\textsc{co-np}};
+      \node[black!60, below]            at (8,3.75)    {\textsc{np-difficile}};
+      \node[black!60, above]            at (8,0.25)    {\textsc{co-np-difficile}};
+      \node[black!60]                   at ( 0.4,.5)   {si $\textsc{p} \neq \textsc{np} \neq \textsc{co-np}$};
       \scriptsize
+      \node[black!60, rotate=90, left ] at (-1.0,2)    {symétrie par};
+      \node[black!60, rotate=90, right] at (-1.0,2)    {complémentaire};
       \draw[black!60, densely dotted]      (-1.2,2) -- (9.5,2);
-      \node[black!60, rotate=90, left ] at (-1.0,2)                {symétrie par};
-      \node[black!60, rotate=90, right] at (-1.0,2)                {complémentaire};
 
       \begin{scope}[background]
         \draw[draw=structure!50, fill=structure!10] (X) -- (NP.south) -- (NP.north) -- (R.north);
@@ -101,6 +101,8 @@
         \draw[draw=none,         fill=black!20]     (9.5,2.25) -- (Y) -- (9.5,1.75);
       \end{scope}
 
+      
+      
     \end{tikzpicture}
   }
 
