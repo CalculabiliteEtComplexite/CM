@@ -82,7 +82,7 @@
 \input{languages/history/decision_problem/expressiveness}
 \input{languages/history/decision_problem/consequences}
 \input{languages/history/decision_problem/entscheidungs}
- 
+
 \subsection{Résolution de la crise}
 \input{languages/history/resolution/godel}
 \input{languages/history/resolution/church_turing}
@@ -156,7 +156,7 @@
  
 \section{Notion de machine de Turing}
  
-\subsection{Introduction aux machines de Turing}
+\subsection{Le ruban de Turing}
 \input{turing_machine/introduction/intuition/decision}
 \input{turing_machine/introduction/intuition/ram}
 \input{turing_machine/introduction/intuition/tape_automaton}
@@ -244,57 +244,93 @@
 \input{turing_machine/characterizations/chomsky/linearbounded}
 \input{turing_machine/characterizations/chomsky/hierarchy}
 \input{turing_machine/characterizations/chomsky/decidability}
-
-
+ 
+ 
 \part{Limites de l'algorithmique}
  
  
 \section{Notion d'universalité}
-
+ 
 \subsection{Problème universel et semi-décidabilité}
-\input{limits/universality/introduction/machines}
-\input{limits/universality/introduction/computer}
-\input{limits/universality/introduction/interpreter}
-\input{limits/universality/universality/universal}
-\input{limits/universality/universality/example}
-\input{limits/universality/introduction/programming}
-
+\input{limits/universality/semidecidable/machines}
+\input{limits/universality/semidecidable/computer}
+\input{limits/universality/semidecidable/interpreter}
+\input{limits/universality/semidecidable/universal}
+\input{limits/universality/semidecidable/mtu}
+\input{limits/universality/semidecidable/programming}
+ 
 \subsection{Indécidabilité du langage universel}
 \input{limits/universality/undecidable/halting_problem}
 \input{limits/universality/undecidable/perfect_odd}
 \input{limits/universality/undecidable/strachey}
 \input{limits/universality/undecidable/classical_proof}
 \input{limits/universality/undecidable/meaning}
-
-%\section{Limites à la Calculabilité}
-% 
-%\subsection{Argument par Dénombrement}
-%\input{limits/universality/undecidable/halt_empty}
-%\input{limits/computability/countability/classes}
-%\input{limits/computability/countability/equipotence}
-%\input{limits/computability/countability/countable}
-%\input{limits/computability/countability/countable_languages}
-%\input{limits/computability/countability/uncountable_languages}
-% 
-%\subsection{Notion de réduction}
-%\input{limits/computability/reductions/definition}
-%\input{limits/computability/reductions/classes}
-%\input{limits/computability/reductions/examples}
-%\input{limits/computability/reductions/rice}
-%\input{limits/computability/reductions/map}
-% 
-%\subsection{Le Problème de Correspondance de Post}
-%\input{limits/computability/pcp/pcp}
-%\input{limits/computability/pcp/pcpi}
-%\input{limits/computability/pcp/automaton}
-%\input{limits/computability/pcp/automaton_solution}
-%\input{limits/computability/pcp/TM_to_pcpi}
-%\input{limits/computability/pcp/halt_to_pcpi}
-%\input{limits/computability/pcp/pcpi_to_pcp}
-%\input{limits/computability/pcp/ambiguity}
-%\input{limits/computability/pcp/pcp_to_ambiguity}
-% 
-%\section{Limites de Complexité}
+ 
+\section{Limites à la Calculabilité}
+ 
+\subsection{Preuves par réduction}
+\input{limits/computability/reductions/entscheidungsproblem}
+\input{limits/computability/reductions/incomplete}
+\input{limits/computability/reductions/godel}
+\input{limits/computability/reductions/definition}
+\input{limits/computability/reductions/proof}
+ 
+\subsection{Indécidabilité de l'analyse de programmes}
+\input{limits/computability/programs/halt}
+\input{limits/computability/programs/halt_empty}
+\input{limits/computability/programs/conformity}
+\input{limits/computability/programs/conformity_undecidable}
+\input{limits/computability/programs/rice}
+\input{limits/computability/programs/silver_bullet}
+ 
+\subsection{S'extraire de l'analyse statique}
+\input{limits/computability/pcp/pcpi}
+\input{limits/computability/pcp/automaton}
+\input{limits/computability/pcp/automaton_solution}
+\input{limits/computability/pcp/TM_to_pcpi}
+\input{limits/computability/pcp/universal_to_pcpi}
+\input{limits/computability/pcp/pcp}
+\input{limits/computability/pcp/pcp_example}
+\input{limits/computability/pcp/pcpi_to_pcp}
+\input{limits/computability/pcp/ambiguity}
+\input{limits/computability/pcp/pcp_to_ambiguity}
+ 
+\subsection{La carte de Post}
+\input{limits/computability/cartography/totality}
+\input{limits/computability/cartography/mortal}
+\input{limits/computability/cartography/tiling}
+\input{limits/computability/cartography/conway}
+\input{limits/computability/cartography/raytracing}
+\input{limits/computability/cartography/map}
+ 
+\subsection{La hiérarchie des degrés}
+\input{limits/computability/reductibility/relation}
+\input{limits/computability/reductibility/equivalence}
+\input{limits/computability/reductibility/recomplete}
+\input{limits/computability/reductibility/classes}
+ 
+\section{Limites de Complexité}
+ 
+\subsection{Les ombres d'Hartmanis}
+\input{limits/complexity/reductions/opening} 
+\input{limits/complexity/reductions/karp}
+\input{limits/complexity/reductions/npcomplete}
+\input{limits/complexity/reductions/npuniversal}
+\input{limits/complexity/reductions/bpcpi}
+\input{limits/complexity/reductions/npuniversal_to_bpcpi}
+\input{limits/complexity/reductions/sat}
+\input{limits/complexity/reductions/cook}
+\input{limits/complexity/reductions/cook_reckhow}
+ 
+\subsection{La carte de Karp}
+\input{limits/complexity/cartography/3sat}
+\input{limits/complexity/cartography/grammar}
+\input{limits/complexity/cartography/superstring}
+\input{limits/complexity/cartography/coloring}
+\input{limits/complexity/cartography/scheduling}
+\input{limits/complexity/cartography/bdkey}
+\input{limits/complexity/cartography/mine}
+\input{limits/complexity/cartography/map} 
 
 
 \end{document}

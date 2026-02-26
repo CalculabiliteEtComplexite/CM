@@ -17,16 +17,16 @@
     \vspace{-1mm}
     \begin{itemize}
     \item Soit $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ un langage de programmation.
-    \item Supposons que $\textsc{universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est décidable.
+    \item Supposons que $\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est décidable.
     \item Soit \structure{\Decide} qui le décide.
-    \item<2-> A-t-on $\alert{\langle f, \varepsilon\rangle \in \textsc{universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}}$ ?
+    \item<2-> A-t-on $\alert{\langle f, \varepsilon\rangle \in \textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}}$ ?
       \begin{algorithm}[H]
         \Fun{$\F(u \in \Sigma^\star) \in \mathbb{B}$}{
           \Return $\lnot \Decide(\F, u)$;
         }
       \end{algorithm}
 
-    \item<3-> On a : \quad $\structure{\langle f, \varepsilon\rangle \in \textsc{universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle} \quad \Leftrightarrow \quad \lnot \Decide(\F, \varepsilon)}$ 
+    \item<3-> On a : \quad $\structure{\langle f, \varepsilon\rangle \in \textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle} \quad \Leftrightarrow \quad \lnot \Decide(\F, \varepsilon)}$ 
     \item<3-> Absurde, donc \alert{$\Decide$ n'existe pas}. 
     \end{itemize}
   }
@@ -39,7 +39,7 @@
     img={Strachey.jpg}
   }
 
-  \onBlock[bottom=2mm]{Difficulté de la formalisation}{
+  \onBlock<4->[bottom=2mm]{Difficulté de la formalisation}{
     Quel est le type de l'argument de $\Decide$ ?
     \begin{itemize}
     \item Si c'est le code de $\F$, est-ce que $\F$ est capable de recopier son code ?

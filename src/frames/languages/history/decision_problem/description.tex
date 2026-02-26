@@ -9,12 +9,14 @@
 
 \begin{frame}{Comment décrire les problèmes de décision ?}
 
+  \vspace{-1mm}
   \begin{alertblock}{Remarque}
     \begin{itemize}
-    \item Un problème doit être décrit dans un formalisme centré sur un langage
+    \item \vspace{-1mm} Un problème doit être décrit dans un formalisme centré sur un langage
     \end{itemize}
   \end{alertblock}
   
+  \vspace{-1mm}
   \begin{exampleblock}{Exemples : langage composé des seuls mots $aa$ et $ab$}
     \begin{description}[Grammaires algébriques :]
     \item[Mathématiques :]
@@ -28,14 +30,16 @@
     \end{description}
   \end{exampleblock}
 
-  \begin{block}{Définition -- Langage de descriptions}
-    Un \structure{langage de descriptions} $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ est un langage muni d'une sémantique :
+  \vspace{-1mm}
+  \begin{block}{Définition -- Formalisme}
+    Un \structure{formalisme} décrivant un ensemble $E$ est un couple $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ :
     \begin{description}[$\llbracket \cdot \rrbracket : \mathcal{L} \rightarrow \textsc{lang}$]
-    \item[$\mathcal{L} \in \textsc{lang}$] est la \alert{syntaxe} du langage de descriptions
-    \item[$\llbracket \cdot \rrbracket : \mathcal{L} \rightarrow \textsc{lang}$] est la \alert{sémantique} du langage de descriptions
+    \item[$\mathcal{L} \in \textsc{lang}$] est la \alert{syntaxe} du formalisme
+    \item[$\llbracket \cdot \rrbracket : \mathcal{L} \rightarrow E$] est la \alert{sémantique} du formalisme
     \end{description}
     \begin{itemize}
-    \item Un mot \structure{$u \in \mathcal{L}$} est la représentation du problème formel \structure{$\llbracket u \rrbracket \in \textsc{lang}$}.
+    \item Dans ce cours, on considèrera \structure{$E \subseteq \textsc{lang}$} un ensemble de problèmes
+    \item Un mot \structure{$u \in \mathcal{L}$} est la représentation du problème \structure{$\llbracket u \rrbracket \in \textsc{lang}$}.
     \end{itemize}
   \end{block}
   

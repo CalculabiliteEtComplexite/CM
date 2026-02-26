@@ -9,16 +9,16 @@
 
 \newcommand\PROBLEM{\textsc{problem}}
 
-\begin{frame}{Expressivité des langages de description}
+\begin{frame}{Expressivité des formalismes}
 
-  On veut un langage $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ où tout problème de décision est représentable :
+  On veut un formalisme $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ où tout langage est représentable :
 
   \vspace{-2mm}
   $$\alert{\forall \PROBLEM \in \textsc{lang},~ \exists u \in \mathcal{L},~ \PROBLEM = \llbracket u \rrbracket}$$
   
   \begin{block}{Théorème -- Corollaire du théorème de Cantor}
-    Il n'existe pas de langage de description $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$
-    où $\llbracket \cdot \rrbracket$ est surjective.
+    Il n'existe pas de formalisme $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$
+    où $\llbracket \cdot \rrbracket$ est surjective sur \textsc{lang}.
   \end{block}
 
   \vspace{-1mm}

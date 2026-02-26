@@ -12,26 +12,27 @@
   \on[y=-5mm]{
     \begin{tikzpicture}[y=11mm]
       \begin{scope}[align=center, font=\small, -latex]
-        \node (halt)         at ( 0 00,  0.00) {Arrêt};
-        \node (pcpi)         at ( 1.50,  0.00) {\textsc{pcpi}};                                       \path (halt)         edge (pcpi);
+        \node (universal)    at (-0.50,  0.00) {\textsc{universal}};
+        \node (pcpi)         at ( 1.50,  0.00) {\textsc{pcpi}};                                       \path (universal)    edge (pcpi);
         \node (pcp)          at ( 3.00,  0.00) {\textsc{pcp}};                                        \path (pcpi)         edge (pcp);
         \node (ambiguT2)     at ( 5.00,  0.00) {Ambiguité d'une\\ grammaire\\ algébrique};            \path (pcp)          edge (ambiguT2);
         \node (intersectT2)  at ( 5.00, -2.00) {Intersection \\ de deux \\ grammaires \\algébriques}; \path (pcp)          edge (intersectT2);
-        \node (haltepsilon)  at (-1.00, -1.00) {Arrêt sur\\mot vide};                                 \path (halt)         edge (haltepsilon);
-        \node (hilbert)      at (-4.00, -1.00) {\textsc{Entscheidungsproblem}};                       \path (halt)         edge (hilbert);
+        \node (halt)         at (-1.00, -1.00) {\textsc{halt}};                                       \path (universal)    edge (halt);
+        \node (haltepsilon)  at (-1.00, -1.70) {$\textsc{halt-}\varepsilon$};                         \path (halt)         edge (haltepsilon);
+        \node (hilbert)      at (-4.00, -1.00) {\textsc{Entscheidungsproblem}};                       \path (universal)    edge (hilbert);
         \node (consistency)  at (-4.00, -2.00) {Cohérence d'un \\ système logique};                   \path (hilbert)      edge (consistency);
-        \node (matrix)       at (-1.25,  2.00) {Matrices mortelles\\ou identité};                     \path (halt)         edge (matrix);
-        \node (pavage)       at (-3.25,  2.00) {Pavage \\ du plan};                                   \path (halt)         edge (pavage);
-        \node (polynome)     at (-3.00,  0.25) {Résolution \\d'équations \\ diophantienne};           \path (halt)         edge (polynome);
-        \node (decT0)        at ( 2.00, -2.00) {Décision\\ d'un mot par une \\ grammaire générale};   \path (halt)         edge (decT0);
-        \node (normalLambda) at ( 2.00,  1.00) {Mise d'un $\lambda$-terme\\ sous forme normale};      \path (halt)         edge (normalLambda);
+        \node (matrix)       at (-1.25,  2.00) {Matrices mortelles\\ou identité};                     \path (universal)    edge (matrix);
+        \node (pavage)       at (-3.25,  2.00) {Pavage \\ du plan};                                   \path (universal)    edge (pavage);
+        \node (polynome)     at (-3.00,  0.25) {Résolution \\d'équations \\ diophantienne};           \path (universal)    edge (polynome);
+        \node (decT0)        at ( 2.00, -2.00) {Décision\\ d'un mot par une \\ grammaire générale};   \path (universal)    edge (decT0);
+        \node (normalLambda) at ( 2.00,  1.00) {Mise d'un $\lambda$-terme\\ sous forme normale};      \path (universal)    edge (normalLambda);
         \node (terminaison)  at ( 2.00,  2.00) {Terminaison d'un\\système de réécriture};             \path (normalLambda) edge (terminaison);
         \node (confluence)   at ( 5.00,  2.00) {Confluence d'un\\ système de réécriture};             \path (pcp)          edge (confluence);
         \node (rice)         at (-1.00, -2.50) {Théorème \\de Rice};                                  \path (haltepsilon)  edge (rice);
         \node (correct)      at (-1.00, -4.00) {Conformité\\ d'un programme à \\sa spécification};    \path (rice)         edge (correct);
         \node (secure)       at (-4.00, -4.00) {Présence d'une\\ vulnérabilité\\ de sécurité};        \path (rice)         edge (secure);
-        \node (univT0)       at ( 2.00, -4.00) {Universalité\\ d'une\\ grammaire\\ générale};         \path (rice)         edge (univT0);
-        \node (univT2)       at ( 5.00, -4.00) {Universalité\\ d'une\\ grammaire\\ algébrique};       \path (univT0)       edge (univT2);
+        \node (univT0)       at ( 2.00, -4.00) {Totalité\\ d'une\\ grammaire\\ générale};             \path (rice)         edge (univT0);
+        \node (univT2)       at ( 4.00, -4.00) {Totalité\\ d'une\\ grammaire\\ algébrique};           \path (pcp)          edge (univT2);
       \end{scope}
 
       \begin{scope}[background, text=structure, inner sep=3mm]

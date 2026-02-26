@@ -1,0 +1,41 @@
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% Author: Matthieu Perrin
+% Part: <Nom de la partie>
+% Section: <Nom de la section>
+% Sub-section: <Nom de la sous-section>  % (facultatif, laisser vide si non utilisé)
+% Frame: <Titre de la slide>
+
+\begingroup
+
+\SetKwFunction{Decide}{decide}
+
+\begin{frame}{Retour sur l'Entscheidungsproblem}
+
+  Soit $\langle \Phi, \Pi, \valid \rangle$ le système de preuve formel des mathématiques usuelles
+
+  \Probleme{Entscheidungsproblem}{
+    Une proposition $\varphi \in \Phi$ 
+  }{
+    Est-ce que $\varphi$ est démontrable ($\exists \pi \in \Pi,   \pi \valid \varphi$) ?
+  }
+  
+  \begin{block}{Théorème -- Turing, Church (1936)}
+    Le \textsc{Entscheidungsproblem} est indécidable. 
+  \end{block}
+
+  \pause 
+  \begin{block}{Démonstration}
+    Si le \structure{\textsc{Entscheidungsproblem}} était décidable, \structure{$\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$} aussi :
+
+    \begin{algorithm}[H]
+      \Fun{$\Decide_{\textsc{Universal}}(P \in L, u \in \Omega^\star) \in \mathbb{B}$}{
+        \Return $\Decide_{\textsc{Entscheidungsproblem}}(``u \in \llbracket P \rrbracket")$;
+      }
+    \end{algorithm}
+
+    Or \structure{$\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$} est indécidable, donc \structure{\textsc{Entscheidungsproblem}} aussi. 
+  \end{block}
+  
+\end{frame}
+
+\endgroup
