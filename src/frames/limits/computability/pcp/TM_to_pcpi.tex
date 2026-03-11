@@ -12,9 +12,9 @@
   \onExampleBlock[left=.5\textwidth,top=-5mm] {Exemple -- $\{a^{n+1} b^n \mid n\in \mathbb{N}\}$}{\footnotesize
     \begin{tikzpicture}[turingMachine, size=12mm]
       \state[alert ob=<{1,5}>,   initial  ] (0) at (0,1.2) {0}; 
-      \state[alert ob=<{2,6,11,12,15,16}> ] (1) at (1.5,1.2) {1}; 
+      \state[alert ob=<{2,6,11-13,15,16}> ] (1) at (1.5,1.2) {1}; 
       \state[alert ob=<{3,7}>             ] (2) at (1.5,0.0) {2}; 
-      \state[alert ob=<{4,13,14}>         ] (3) at (0,0.0) {3}; 
+      \state[alert ob=<{4,14}>            ] (3) at (0,0.0) {3}; 
       \state[alert ob=<8>,       accepting] (4) at (3,0.0) {4}; 
       
       \path                   (0) edge             node       {\smTMtransR{a}{\blank}}                       (1);
@@ -22,8 +22,8 @@
       \path                   (2) edge             node       {\smTMtransL{b}{\blank}}                       (3);
       \path                   (3) edge             node       {\smTMtransR{\blank}{\blank}}                  (0);
       \path                   (2) edge             node[swap] {\smTMtransR{\blank}{\blank}}                  (4);
-      \path[alert ob=<11-12>] (1) edge[loop right] node       {\smAlign{\smTMtransR{a}{a}\smTMtransR{b}{b}}} (1);
-      \path[alert ob=<13-14>] (3) edge[loop left]  node       {\smAlign{\smTMtransL{a}{a}\smTMtransL{b}{b}}} (3);
+      \path[alert ob=<11-13>] (1) edge[loop right] node       {\smAlign{\smTMtransR{a}{a}\smTMtransR{b}{b}}} (1);
+      \path[alert ob=<14>   ] (3) edge[loop left]  node       {\smAlign{\smTMtransL{a}{a}\smTMtransL{b}{b}}} (3);
     \end{tikzpicture}
   }
   

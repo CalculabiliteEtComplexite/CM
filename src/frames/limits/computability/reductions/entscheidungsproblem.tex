@@ -11,7 +11,7 @@
 
 \begin{frame}{Retour sur l'Entscheidungsproblem}
 
-  Soit $\langle \Phi, \Pi, \valid \rangle$ le système de preuve formel des mathématiques usuelles
+  Soit $\langle \Phi, \Pi, \valid \rangle$ le système de preuve formel des mathématiques usuelles\footnote{Disons, la logique du premier ordre muni des axiomes de ZFC}
 
   \Probleme{Entscheidungsproblem}{
     Une proposition $\varphi \in \Phi$ 
@@ -27,12 +27,14 @@
   \begin{block}{Démonstration}
     Si le \structure{\textsc{Entscheidungsproblem}} était décidable, \structure{$\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$} aussi :
 
+    \vspace{2mm}
     \begin{algorithm}[H]
-      \Fun{$\Decide_{\textsc{Universal}}(P \in L, u \in \Omega^\star) \in \mathbb{B}$}{
-        \Return $\Decide_{\textsc{Entscheidungsproblem}}(``u \in \llbracket P \rrbracket")$;
+      \Fun{$\Decide_{\textsc{Universal}}(\alert{\langle P, u \rangle} \in \mathcal{I}(\textsc{Universal})) \in \mathbb{B}$}{
+        \vspace{1mm}\Return $\Decide_{\textsc{Entscheidungsproblem}}(\alert{``u \in \llbracket P \rrbracket"})$;
       }
     \end{algorithm}
-
+    \vspace{1mm}
+    
     Or \structure{$\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$} est indécidable, donc \structure{\textsc{Entscheidungsproblem}} aussi. 
   \end{block}
   
