@@ -22,7 +22,7 @@
       \Fun{$\Reconnait_{\mathcal{L}(G)}(u)$}{
         \While{$u\neq S \land \exists \alert{\alpha \rightarrow \beta}, \exists \structure{x}, \structure{y} \in (\Sigma \cup \Gamma)^\star,~ u = \structure{x} \alert{\beta} \structure{y}$}{
           $u \leftarrow \structure{x} \alert{\alpha} \structure{y}$;
-          \tcp*[l]{Choix non déterministe de la règle $\alert{\alpha \rightarrow \beta}$ et la position dans $u$}
+          \tcp*[l]{Choix non déterministe : règle $\alert{\alpha \rightarrow \beta}$ et position dans $u$}
         }
         \Return $u=S$\;
       }
