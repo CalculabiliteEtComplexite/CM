@@ -9,47 +9,89 @@
 
 \begin{frame}{Inclusion des classes de complexité}
 
-  \on[y=10mm]{
-  \begin{tikzpicture}[x=6mm, y=3.5mm]\small
-    \node[draw=example,   fill=example!10,   rounded corners, fit={(0,0)(15,15)}] (se) {};
-    \node[                fill=white,        rounded corners, fit={(2,2)(14,14)}]      {};
-    \node[draw=structure, fill=structure!10, rounded corners, fit={(1,1)(13,13)}] (ne) {};
-    \node[draw=black,                        rounded corners, fit={(2,2)(14,14)}] (ce) {};
-    \node[draw=alert,     fill=alert!10,     rounded corners, fit={(3,3)(12,12)}] (de) {};
-    \node[draw=example,   fill=example!10,   rounded corners, fit={(4,4)(11,11)}] (sp) {};
-    \node[                fill=white,        rounded corners, fit={(6,6)(10,10)}]      {};
-    \node[draw=structure, fill=structure!10, rounded corners, fit={(5,5)(9,9)}]   (np) {};
-    \node[draw=black,                        rounded corners, fit={(6,6)(10,10)}] (cp) {};
-    \node[draw=alert,     fill=alert!10,     rounded corners, fit={(7,7)(8,8)}]   (dp) {};
-
-    \node[example,   below] at (se.north)  {$\textsc{expspace} = \textsc{nexpspace} = \textsc{co-nexpspace}$ \footnotesize (Théorème de Savitch)};
-    \node[structure, below] at (ne.north)  {$\textsc{nexptime}$};
-    \node[black,     below] at (ce.north)  {$\textsc{co-nexptime}$};
-    \node[alert,     below] at (de.north)  {$\textsc{exptime}$};
-    \node[example,   below] at (sp.north)  {$\textsc{pspace} = \textsc{npspace} = \textsc{co-npspace}$};
-    \node[black,     below] at (cp.north)  {$\textsc{co-np}$};
-    \node[structure, below] at (np.north)  {$\textsc{np}$};
-    \node[alert,          ] at (dp.center) {$\textsc{p}$};
-  \end{tikzpicture}
+  \onBlock<1>[top=-3mm]{Quelques résultats inconnus}{
+    \begin{minipage}{.5\textwidth}
+      \begin{itemize}
+      \item $\textsc{p} \stackrel{?}{=} \textsc{np}$
+      \item $\textsc{np} \stackrel{?}{=} \textsc{co-np}$
+      \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+      \begin{itemize}
+      \item $\textsc{np} \stackrel{?}{=} \textsc{pspace}$
+      \item $\textsc{p} \stackrel{?}{=} \textsc{np} \cap \textsc{co-np}$
+      \end{itemize}
+    \end{minipage}
   }
-  
-  \onBlock[y=-17mm, anchor=north, left=.5\textwidth]{Quelques résultats connus}{
+
+  \onBlock<1>[bottom=5mm]{Théorème de Savitch}{
     \begin{itemize}
-    \item $\textsc{pspace} = \textsc{npspace} = \textsc{co-npspace}$
-    \item $\textsc{p} \subsetneq \textsc{exptime}$
+      \item Pour toute fonction $f(n) \ge \log(n)$,
+      \quad
+      \alert{$\textsc{nspace}\left( f(n) \right) \subseteq \textsc{dspace}\left( f(n)^2 \right)$}
     \end{itemize}
   }
+  
+  \on[y=-3mm]{
+    
+    \begin{tikzpicture}[x=4.6mm, y=4.6mm]
+      \uncover<2>{
+        \draw[alert, fill=alert!20]                                     \theshape{7};
+        \draw[black, fill=black!20]                       \theshape{6};
+        \begin{scope}
+          \fill[rotate= 7, white]                        \theshape{5};
+          \fill[rotate=-7, white]                        \theshape{5};
+          \fill[rotate= 7, structure!40, opacity=.5]     \theshape{5};
+          \fill[rotate=-7, example!40, opacity=.5]       \theshape{5};
+          \draw[rotate= 7, structure]                    \theshape{5};
+          \draw[rotate=-7, example]                      \theshape{5};
+        \end{scope}
+        \draw[alert, fill=alert!20]                      \theshape{4};
+      }
+      \draw[black, fill=black!20]                        \theshape{3};
+      \begin{scope}
+        \fill[rotate= 17, white]                         \theshape{2};
+        \fill[rotate=-17, white]                         \theshape{2};
+        \fill[rotate= 17, structure!40, opacity=.5]      \theshape{2};
+        \fill[rotate=-17, example!40, opacity=.5]        \theshape{2};
+        \draw[rotate= 17,  structure]                    \theshape{2};
+        \draw[rotate=-17, example]                       \theshape{2};
+      \end{scope}
+      \draw[alert, fill=alert!20]                        \theshape{1};
 
-  \onBlock[y=-17mm, anchor=north, right=.5\textwidth]{Quelques résultats inconnus}{
-    \begin{itemize}
-    \item $\textsc{p} \stackrel{?}{=} \textsc{np} \stackrel{?}{=} \textsc{co-np} \stackrel{?}{=} \textsc{pspace}$
-    \item $\textsc{pspace} \stackrel{?}{=} \textsc{exptime}$
-    \end{itemize}
+      \footnotesize
+      \node[alert]                              at ( 0.5, 0) {$\textsc{p}$};
+      \node[structure]                          at ( 2.5, 2) {$\textsc{np}$};
+      \node[example]                            at ( 2.5,-2) {$\textsc{co-np}$};
+      \node[structure!50!example, align=center] at ( 3.0, 0) {$\textsc{np}$ \\ $\cap$ \\ $\textsc{co-np}$};
+      \uncover<2>{
+        \node[alert]                              at ( 8.0, 0) {$\textsc{exptime}$};
+        \node[structure]                          at ( 6.5, 5) {$\textsc{nexptime}$};
+        \node[example]                            at ( 6.5,-5) {$\textsc{co-nexptime}$};
+        \node[alert]                              at (15.0, 0) {$\textsc{r}$};
+      }
+      \scriptsize
+      \node[black, align=center]                at (5.5,0)  {$\textsc{pspace}$ \\ $=$ \\ $\textsc{npspace}$ \\ $=$ \\ $\textsc{co-}$ \\ $\textsc{npspace}$};
+      \tiny
+      \uncover<2>{
+        \node[structure!50!example, align=center] at (10.1,0) {$\textsc{nexptime}$ \\ $\cap$ \\ $\textsc{co}$ \\ $\textsc{-nexptime}$};
+        \node[black, align=center]                at (12.5,0) {$\textsc{expspace}$ \\ $=$ \\ $\textsc{nexpspace}$ \\ $=$ \\ $\textsc{co-}$ \\ $\textsc{nexpspace}$};
+      }
+      
+      \footnotesize
+      \draw[black!60, densely dotted]      (-7.7,0) -- (16.5,0);
+      \node[black!60, rotate=90, left ] at (-7.5,0) {symétrie par};
+      \node[black!60, rotate=90, right] at (-7.5,0) {complémentaire};
+
+    \end{tikzpicture}
+  }    
+
+  \only<1>{
+    \footnoteref{W. J. Savitch. \textit{Relationships between nondeterministic and deterministic tape complexities.} JCSS (1970)}
   }
 
-  \footnoteref{W. J. Savitch. \textit{Relationships between nondeterministic and deterministic tape complexities.} JCSS (1970)}
-  
 \end{frame}
+
 
 \endgroup
 \endinput

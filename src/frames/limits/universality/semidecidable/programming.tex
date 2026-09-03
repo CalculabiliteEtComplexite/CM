@@ -7,11 +7,11 @@
 
 \begingroup
 
-\begin{frame}{Langage de programmation et langage universel}
+\begin{frame}{Encodage effectif et langage universel}
 
   \vspace{-2mm}
-  \begin{block}{Définition -- Langage de programmation}
-    Un \structure{langage de programmation} est un formalisme 
+  \begin{block}{Définition -- Encodage effectif des MTD}
+    Un \structure{encodage effectif} des MTD est un formalisme 
     \alert{$\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$} tel que :
     \begin{description}[Turing-complet :]
     \item[Turing-complet :] $\alert{\operatorname{Im}(\llbracket \cdot \rrbracket) = \textsc{re}}$
@@ -22,27 +22,28 @@
       \end{itemize}
     \item[Effectif :] $\alert{\left\{ \langle P, u \rangle \mid P \in \mathcal{L} \land u \in \llbracket P \rrbracket \right\} \in \textsc{re}}$
       \begin{itemize}\small
+      \item On peut décoder les MTD et les simuler
       \item Il s'agit du langage universel :
-
-        \vspace{-2mm}
-        $$\structure{\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle} \eqdef \left\{ \langle P, u \rangle \mid P \in \mathcal{L} \land u \in \llbracket P \rrbracket \right\}}$$
-      \item\vspace{-1mm} Il existe un interpréteur qui semi-décide $\llbracket P \rrbracket$
-      \item En particulier, on peut décoder les programmes et les simuler
       \end{itemize}
     \end{description}
+        $$\structure{\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle} \eqdef \left\{ \langle P, u \rangle \mid P \in \mathcal{L} \land u \in \llbracket P \rrbracket \right\}}$$
+
   \end{block}
 
   \pause
-  
-  \begin{alertblock}{Remarques -- Décidabilité des langages universels}
-    Soit $\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle$ un langage de programmation (existe d'après le slide précédent). 
 
+  \vspace{-2mm}
+  \begin{alertblock}{Remarques -- Langage de programmation}
+    Un \alert{langage de programmation} est un encodage effectif des MTD
     \begin{itemize}
-    \item $\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est semi-décidable par définition
-    \item $\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est-il décidable ?
+    \item On appellera les mots de $\mathcal{L}$ des \alert{programmes}
+    \item L'effectivité signifie qu'il existe un \alert{interpréteur} pour le langage
     \end{itemize}
+
+    \begin{center}
+      \alert{$\textsc{Universal}_{\langle \mathcal{L}, \llbracket \cdot \rrbracket \rangle}$ est-il décidable ?}
+    \end{center}
   \end{alertblock}
 
+  
 \end{frame}
-
-\endgroup

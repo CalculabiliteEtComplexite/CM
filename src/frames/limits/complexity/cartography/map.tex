@@ -12,7 +12,7 @@
   \on[y=-4.5mm]{
     \begin{tikzpicture}[x=30mm, y=16mm]
       \begin{scope}[align=center, font=\small, -latex]
-        \node (universal)   at ( 0.00, -1.00) {\textsc{Universal}\\borné};
+        \node (universal)   at ( 0.00, -1.00) {\textsc{NPUniversal}};
         \node (sat)         at ( 0.00,  0.00) {\textsc{sat}};                                    \path (universal) edge (sat);
         \node (3sat)        at ( 1.00,  0.00) {3\textsc{-sat}};                                  \path (sat)       edge (3sat);
         \node (stable)      at ( 2.00,  0.00) {Ensemble\\stable};                                \path (3sat)      edge (stable);
@@ -24,7 +24,7 @@
         \node (tsp)         at ( 2.00,  2.00) {Voyageur de\\commerce};                           \path (hamilton2) edge (tsp);
         \node (pcp)         at (-0.20, -1.80) {\textsc{pcp}\\borné};                             \path (universal) edge (pcp);
         \node (dfa)         at (-1.00, -2.00) {Intersection bornée\\de grammaires\\algébriques}; \path (pcp)       edge (dfa);
-        \node (radis)       at (-0.00,  1.00) {\textsc{Radis}\\(partition)};                     \path (sat)       edge (radis);
+        \node (radis)       at (-0.00,  1.00) {\textsc{Radix}\\(partition)};                     \path (sat)       edge (radis);
         \node (subsetsum)   at (-0.00,  2.00) {\textsc{SubsetSum}};                              \path (radis)     edge (subsetsum);
         \node (scheduling)  at ( 1.00,  2.00) {\textsc{RT-Scheduling}};                          \path (radis)     edge (scheduling);
         \node (knapsack)    at (-0.80,  1.20) {\textsc{Knapsack}};                               \path (radis)     edge (knapsack);

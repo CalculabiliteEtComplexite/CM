@@ -88,4 +88,38 @@
 
 \end{frame}
 
+\begin{frame}{Structure des problèmes de décision}
+
+  \on[y=-3mm]{
+    
+    \begin{tikzpicture}[x=10mm, y=10mm]
+      \begin{scope}
+        \clip (-0.35,-2) rectangle (3,2);
+        \draw[rotate=25,  structure, fill=structure!20]  \theshape{1};
+        \draw[rotate=-25, example,   fill=example!20]    \theshape{1};
+      \end{scope}
+      \begin{scope}
+        \clip[rotate=25]                                 \theshape{1};
+        \draw[rotate=-25, alert, fill=alert!20]          \theshape{1};
+      \end{scope}
+      \begin{scope}
+        \clip[rotate=-25]                                \theshape{1};
+        \draw[rotate=25, alert]                          \theshape{1};
+      \end{scope}
+      \begin{scope}
+        \clip (-1.5,-2) rectangle (-0.35,2);
+        \draw[rotate=25, alert]                          \theshape{1};
+      \end{scope}
+      \node[alert]                              at ( 0.5, 0) {$\textsc{r} = \textsc{re} \cap \textsc{co-re}$};
+      \node[structure]                          at ( 1.5, 1) {$\textsc{re}$};
+      \node[example]                            at ( 1.5,-1) {$\textsc{co-re}$};
+      \footnotesize
+      \draw[black!60, densely dotted]      (-1.5,0) -- (2.75,0);
+      \node[black!60, rotate=90, left ] at (-1.25,0) {symétrie par};
+      \node[black!60, rotate=90, right] at (-1.25,0) {complémentaire};
+    \end{tikzpicture}
+  }    
+
+\end{frame}
+
 \endgroup
